@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Urgency Statistics - NZPT by CJ</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.3/css/bulma.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
@@ -16,16 +15,32 @@
     <meta name="author" content="CJ Sandall">
 </head>
 <body>
-    <h1>Urgency</h1>
-    <aside>I will make this page pretty later, for now, these are the statistics.</aside>
+    <header>
+        <h1>NZPT | Urgency Tracker</h1>
+    </header>
+    <aside><span class="warning"> I will make this page pretty later, for now, these are the statistics.</span></aside>
     <p>Urgency allows the government to fast-track the legislative process, enabling them to pass bills more quickly than usual. This is achieved by extending sitting hours, suspending select committee meetings, and potentially skipping stages of the legislative process. While urgency can be a useful tool in genuine emergencies, its use is sometimes controversial due to concerns about reduced scrutiny and public input. </p>
     <hr>
     <h4>54th Parliament Statistics:</h4>
-    <p><strong>Days sat:</strong> <span id="days-sat">0</span></p>
-    <p><strong>Days in Urgency:</strong> <span id="days-urgency">0</span></p>
-    <p><strong>Percentage of days in Urgency:</strong> <span id="urgency-percent">0</span>%</p>
+    <div class="statistics">
+        <div class="statistics-box" id="day-sat">
+            <p><span id="num-days-sat">0</span></p>
+            <p>Days sat by the 54th Parliament.</p>
+        </div>
+        <div class="statistics-box" id="day-urgency">
+            <p><span id="num-days-urgency">0</span></p>
+            <p>Days in Urgency.</p>
+        </div>
+        <div class="statistics-box" id="percent-urgency">
+            <p><span id="num-percent-urgency">0</span>%</p>
+            <p>Percentage of days in Urgency.</p>
+        </div>
+    </div>
     <p><strong>Last Updated:</strong> <span id="last-updated">2023-12-01</span></p>
-    <p><strong>Source code:</strong> <a href="https://github.com/itshammy/nzpt-urgency">https://github.com/itshammy/nzpt-urgency</a></p>
+    <footer>
+        <p>Data is sourced from the <a href="https://www.parliament.nz/en" target="_blank">New Zealand Parliament website</a>. | View the Source Code on <a href="https://github.com/itshammy/nzpt-urgency">GitHub</a>.</p>
+        <p>Created by <a href="https://cjs.nz">CJ Sandall</a>. Support the project on <a href="https://buymeacoffee.com/hammy">Buy Me a Coffee</a>.</p>
+    </footer>
 </body>
 <script data-name="BMC-Widget" data-cfasync="false" src="https://cdnjs.buymeacoffee.com/1.0.0/widget.prod.min.js" data-id="hammy" data-description="Support me on Buy me a coffee!" data-message="This tool was made by a (very) broke student. Consider buying me a coffee if you find this useful!" data-color="#F471FF" data-position="Right" data-x_margin="18" data-y_margin="18"></script>
 </html>

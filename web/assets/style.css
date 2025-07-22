@@ -1,0 +1,73 @@
+h1 {
+    font-size: 2.5em;
+    margin-bottom: 0.5em;
+}
+
+header {
+    background-color: #f8f9fa;
+    padding: 1em;
+    text-align: center;
+}
+
+footer {
+    background-color: #f1f1f1;
+    padding: 1em;
+    text-align: center;
+    font-size: 0.9em;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+footer a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    background-color: #ffffff;
+}
+
+aside {
+    font-style: italic;
+    margin: 1em 0;
+}
+
+aside .warning {
+    background-color: #ff0000;
+    font-weight: bold;
+    padding: 0.5em;
+    color: #ffffff;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.statistics {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1em;
+    margin: 1em 0;
+}
+
+.statistics-box {
+    flex: 1 1 calc(33.333% - 1em);
+    box-sizing: border-box;
+    padding: 1em;
+    background-color: #e6e6e6;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.statistics-box p {
+    margin: 0.5em 0;
+}
+
+@media (max-width: 768px) {
+    .statistics-box {
+        flex: 1 1 100%;
+    }
+}
