@@ -9,6 +9,7 @@ $last_day_urgent = $db->querySingle('SELECT date FROM urgency WHERE in_urgency =
 $last_day_urgent_readable = $last_day_urgent ? (new DateTime($last_day_urgent))->format('d M Y') : 'N/A';
 $days_since_urgency = $last_day_urgent ? (new DateTime())->diff(new DateTime($last_day_urgent))->days : 'N/A';
 $last_updated = file_get_contents('lastupdate.txt');
+$count_bills_affected = $db->querySingle('SELECT COUNT(id) FROM bills');
 
 ?>
 
@@ -50,7 +51,7 @@ $last_updated = file_get_contents('lastupdate.txt');
         <h1>NZPT | Urgency Tracker</h1>
         <h5>Another tool by CJ Sandall.</h5>
     </header>
-    <h4>54th Parliament Statistics:</h4>
+    <h2>54th Parliament Statistics:</h2>
     <div class="statistics">
         <div class="statistics-box" id="day-sat">
             <h3><span id="num-days-sat"><?php echo $num_days_sat; ?></span></h3>
@@ -67,9 +68,9 @@ $last_updated = file_get_contents('lastupdate.txt');
             <small><a target="_blank" href="https://twitter.com/intent/tweet?text=Did%20you%20know%20that%20<?php echo $percent_urgency; ?>%25%20of%20the%2054th%20New%20Zealand%20Parliament%20sitting%20days%20has%20been%20in%20urgency%3F&url=https%3A%2F%2Fnzpt.cjs.nz%2F">Tweet this.</a></small>
         </div>
         <div class="statistics-box" id="percent-urgency">
-            <h3><span id="num-percent-urgency"><?php echo $bills_affected; ?></span>%</h3>
-            <p>Bills affected by Urgency.</p>
-            <small><a target="_blank" href="">Tweet this.</a></small>
+            <h3><span id="num-percent-urgency"><?php echo $count_bills_affected; ?></span></h3>
+            <p title="This does not mean all parts of the bill were under urgency, but just one or more parts were.">Bills under Urgency.</p>
+            <small><a target="_blank" href="https://twitter.com/intent/tweet?text=Under%20this%20government%2C%20the%20New%20Zealand%20Parliament%20has%20passed%20<?php echo $count_bills_affected; ?>%20bills%20under%20urgency!%20%23nzpol%20Source%3A&url=https%3A%2F%2Fnzpt.cjs.nz%2F">Tweet this.</a></small>
         </div>
         <div class="statistics-box" id="percent-urgency">
             <h3><span id="last-day-urgent"><?php echo $last_day_urgent_readable; ?></span></h3>
