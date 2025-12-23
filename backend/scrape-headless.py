@@ -153,6 +153,7 @@ async def scrape_with_playwright():
         conn.commit()
         conn.close()
         print(f"Inserted {len(results)} rows into {DB_PATH}")
+        open("lastupdate.txt", "w").write(datetime.now().isoformat())
     else:
         print("No results to insert.")
 
