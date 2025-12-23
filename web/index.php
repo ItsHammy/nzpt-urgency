@@ -59,7 +59,7 @@ $last_updated = file_get_contents('lastupdate.txt');
         <div class="statistics-box" id="day-urgency">
             <h3><span id="num-days-urgency"><?php echo $num_days_urgency; ?></span></h3>
             <p>Days in Urgency.</p>
-            <small><a target="_blank" href="https://twitter.com/intent/tweet?text=There%20has%20been%20HERE%20days%20that%20the%2054th%20(coalition-led)%20New%20Zealand%20Parliament%20have%20passed%20bills%20under%20urgency%2C%20avoiding%20public%20scrutiny.%20%23NZPOL%20Source%3A&url=https%3A%2F%2Fnzpt.cjs.nz%2F">Tweet this.</a></small>
+            <small><a target="_blank" href="https://twitter.com/intent/tweet?text=There%20has%20been%20<?php echo $num_days_urgency; ?>%20days%20that%20the%2054th%20(coalition-led)%20New%20Zealand%20Parliament%20have%20passed%20bills%20under%20urgency%2C%20avoiding%20public%20scrutiny.%20%23NZPOL%20Source%3A&url=https%3A%2F%2Fnzpt.cjs.nz%2F">Tweet this.</a></small>
         </div>
         <div class="statistics-box" id="percent-urgency">
             <h3><span id="num-percent-urgency"><?php echo $percent_urgency; ?></span>%</h3>
