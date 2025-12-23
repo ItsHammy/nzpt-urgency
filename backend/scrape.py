@@ -5,6 +5,9 @@
     - `id` (INTEGER PRIMARY KEY): Unique identifier for each record.
     - `date` (TEXT): The date of the sitting.
     - `in_urgency` (INTEGER): Whether the government was in urgency (1) or not (0).
+    
+    NOTE: This tool is deprecated as the gov has added a script-block on the RSS feed page that prevents direct fetching. Using `scrape-headless.py` instead.
+    
 """
 
 # Imports
@@ -14,7 +17,7 @@ import requests
 
 # Constants
 DB_PATH = "urgency.sqlite3"
-RSS_FEED_URL = "https://www.parliament.nz/en/highvolumegenericlisting/rss/1667"
+RSS_FEED_URL = "https://www3.parliament.nz/en/highvolumegenericlisting/rss/1667"
 CURRENT_GOV_START = "2023-12-03"
 
 # Function to initialize the SQLite database
@@ -36,16 +39,28 @@ def scrape_and_analyze():
     """
     This tool does the following:
     1. Reads RSS_FEED_URL to get information from dates from CURRENT_GOV_START onwards.
-    2. For each date, reads the <link href="..."> and checks the content for the phrase "A motion to accord urgency to the following business was agreed to"
+    2. For each <entry>, reads the <link href="..."> and checks the content for the phrase "A motion to accord urgency to the following business was agreed to"
     3. If the phrase is found, it records the date and sets in_urgency to 1, otherwise sets it to 0.
     """
     response = requests.get(RSS_FEED_URL)
+    print("Status:", response.status_code)
+    print("Final URL:", response.url)
+    print("Content-Type:", response.headers.get("Content-Type"))
+
+    if response.status_code != 200:
+        print("Body snippet (non-200):")
+        print(response.text[:1000])
+        return
+
+    feed_data = response.text
+    print("First 500 chars of response:")
+    print(feed_data[:500])
     if response.status_code != 200:
         print("Failed to fetch RSS feed.")
         return
     
     feed_data = response.text
-    entries = feed_data.split('<item>')[1:]  # Split into individual items
+    entries = feed_data.split('<entry>')[1:]  # Split into individual items
 
     conn = sqlite3.connect(DB_PATH)
     cursor = conn.cursor()
@@ -75,4 +90,8 @@ def scrape_and_analyze():
 
     conn.commit()
     conn.close()
+    print("Does '<entry>' appear in feed?", "<entry>" in feed_data)
+    print("Does '<item>' appear in feed?", "<item>" in feed_data)
+    print("Number of entries parsed:", len(entries))    
     
+scrape_and_analyze()
