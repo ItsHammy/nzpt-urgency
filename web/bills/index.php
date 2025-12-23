@@ -36,12 +36,14 @@ $count_bills_affected = $db->querySingle('SELECT COUNT(id) FROM bills');
     <meta name="twitter:description" content="The NZ Govt has passed <?php echo $count_bills_affected; ?> bills under urgency!">
     <meta name="twitter:image" content="https://nzpt.cjs.nz/assets/nzpt-bannertype.png">
     <!-- OPEN GRAPH META -->
-    <meta property="og:title" content="How long has the New Zealand Government spend in Urgency?">
+    <meta property="og:title" content="The New Zealand Politics Tracker by CJS">
     <meta property="og:site_name" content="Urgency Tracker - NZPT">
     <meta property="og:url" content="https://nzpt.cjs.nz/urgency">
     <meta property="og:description" content="The NZ Govt has passed <?php echo $count_bills_affected; ?> bills under urgency! See all the stats for free!">
     <meta property="og:type" content="website">
     <meta property="og:image" content="https://nzpt.cjs.nz/assets/nzpt-bannertype.png">
+    <!-- Privacy Analytics -->
+     <script defer src="https://cloud.umami.is/script.js" data-website-id="1492dd3b-f626-44b3-a8d5-b074177af097"></script>
 </head>
 <body>
     <header>
