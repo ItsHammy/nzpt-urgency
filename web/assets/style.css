@@ -18,6 +18,29 @@ footer {
     bottom: 0;
     width: 100%;
 }
+
+html, body {
+    height: 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+
+main, .content, .container {
+    flex: 1 0 auto;
+}
+
+
+footer {
+    position: static;
+    bottom: auto;
+    width: 100%;
+    margin-top: auto;
+}
 footer a {
     color: #007bff;
     text-decoration: none;
