@@ -47,7 +47,12 @@ $count_bills_affected = $db->querySingle('SELECT COUNT(id) FROM bills');
 <body>
     <header>
         <h1>NZPT | Urgency Tracker</h1>
-        <h5>A tool by CJ Sandall.</h5>
+        <h5>A free tool by CJ Sandall.</h5>
+        <nav>
+            <a href="#" class="active">Urgency Tracker</a>
+            <a href="bills/">Bills Viewer</a>
+            <a href="https://cjs.nz/socials" target="_blank">Contact</a>
+        </nav>
     </header>
     <h2>54th Parliament Statistics:</h2>
     <div class="statistics">
