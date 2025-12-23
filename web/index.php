@@ -67,6 +67,11 @@ $last_updated = file_get_contents('lastupdate.txt');
             <small><a target="_blank" href="https://twitter.com/intent/tweet?text=Did%20you%20know%20that%20<?php echo $percent_urgency; ?>%25%20of%20the%2054th%20New%20Zealand%20Parliament%20sitting%20days%20has%20been%20in%20urgency%3F&url=https%3A%2F%2Fnzpt.cjs.nz%2F">Tweet this.</a></small>
         </div>
         <div class="statistics-box" id="percent-urgency">
+            <h3><span id="num-percent-urgency"><?php echo $bills_affected; ?></span>%</h3>
+            <p>Bills affected by Urgency.</p>
+            <small><a target="_blank" href="">Tweet this.</a></small>
+        </div>
+        <div class="statistics-box" id="percent-urgency">
             <h3><span id="last-day-urgent"><?php echo $last_day_urgent_readable; ?></span></h3>
             <p>Most recent day in Urgency.</p>
         </div>
@@ -109,7 +114,7 @@ $last_updated = file_get_contents('lastupdate.txt');
         <p>Urgency is a parliamentary procedure that allows the government to expedite the legislative process for certain bills. When a bill is declared urgent, it can bypass some of the usual stages of scrutiny, allowing it to be debated and passed more quickly than under normal circumstances.</p>
         
         <h3>What are "sitting days"?</h3>
-        <p>Sitting Days refer to the days when the New Zealand Parliament is officially in session and conducting its business. These are the days when members of Parliament (should*) meet to debate, discuss, and make decisions on legislative matters.</p>
+        <p>Sitting Days refer to the days when the New Zealand Parliament is officially in session and conducting its business. These are the days when members of Parliament (should*) meet to debate, discuss, and make decisions on legislative matters. A sitting day can span one or more days if the parliament enters Urgency.</p>
         
         <h3>Where does the data come from?</h3>
         <p>The data is sourced from the official New Zealand Parliament website, ensuring accuracy and reliability. You can check out the code yourself <a href="https://github.com/itshammy/nzpt-urgency" target="_blank">on GitHub</a>.</p>
