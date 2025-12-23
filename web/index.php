@@ -1,3 +1,17 @@
+<?php
+
+// Load data from urgency.sqlite3
+$db = new SQLite3('urgency.sqlite3');
+$num_days_sat = $db->querySingle('SELECT COUNT(id) FROM urgency');
+$num_days_urgency = $db->querySingle('SELECT COUNT(id) FROM urgency WHERE in_urgency = 1');
+$percent_urgency = $num_days_sat > 0 ? round(($num_days_urgency / $num_days_sat) * 100, 2) : 0;
+$last_day_urgent = $db->querySingle('SELECT date FROM urgency WHERE in_urgency = 1 ORDER BY date DESC LIMIT 1');
+$days_since_urgency = $last_day_urgent ? (new DateTime())->diff(new DateTime($last_day_urgent))->days : 'N/A';
+$last_updated = 'now'; // Placeholder for last updated time
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,29 +38,29 @@
     <h4>54th Parliament Statistics:</h4>
     <div class="statistics">
         <div class="statistics-box" id="day-sat">
-            <p><span id="num-days-sat">0</span></p>
+            <p><span id="num-days-sat"><?php echo $num_days_sat; ?></span></p>
             <p>Days sat by the 54th Parliament.</p>
         </div>
         <div class="statistics-box" id="day-urgency">
-            <p><span id="num-days-urgency">0</span></p>
+            <p><span id="num-days-urgency"><?php echo $num_days_urgency; ?></span></p>
             <p>Days in Urgency.</p>
         </div>
         <div class="statistics-box" id="percent-urgency">
-            <p><span id="num-percent-urgency">0</span>%</p>
+            <p><span id="num-percent-urgency"><?php echo $percent_urgency; ?></span>%</p>
             <p>Percentage of days in Urgency.</p>
             <small><a target="_blank" href="https://twitter.com/intent/tweet?text=Did%20you%20know%20that%200%25%20of%20the%2054th%20New%20Zealand%20Parliament%20sitting%20days%20has%20been%20in%20urgency%3F&url=https%3A%2F%2Fnzpt.cjs.nz%2F">Tweet this.</a> | <a href="sharelink">Share this.</a></small>
         </div>
         <div class="statistics-box" id="percent-urgency">
-            <p><span id="last-day-urgent">1st Jan 1900</span></p>
+            <p><span id="last-day-urgent"><?php echo $last_day_urgent; ?></span></p>
             <p>Most recent day in Urgency.</p>
         </div>
         <div class="statistics-box" id="percent-urgency">
-            <p><span id="days-since-urgency">0</span></p>
+            <p><span id="days-since-urgency"><?php echo $days_since_urgency; ?></span></p>
             <p>Days since last Urgency.</p>
             <small><a target="_blank" href="https://twitter.com/intent/tweet?text=There%20has%20been%200%20days%20since%20the%20NZ%20Government%20has%20been%20in%20Urgency!&url=https%3A%2F%2Fnzpt.cjs.nz%2Furgency">Tweet this.</a> | <a href="sharelink">Share this.</a></small>
         </div>
     </div>
-    <p><strong>Last Updated:</strong> <span id="last-updated">2023-12-01</span></p>
+    <p><strong>Last Updated:</strong> <span id="last-updated"><?php echo $last_updated; ?></span></p>
     <section id="faqs">
         <h2>Frequently Asked Questions (FAQs)</h2>
         <h3>What is Urgency?</h3>
