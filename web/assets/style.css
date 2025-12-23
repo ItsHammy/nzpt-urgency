@@ -94,3 +94,17 @@ aside .warning {
         flex: 1 1 100%;
     }
 }
+
+#sharelink {
+    text-decoration: none;
+    color: #007bff;
+}
+
+#faqs p {
+display: none;
+margin-top: 0.5em;
+}
+
+#faqs h3 {
+cursor: pointer;
+}
