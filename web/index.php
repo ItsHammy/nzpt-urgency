@@ -54,6 +54,7 @@ $count_bills_affected = $db->querySingle('SELECT COUNT(id) FROM bills');
         <nav>
             <a href="#" class="active">Urgency Tracker</a>
             <a href="bills/">Bills Viewer</a>
+            <a href="historical/">Historical Data</a>
             <a href="https://cjs.nz/socials" target="_blank">Contact</a>
         </nav>
     </header>
@@ -87,6 +88,7 @@ $count_bills_affected = $db->querySingle('SELECT COUNT(id) FROM bills');
             <p>Days since last Urgency.</p>
             <small><a target="_blank" href="https://twitter.com/intent/tweet?text=There%20has%20been%20<?php echo $days_since_urgency; ?>%20days%20since%20the%20NZ%20Government%20has%20been%20in%20Urgency!%20Check%20the%20stats%20here%3A&url=https%3A%2F%2Fnzpt.cjs.nz%2F">Tweet this.</a></small>
         </div>
+        <a href="historical/" class="button">How does this stack against previous parliaments?</a>
     </div>
     <p><strong>Last Updated:</strong> <span id="last-updated"><?php echo $last_updated; ?></span></p>
     <hr>

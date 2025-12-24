@@ -34,6 +34,15 @@ main, .content, .container {
     flex: 1 0 auto;
 }
 
+.button {
+    display: inline-block;
+    padding: 0.5em 1em;
+    background-color: #007bff;
+    color: #ffffff;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-top: 1em;
+}
 
 footer {
     position: static;
@@ -226,4 +235,60 @@ nav a {
 nav a.active {
     font-weight: bold;
     text-decoration: underline;
+}
+
+.stats-overview {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    justify-content: center;
+}
+
+.stats-card {
+    background: #ffffff;
+    border-radius: 0.75rem;
+    padding: 1.25rem 1.5rem;
+    box-shadow:
+        0 8px 16px rgba(0, 0, 0, 0.06),
+        0 1px 3px rgba(0, 0, 0, 0.08);
+    border: 1px solid rgba(0, 0, 0, 0.04);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition:
+        transform 0.15s ease-out,
+        box-shadow 0.15s ease-out,
+        border-color 0.15s ease-out;
+
+    flex: 1 1 260px;           
+    max-width: 320px;         
+}
+.stats-card:hover {
+    transform: translateY(-3px);
+    box-shadow:
+        0 15px 30px rgba(0, 0, 0, 0.08),
+        0 3px 6px rgba(0, 0, 0, 0.08);
+    border-color: rgba(0, 0, 0, 0.08);
+}
+.stats-card__title {
+    font-size: 1.05rem;
+    margin: 0 0 0.5rem;
+    line-height: 1.3;
+}
+
+.historical-stats {
+    max-width: 1000px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+.historical-stats h2 {
+    font-size: 1.75rem;
+    margin-bottom: 0.5rem;
+}
+
+.historical-stats__note {
+    color: #555;
+    margin-bottom: 1.5rem;
 }

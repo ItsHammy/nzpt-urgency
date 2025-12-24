@@ -52,6 +52,7 @@ $count_bills_affected = $db->querySingle('SELECT COUNT(id) FROM bills');
         <nav>
             <a href="../">Urgency Tracker</a>
             <a href="../bills" class="active">Bills Viewer</a>
+            <a href="../historical">Historical Data</a>
             <a href="https://cjs.nz/socials" target="_blank">Contact</a>
         </nav>
     </header>
