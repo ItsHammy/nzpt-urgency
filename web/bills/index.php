@@ -64,14 +64,17 @@ $count_bills_affected = $db->querySingle('SELECT COUNT(id) FROM bills');
 
     <div class="bill-grid">
         <?php
-        $results = $db->query('SELECT bill_name, url FROM bills ORDER BY bill_name ASC');
+        $results = $db->query('SELECT bill_name, url, mps, desc FROM bills ORDER BY bill_name ASC');
         while ($row = $results->fetchArray(SQLITE3_ASSOC)) {
             $name = htmlspecialchars($row['bill_name']);
+            $mps = htmlspecialchars($row['mps']);
+            $desc = htmlspecialchars($row['desc']);
             $url  = htmlspecialchars($row['url']);
         ?>
             <article class="bill-card">
                 <h3 class="bill-card__title"><?php echo $name; ?></h3>
-
+                <p class="bill-card__mps"> <i class="fa-solid fa-person"></i> <?php echo $mps; ?></p>
+                <p class="bill-card__meta"><?php echo $desc; ?></p>
                 <a href="<?php echo $url; ?>" 
                    class="bill-card__link" 
                    target="_blank" 
@@ -80,8 +83,24 @@ $count_bills_affected = $db->querySingle('SELECT COUNT(id) FROM bills');
                 </a>
             </article>
         <?php } ?>
+        <article class="bill-card">
+            <h3 class="bill-card__title">Report an Issue</h3>
+            <p class="bill-card__meta">If there is any issues with the information provided please report the issue on Github, or by emailing me.</p>
+            <a href="https://github.com/itshammy/nzpt-urgency/issues" 
+                class="bill-card__link" 
+                target="_blank" 
+                rel="noopener noreferrer">
+                Report on GitHub
+            </a>
+            <a href="mailto:cj@cjs.nz" 
+                class="bill-card__link" 
+                target="_blank" 
+                rel="noopener noreferrer">
+                Email Me
+            </a>
+        </article>
     </div>
-</main>
+    </main>
     <footer>
         <p>Data is sourced from the <a href="https://www.parliament.nz/en" target="_blank">New Zealand Parliament website</a>. | View the Source Code on <a href="https://github.com/itshammy/nzpt-urgency">GitHub</a>.</p>
         <p>Created by <a href="https://cjs.nz">CJ</a>. Support the project on <a href="https://buymeacoffee.com/hammy">Buy Me a Coffee</a>.</p>
