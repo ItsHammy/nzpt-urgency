@@ -59,7 +59,7 @@ $count_bills_affected = $db->querySingle('SELECT COUNT(id) FROM bills');
     <h2>54th Parliament Bills (in part) Passed Under Urgency</h2>
     <p class="bill-list__note">
         <strong>Note:</strong> This does not mean all parts of the bill were under urgency, 
-        but just one or more parts were.
+        but just one or more parts were. The description is taken from the NZ Parliament website and does not reflect the views of NZPT developers. Boxes marked in red have been manually adjusted.
     </p>
 
     <div class="bill-grid">
@@ -83,7 +83,7 @@ $count_bills_affected = $db->querySingle('SELECT COUNT(id) FROM bills');
                 </a>
             </article>
         <?php } ?>
-        <article class="bill-card">
+        <article class="bill-card__adjusted">
             <h3 class="bill-card__title">Report an Issue</h3>
             <p class="bill-card__meta">If there is any issues with the information provided please report the issue on Github, or by emailing me.</p>
             <a href="https://github.com/itshammy/nzpt-urgency/issues" 
