@@ -1,3 +1,4 @@
+<?php header("X-Clacks-Overhead: GNU Terry Pratchett"); ?>
 <?php
 
 // Load data from urgency.sqlite3
