@@ -144,16 +144,21 @@ async def scrape_with_playwright():
         await browser.close()
 
     if results:
-        conn = sqlite3.connect(DB_PATH)
-        cursor = conn.cursor()
-        cursor.executemany(
+        try:
+            conn = sqlite3.connect(DB_PATH)
+            cursor = conn.cursor()
+            cursor.executemany(
             "INSERT INTO urgency (date, in_urgency) VALUES (?, ?)",
             results,
-        )
-        conn.commit()
-        conn.close()
+            )
+            conn.commit()
+            conn.close()
+            print(f"Inserted {len(results)} rows into {DB_PATH}")
+        except Exception as e:
+            print(f"No new results found: {e}")
+        finally:
+            open("lastupdate.txt", "w").write(datetime.now().isoformat())
         print(f"Inserted {len(results)} rows into {DB_PATH}")
-        open("lastupdate.txt", "w").write(datetime.now().isoformat())
     else:
         print("No results to insert.")
 
@@ -161,6 +166,7 @@ async def scrape_with_playwright():
 async def main():
     init_db()
     await scrape_with_playwright()
+    open("lastupdate.txt", "w").write(datetime.now().strftime("%d %B %Y").lstrip("0").replace(" 0", " "))
 
 
 if __name__ == "__main__":
