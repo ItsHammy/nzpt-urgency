@@ -9,12 +9,16 @@ $num_days_urgency_54 = $db->querySingle('SELECT COUNT(id) FROM urgency WHERE in_
 $percent_urgency_54 = $num_days_sat_54 > 0 ? round(($num_days_urgency_54 / $num_days_sat_54) * 100, 2) : 0;
 $last_updated_54 = file_get_contents('../lastupdate.txt');
 $count_bills_affected_54 = $db->querySingle('SELECT COUNT(id) FROM bills');
+$count_total_bills_54 = '170';
+$ratio_urgent_54 = $count_total_bills_54 > 0 ? round(($count_bills_affected_54 / $count_total_bills_54) * 100, 2) : 0;
 
 // 53rd Parliament Stats
 $num_days_sat_53 = $db->querySingle('SELECT COUNT(id) FROM legacy WHERE pnum = 53');
 $num_days_urgency_53 = $db->querySingle('SELECT COUNT(id) FROM legacy WHERE pnum = 53 AND in_urgency = 1');
 $percent_urgency_53 = $num_days_sat_53 > 0 ? round(($num_days_urgency_53 / $num_days_sat_53) * 100, 2) : 0;
 $count_bills_affected_53 = $db->querySingle('SELECT COUNT(id) FROM lbills WHERE pnum = 53');
+$count_total_bills_53 = '275';
+$ratio_urgent_53 = $count_total_bills_53 > 0 ? round(($count_bills_affected_53 / $count_total_bills_53) * 100, 2) : 0;
 $last_scraped_53 = 'December 24th 2025';
 
 
@@ -23,11 +27,13 @@ $num_days_sat_52 = $db->querySingle('SELECT COUNT(id) FROM legacy WHERE pnum = 5
 $num_days_urgency_52 = $db->querySingle('SELECT COUNT(id) FROM legacy WHERE pnum = 52 AND in_urgency = 1');
 $percent_urgency_52 = $num_days_sat_52 > 0 ? round(($num_days_urgency_52 / $num_days_sat_52) * 100, 2) : 0;
 $count_bills_affected_52 = $db->querySingle('SELECT COUNT(id) FROM lbills WHERE pnum = 52');
+$count_total_bills_52 = '283';
+$ratio_urgent_52 = $count_total_bills_52 > 0 ? round(($count_bills_affected_52 / $count_total_bills_52) * 100, 2) : 0;
 $last_scraped_52 = 'December 24th 2025';
 
 
 // STATIC
-$PAGE_UPDATED = "December 24th 2025";
+$PAGE_UPDATED = "December 25th 2025";
 ?>
 
 
@@ -78,41 +84,51 @@ $PAGE_UPDATED = "December 24th 2025";
     <p>
         This page allows you to see the Urgency data from previous New Zealand Parliaments and compare it with the current government. Currently there is data from the 52nd, 53rd and 54th Parliaments, as data preceeding this is less readily available. <b>I am still working on finding older data, and the data provided here may well be inaccurate as it is not currently verified.</b> As always, please raise issues to me via <a href="https://github.com/itshammy/nzpt-urgency/issues" target="_blank">GitHub</a>.
     </p>
-    <p class="historical-stats__note"><small>The information on this page is not automatically updated. Last updated <?php echo $PAGE_UPDATED; ?></small></p>
+    <p class="historical-stats__note"><small>Some of the information on this page is not automatically updated. Last updated <?php echo $PAGE_UPDATED; ?></small></p>
 
     <div class="stats-overview">
         <article class="stats-card">
             <h3 class="stats-card__title">54th Parliament of New Zealand (2023 - Present)</h3>
-            <em>(Last Updated: <?php echo $last_updated_54; ?>)</em>
+            <em>(As of <?php echo $last_updated_54; ?>)</em>
             <ul>
                 <li><strong>Total Days Sat:</strong> <?php echo $num_days_sat_54; ?></li>
                 <li><strong>Total Days in Urgency:</strong> <?php echo $num_days_urgency_54; ?></li>
                 <li><strong>Percentage of Days in Urgency:</strong> <?php echo $percent_urgency_54; ?>%</li>
-                <li><strong>Total Bills Affected:</strong> <?php echo $count_bills_affected_54; ?></li>
+                <li><strong>Total Bills Urgent:</strong> <?php echo $count_bills_affected_54; ?></li>
+                <li><strong>Total Bills:</strong> <?php echo $count_total_bills_54; ?></li>
+                <li><strong>Ratio of urgent bills:</strong> <?php echo $ratio_urgent_54; ?>%</li>
             </ul>
+            <p class="historical-stats__note"><small>The total bills has been automatically calculated based on available data, however as of December 25th 2025 has not been verified. Please double check before using this as a primary source. (This note will be removed once information has been verified.)</small><p>
         </article>
         
         <article class="stats-card">
             <h3 class="stats-card__title">53rd Parliament of New Zealand (2020 - 2023)</h3>
-            <em>(Last Updated: <?php echo $last_scraped_53; ?>)</em>
             <ul>
-                <li><strong>Total Days Sat:</strong> <?php echo $num_days_sat_53; ?></li>
-                <li><strong>Total Days in Urgency:</strong> <?php echo $num_days_urgency_53; ?></li>
+            <li><strong>Total Days Sat:</strong> <?php echo $num_days_sat_53; ?></li>
+            <li><strong>Total Days in Urgency:</strong> <?php echo $num_days_urgency_53; ?></li>
             <li><strong>Percentage of Days in Urgency:</strong> <?php echo $percent_urgency_53; ?>%</li>
-            <li><strong>Total Bills Affected:</strong> <?php echo $count_bills_affected_53; ?></li>
+            <li><strong>Total Bills Urgent:</strong> <?php echo $count_bills_affected_53; ?></li>
+            <li><strong>Total Bills:</strong> <?php echo $count_total_bills_53; ?></li>
+            <li><strong>Ratio of urgent bills:</strong> <?php echo $ratio_urgent_53; ?>%</li>
         </ul>
         </article>
         <article class="stats-card">
             <h3 class="stats-card__title">52nd Parliament of New Zealand (2017 - 2020)</h3>
-            <em>(Last Updated: <?php echo $last_scraped_52; ?>)</em>
         <ul>
             <li><strong>Total Days Sat:</strong> <?php echo $num_days_sat_52; ?></li>
             <li><strong>Total Days in Urgency:</strong> <?php echo $num_days_urgency_52; ?></li>
             <li><strong>Percentage of Days in Urgency:</strong> <?php echo $percent_urgency_52; ?>%</li>
-            <li><strong>Total Bills Affected:</strong> <?php echo $count_bills_affected_52; ?></li>
+            <li><strong>Total Bills Urgent:</strong> <?php echo $count_bills_affected_52; ?></li>
+            <li><strong>Total Bills:</strong> <?php echo $count_total_bills_52; ?></li>
+            <li><strong>Ratio of urgent bills:</strong> <?php echo $ratio_urgent_52; ?>%</li>
         </ul>
         </article>
 </div>
+<aside class="historical-stats__info">
+    <h4>About this data</h4>
+    <p>Historical data is sourced from the Sessional Journals Archive. This includes all data from 48th to 52nd Parliaments. Data from the 53rd Parliament was manually complied from the Sessional Journals. Data on the current (54th) Parliament is sourced using the main <a href="https://nzpt.cjs.nz">NZPT urgency tool.</a></p>
+    <p>Total Bill Count and Ratio of Urgent Bills include all bills seen by that parliament, including unsuccessful bills and bills carried over from the preceding parliament.</p>
+</aside>
     </main>
     <footer>
         <p>Data is sourced from the <a href="https://www.parliament.nz/en" target="_blank">New Zealand Parliament website</a>. | View the Source Code on <a href="https://github.com/itshammy/nzpt-urgency">GitHub</a>.</p>
