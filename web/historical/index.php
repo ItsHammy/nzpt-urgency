@@ -95,10 +95,10 @@ $PAGE_UPDATED = "December 25th 2025";
                 <li><strong>Total Days in Urgency:</strong> <?php echo $num_days_urgency_54; ?></li>
                 <li><strong>Percentage of Days in Urgency:</strong> <?php echo $percent_urgency_54; ?>%</li>
                 <li><strong>Total Bills Urgent:</strong> <?php echo $count_bills_affected_54; ?></li>
-                <li><strong>Total Bills:</strong> <?php echo $count_total_bills_54; ?></li>
+                <li><strong>Total Bills:</strong> <?php echo $count_total_bills_54; ?> <small><a href="https://www.rnz.co.nz/news/on-the-inside/582408/parliament-s-year-in-numbers" target="_blank">Current source.</a></small></li>
                 <li><strong>Ratio of urgent bills:</strong> <?php echo $ratio_urgent_54; ?>%</li>
             </ul>
-            <p class="historical-stats__note"><small>The total bills has been automatically calculated based on available data, however as of December 25th 2025 has not been verified. Please double check before using this as a primary source. (This note will be removed once information has been verified.)</small><p>
+            <p class="historical-stats__note"><small>The total bills has been calculated based on available data, however as of December 25th 2025 has not been verified. Please double check before using this as a primary source. (This note will be removed once information has been verified.)</small><p>
         </article>
         
         <article class="stats-card">
