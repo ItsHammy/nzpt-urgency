@@ -77,27 +77,6 @@ aside .warning {
     text-align: center;
 }
 
-.statistics {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1em;
-    margin: 1em 0;
-}
-
-.statistics-box {
-    flex: 1 1 calc(33.333% - 1em);
-    box-sizing: border-box;
-    padding: 1em;
-    background-color: #e6e6e6;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    text-align: center;
-}
-
-.statistics-box p {
-    margin: 0.5em 0;
-}
-
 @media (max-width: 768px) {
     .statistics-box {
         flex: 1 1 100%;
@@ -238,11 +217,30 @@ nav a.active {
 }
 
 .stats-overview {
-    display: flex;
-    flex-wrap: wrap;
+    max-width: 1500px;
     gap: 1.5rem;
     justify-content: center;
+    margin: 1rem auto;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    padding: 0 1rem;
 }
+
+.stats-overview h2 {
+    font-size: 1.95rem;
+    margin-bottom: 0.5rem;
+}
+
+.stats-card-grid {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 1000px;
+    gap: 1.5rem;
+    justify-content: center;
+    margin: 1rem auto;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    padding: 0 1rem;
+}
+
 
 .stats-card {
     background: #ffffff;
@@ -283,6 +281,11 @@ nav a.active {
 }
 
 .historical-stats h2 {
+    font-size: 1.75rem;
+    margin-bottom: 0.5rem;
+}
+
+.stats-card h2 {
     font-size: 1.75rem;
     margin-bottom: 0.5rem;
 }
