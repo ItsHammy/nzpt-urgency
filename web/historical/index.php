@@ -167,7 +167,7 @@ $PAGE_UPDATED = "December 25th 2025";
     options: {
       scales: {
         y: {
-          beginAtZero: false,
+          beginAtZero: true,
           max: 100
         }
       }
