@@ -67,6 +67,8 @@ $PAGE_UPDATED = "December 25th 2025";
     <meta property="og:image" content="https://nzpt.cjs.nz/assets/nzpt-bannertype.png">
     <!-- Privacy Analytics -->
      <script defer src="https://cloud.umami.is/script.js" data-website-id="1492dd3b-f626-44b3-a8d5-b074177af097"></script>
+    <!-- Charts.js -->
+     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
     <header>
@@ -124,7 +126,13 @@ $PAGE_UPDATED = "December 25th 2025";
         </ul>
         </article>
 </div>
-<aside class="historical-stats__info">
+<hr>
+<div class="graph" id="graph">
+    <h2>Urgency over Time</h2>
+    <canvas id="urgencyRatio"></canvas>
+</div>
+<hr>
+<aside class="historical-stats__info" id="disclaimer">
     <h4>About this data</h4>
     <p>Historical data is sourced from the Sessional Journals Archive. This includes all data from 48th to 52nd Parliaments. Data from the 53rd Parliament was manually complied from the Sessional Journals. Data on the current (54th) Parliament is sourced using the main <a href="https://nzpt.cjs.nz">NZPT urgency tool.</a></p>
     <p>Total Bill Count and Ratio of Urgent Bills include all bills seen by that parliament, including unsuccessful bills and bills carried over from the preceding parliament.</p>
@@ -136,3 +144,37 @@ $PAGE_UPDATED = "December 25th 2025";
     </footer>
 </body>
 </html>
+<!-- CHART SCRIPT -->
+ <script>
+  const ctx = document.getElementById('urgencyRatio');
+
+  new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: ['Parliament 52 (2017 - 2020)', 'Parliament 53 (2020 - 2023)', 'Parliament 54 (2023 - Present)'],
+      datasets: [{
+        label: 'Percentage of Bills Passed Under Urgency',
+        data: [<?php echo $ratio_urgent_52; ?>, <?php echo $ratio_urgent_53; ?>, <?php echo $ratio_urgent_54; ?>],
+        borderWidth: 1
+      },
+    {
+        label: 'Percentage of Urgent Sitting Days',
+        data: [<?php echo $percent_urgency_52; ?>, <?php echo $percent_urgency_53; ?>, <?php echo $percent_urgency_54; ?>],
+        borderWidth: 1
+      }
+    ]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: false,
+          max: 100
+        }
+      }
+    }
+  });
+</script>
+
+ 
+
+ 
