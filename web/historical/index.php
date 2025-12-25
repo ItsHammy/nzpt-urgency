@@ -79,14 +79,14 @@ $PAGE_UPDATED = "December 25th 2025";
             <a href="https://cjs.nz/socials" target="_blank">Contact</a>
         </nav>
     </header>
-    <main class="historical-stats">
+    <main class="stats-overview">
     <h2>A historical lens.</h2>
     <p>
         This page allows you to see the Urgency data from previous New Zealand Parliaments and compare it with the current government. Currently there is data from the 52nd, 53rd and 54th Parliaments, as data preceeding this is less readily available. <b>I am still working on finding older data, and the data provided here may well be inaccurate as it is not currently verified.</b> As always, please raise issues to me via <a href="https://github.com/itshammy/nzpt-urgency/issues" target="_blank">GitHub</a>.
     </p>
     <p class="historical-stats__note"><small>Some of the information on this page is not automatically updated. Last updated <?php echo $PAGE_UPDATED; ?></small></p>
 
-    <div class="stats-overview">
+    <div class="stats-card-grid">
         <article class="stats-card">
             <h3 class="stats-card__title">54th Parliament of New Zealand (2023 - Present)</h3>
             <em>(As of <?php echo $last_updated_54; ?>)</em>
@@ -131,8 +131,8 @@ $PAGE_UPDATED = "December 25th 2025";
 </aside>
     </main>
     <footer>
-        <p>Data is sourced from the <a href="https://www.parliament.nz/en" target="_blank">New Zealand Parliament website</a>. | View the Source Code on <a href="https://github.com/itshammy/nzpt-urgency">GitHub</a>.</p>
-        <p>Created by <a href="https://cjs.nz">CJ</a>. Support the project on <a href="https://buymeacoffee.com/hammy">Buy Me a Coffee</a>.</p>
+        <p>Data is sourced from the <a href="https://www.parliament.nz/en" target="_blank">New Zealand Parliament website</a>. | View the Source Code on <a href="https://github.com/itshammy/nzpt-urgency" target="_blank">GitHub</a>.</p>
+        <p>Created by <a href="https://cjs.nz">CJ</a>.<br><a href="https://www.buymeacoffee.com/hammy"><img width="10%" src="https://img.buymeacoffee.com/button-api/?text=Buy me a Latte&emoji=☕&slug=hammy&button_colour=BD5FFF&font_colour=ffffff&font_family=Poppins&outline_colour=000000&coffee_colour=FFDD00" /></a></p>
     </footer>
 </body>
 </html>

@@ -118,7 +118,7 @@ $count_bills_affected = $db->querySingle('SELECT COUNT(id) FROM bills');
             </p>
             <hr>
             <h2>The Statistics</h2>
-            <?php echo "<p>The 54th Parliament has officially sat for $num_days_sat days since it was formed on 3rd December 2023. In that time, the coalition government conisiting of the National Party, The ACT Party, and New Zealand First, has put the parliament into Urgency on $num_days_urgency occasions to pass $count_bills_affected bills without the normal amount of consultation and scrutiny. This makes up $percent_urgency% of all sitting days, with the most recent urgency session being $days_since_urgency days ago on $last_day_urgent_readable. These statistics are scraped from the New Zealand Parliament website, and is updated daily by the NZPT urgency tracker. The urgency tracker system can be seen on Github for those more technically minded. The tracker is a passion project by CJ and will eventually have information about bills affected. The tracker was last updated on $last_updated and last manually checked on December 23rd 2025.</p>";?>
+            <?php echo "<p>The 54th Parliament has officially sat for $num_days_sat days since it was formed on 3rd December 2023. In that time, the coalition government which consists of the National Party, The ACT Party, and New Zealand First, has put the parliament into Urgency on $num_days_urgency occasions to pass $count_bills_affected bills without the normal amount of consultation and scrutiny. This makes up $percent_urgency% of all sitting days, with the most recent urgency session being $days_since_urgency days ago on $last_day_urgent_readable. These statistics are scraped from the New Zealand Parliament website, and is updated daily by the NZPT urgency tracker. The urgency tracker system can be seen on Github for those more technically minded. The tracker is a passion project by CJ and will eventually have information about bills affected. The tracker was last updated on $last_updated and last manually checked on December 23rd 2025.</p>";?>
         </div>
         <section id="faqs">
             <h2>Frequently Asked Questions (FAQs)</h2>
@@ -133,9 +133,9 @@ $count_bills_affected = $db->querySingle('SELECT COUNT(id) FROM bills');
         </section>
     </main>
     <footer>
-        <p>Data is sourced from the <a href="https://www.parliament.nz/en" target="_blank">New Zealand Parliament website</a>. | View the Source Code on <a href="https://github.com/itshammy/nzpt-urgency">GitHub</a>.</p>
-        <p>Created by <a href="https://cjs.nz">CJ</a>. Support the project on <a href="https://buymeacoffee.com/hammy">Buy Me a Coffee</a>.</p>
+        <p>Data is sourced from the <a href="https://www.parliament.nz/en" target="_blank">New Zealand Parliament website</a>. | View the Source Code on <a href="https://github.com/itshammy/nzpt-urgency" target="_blank">GitHub</a>.</p>
+        <p>Created by <a href="https://cjs.nz">CJ</a>.<br><a href="https://www.buymeacoffee.com/hammy"><img width="10%" src="https://img.buymeacoffee.com/button-api/?text=Buy me a Latte&emoji=☕&slug=hammy&button_colour=BD5FFF&font_colour=ffffff&font_family=Poppins&outline_colour=000000&coffee_colour=FFDD00" /></a></p>
     </footer>
 </body>
 <script data-name="BMC-Widget" data-cfasync="false" src="https://cdnjs.buymeacoffee.com/1.0.0/widget.prod.min.js" data-id="hammy" data-description="Support me on Buy me a coffee!" data-message="This tool was made by a (very) broke student. Consider buying me a coffee if you find this useful!" data-color="#F471FF" data-position="Right" data-x_margin="18" data-y_margin="18"></script>
-</html>
+</html>s
