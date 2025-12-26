@@ -35,25 +35,25 @@ $last_scraped_52 = 'December 24th 2025';
 
 // 51st Parliament Stats
 $num_days_sat_51 = '251';
-$num_days_urgency_51 = '26';
+$num_days_urgency_51 = '12';
 $percent_urgency_51 = $num_days_sat_51 > 0 ? round(($num_days_urgency_51 / $num_days_sat_51) * 100, 2) : 0;
-$count_bills_affected_51 = '66';
+$count_bills_affected_51 = '24';
 $count_total_bills_51 = '305';
 $ratio_urgent_51 = $count_total_bills_51 > 0 ? round(($count_bills_affected_51 / $count_total_bills_51) * 100, 2) : 0;
 
 // 50th Parliament Stats
 $num_days_sat_50 = '227';
-$num_days_urgency_50 = '36';
+$num_days_urgency_50 = '26';
 $percent_urgency_50 = $num_days_sat_50 > 0 ? round(($num_days_urgency_50 / $num_days_sat_50) * 100, 2) : 0;
-$count_bills_affected_50 = '144';
+$count_bills_affected_50 = '68';
 $count_total_bills_50 = '300';
 $ratio_urgent_50 = $count_total_bills_50 > 0 ? round(($count_bills_affected_50 / $count_total_bills_50) * 100, 2) : 0;
 
 // 49th Parliament Stats
 $num_days_sat_49 = '230';
-$num_days_urgency_49 = '29';
+$num_days_urgency_49 = '36';
 $percent_urgency_49 = $num_days_sat_49 > 0 ? round(($num_days_urgency_49 / $num_days_sat_49) * 100, 2) : 0;
-$count_bills_affected_49 = '68';
+$count_bills_affected_49 = '144';
 $count_total_bills_49 = '352';
 $ratio_urgent_49 = $count_total_bills_49 > 0 ? round(($count_bills_affected_49 / $count_total_bills_49) * 100, 2) : 0; 
 
