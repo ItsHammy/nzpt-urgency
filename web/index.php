@@ -123,7 +123,7 @@ $last_updated = file_get_contents('lastupdate.txt');
             </p>
 
             <p>
-            In recent months, however, urgency has been increasingly used by the 54th Parliament to bypass public consultation and select committee hearings in order to rush the coalition government’s legislative agenda through Parliament.
+            In recent months however, urgency has been increasingly used by the 54th Parliament to bypass public consultation and select committee hearings in order to rush the coalition government’s legislative agenda through Parliament.
             </p>
 
             <p>
@@ -135,7 +135,10 @@ $last_updated = file_get_contents('lastupdate.txt');
             </p>
             <hr>
             <h2>The Statistics</h2>
-            <?php echo "<p>The 54th Parliament has officially sat for $num_days_sat days since it was formed on 3rd December 2023. In that time, the coalition government which consists of the National Party, The ACT Party, and New Zealand First, has put the parliament into Urgency on $num_days_urgency occasions to pass $count_bills_affected bills without the normal amount of consultation and scrutiny. This makes up $percent_urgency% of all sitting days, with the most recent urgency session being $days_since_urgency days ago on $last_day_urgent_readable. These statistics are scraped from the New Zealand Parliament website, and is updated daily by the NZPT urgency tracker. The urgency tracker system can be seen on Github for those more technically minded. The tracker is a passion project by CJ and will eventually have information about bills affected. The tracker was last updated on $last_updated and last manually checked on December 23rd 2025.</p>";?>
+            <?php echo "<p>As of $last_updated, the 54th Parliament of New Zealand has officially sat for $num_days_sat days since it was formed on 3rd December 2023.<br>
+            In that time, the Parliament which is led by a coalition of the National Party, The ACT Party, and New Zealand First has put the parliament into urgency on $num_days_urgency occasions to pass $count_bills_affected bills without the normal amount of consultation and scrutiny.<br>
+            This makes up $percent_urgency% of all sitting days, and affected $percent_bills_urgent of all bills that have been through this Parliament. The most recent urgency session being $days_since_urgency days ago on $last_day_urgent_readable.<br>
+            These statistics are scraped from the New Zealand Parliament website, and is updated daily by the NZPT urgency tracker. The urgency tracker code can be seen on Github for those more technically minded. The tracker is a passion project by CJ and will eventually have information about bills affected.</p>";?>
         </div>
     </main>
     <footer>
