@@ -37,7 +37,7 @@ $last_scraped_52 = 'December 24th 2025';
 $num_days_sat_51 = '251';
 $num_days_urgency_51 = '12';
 $percent_urgency_51 = $num_days_sat_51 > 0 ? round(($num_days_urgency_51 / $num_days_sat_51) * 100, 2) : 0;
-$count_bills_affected_51 = '24';
+$count_bills_affected_51 = '44';
 $count_total_bills_51 = '305';
 $ratio_urgent_51 = $count_total_bills_51 > 0 ? round(($count_bills_affected_51 / $count_total_bills_51) * 100, 2) : 0;
 
