@@ -1,6 +1,7 @@
 # billcounter.py
 import asyncio
 from datetime import datetime, date
+from urllib.parse import urlparse
 
 from playwright.async_api import async_playwright
 
@@ -9,9 +10,7 @@ LIST_URL = f"{BASE_URL}/en/pb/daily-progress-in-the-house"
 CURRENT_GOV_START = date(2023, 12, 3)
 
 BILLCOUNTER_PATH = "billcounter.txt"
-
-
-MAX_LIST_PAGES = 40
+MAX_LIST_PAGES = 40  # enough to cover back to CURRENT_GOV_START
 
 
 def parse_listing_date(date_text: str):
@@ -31,7 +30,6 @@ async def collect_listing_items(page):
     """
     Crawl the listing pages and return a list of (date, full_url)
     for all sitting days on/after CURRENT_GOV_START.
-    Stops once it hits dates older than CURRENT_GOV_START.
     """
     items: list[tuple[date, str]] = []
 
@@ -79,8 +77,6 @@ async def collect_listing_items(page):
             if not sitting_date:
                 continue
 
-            # Listing is newest → oldest. Once we see older than CURRENT_GOV_START,
-            # we can stop after this page.
             if sitting_date < CURRENT_GOV_START:
                 reached_older_than_start = True
                 continue
@@ -92,7 +88,7 @@ async def collect_listing_items(page):
             print("Reached dates older than CURRENT_GOV_START; stopping pagination.")
             break
 
-    # Deduplicate by URL (in case of any duplicates across pages)
+    # Dedup by URL
     seen_urls = set()
     unique_items = []
     for d, u in items:
@@ -105,17 +101,89 @@ async def collect_listing_items(page):
     return unique_items
 
 
+def normalise_bill_id(href: str) -> str | None:
+    """
+    Given a bills.parliament.nz URL, return a stable bill identifier
+    based on the last path segment (GUID-like part).
+    """
+    try:
+        parsed = urlparse(href)
+    except Exception:
+        return None
+
+    if "bills.parliament.nz" not in parsed.netloc:
+        return None
+
+    parts = [p for p in parsed.path.split("/") if p]
+    if not parts:
+        return None
+
+    guid = parts[-1].strip().lower()
+    return guid or None
+
+
+async def introduced_bill_hrefs_on_page(page):
+    """
+    On the current daily-progress page, return a list of bill hrefs
+    from the 'Introduction of bills' section only.
+    """
+    hrefs = await page.evaluate(
+        """
+        () => {
+          const results = [];
+
+          const h3s = Array.from(document.querySelectorAll('h3'));
+          const introH3s = h3s.filter(h3 =>
+            h3.textContent.trim().toLowerCase().includes('introduction of bills')
+          );
+          if (!introH3s.length) {
+            return results;
+          }
+
+          for (const h3 of introH3s) {
+            let node = h3.nextSibling;
+            while (node) {
+              if (node.nodeType === Node.ELEMENT_NODE &&
+                  node.tagName.toLowerCase() === 'h3') {
+                // reached the next section
+                break;
+              }
+
+              if (node.nodeType === Node.ELEMENT_NODE) {
+                const el = node;
+                const links = el.querySelectorAll('a');
+                links.forEach(a => {
+                  const text = (a.textContent || '').trim();
+                  const href = (a.href || '').trim();
+                  if (!href || !text) return;
+
+                  if (href.includes('bills.parliament.nz') &&
+                      text.toLowerCase().includes('bill')) {
+                    results.push(href);
+                  }
+                });
+              }
+
+              node = node.nextSibling;
+            }
+          }
+
+          return results;
+        }
+        """
+    )
+    return [h for h in hrefs if h]
+
+
 async def count_unique_bills():
     async with async_playwright() as p:
         browser = await p.chromium.launch(headless=True)
         page = await browser.new_page()
 
-        # 1. Collect daily-progress pages
         work_items = await collect_listing_items(page)
 
-        bill_urls: set[str] = set()
+        bill_ids: set[str] = set()
 
-        # 2. Visit each sitting page and collect bill URLs
         for sitting_date, url in work_items:
             print(f"Scanning {sitting_date} -> {url}")
             try:
@@ -124,42 +192,28 @@ async def count_unique_bills():
                 print(f"  Failed to load {url}: {e}")
                 continue
 
-            links = await page.evaluate(
-                """
-                () => Array.from(document.querySelectorAll('a'))
-                      .map(a => ({
-                          href: a.href,
-                          text: a.textContent || ''
-                      }))
-                """
-            )
+            hrefs = await introduced_bill_hrefs_on_page(page)
+            print(f"  Found {len(hrefs)} introduced bill links on this day")
 
-            for link in links:
-                text = (link.get("text") or "").strip()
-                href = (link.get("href") or "").strip()
-                if not href or not text:
-                    continue
-
-
-                if "bill" in text.lower():
-                    bill_urls.add(href)
+            for href in hrefs:
+                bill_id = normalise_bill_id(href)
+                if bill_id:
+                    bill_ids.add(bill_id)
 
         await browser.close()
 
-    return len(bill_urls)
+    return len(bill_ids)
 
 
 async def main():
     count = await count_unique_bills()
     today_str = datetime.now().date().isoformat()
-
     line = f"{count}, {today_str}\n"
-
 
     with open(BILLCOUNTER_PATH, "w", encoding="utf-8") as f:
         f.write(line)
 
-    print(f"Total unique bills considered since {CURRENT_GOV_START}: {count}")
+    print(f"Total unique introduced bills since {CURRENT_GOV_START}: {count}")
     print(f"Wrote '{line.strip()}' to {BILLCOUNTER_PATH}")
 
 
