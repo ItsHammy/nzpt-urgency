@@ -9,7 +9,7 @@ $num_days_urgency_54 = $db->querySingle('SELECT COUNT(id) FROM urgency WHERE in_
 $percent_urgency_54 = $num_days_sat_54 > 0 ? round(($num_days_urgency_54 / $num_days_sat_54) * 100, 2) : 0;
 $last_updated_54 = file_get_contents('../lastupdate.txt');
 $count_bills_affected_54 = $db->querySingle('SELECT COUNT(id) FROM bills');
-$count_total_bills_54 = '182';
+$count_total_bills_54 = (int)explode(',', (file_get_contents('../billcounter.txt')))[0];
 $ratio_urgent_54 = $count_total_bills_54 > 0 ? round(($count_bills_affected_54 / $count_total_bills_54) * 100, 2) : 0;
 
 // 53rd Parliament Stats

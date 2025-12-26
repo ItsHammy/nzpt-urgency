@@ -3,15 +3,21 @@
 
 // Load data from urgency.sqlite3
 $db = new SQLite3('urgency.sqlite3');
+// Days Sat Info
 $num_days_sat = $db->querySingle('SELECT COUNT(id) FROM urgency');
 $num_days_urgency = $db->querySingle('SELECT COUNT(id) FROM urgency WHERE in_urgency = 1');
 $percent_urgency = $num_days_sat > 0 ? round(($num_days_urgency / $num_days_sat) * 100, 2) : 0;
 $last_day_urgent = $db->querySingle('SELECT date FROM urgency WHERE in_urgency = 1 ORDER BY date DESC LIMIT 1');
 $last_day_urgent_readable = $last_day_urgent ? (new DateTime($last_day_urgent))->format('d M Y') : 'N/A';
 $days_since_urgency = $last_day_urgent ? (new DateTime())->diff(new DateTime($last_day_urgent))->days : 'N/A';
+// Bills Info
+$count_bills_urgent = $db->querySingle('SELECT COUNT(id) FROM bills');
+$billcounter = file_get_contents('billcounter.txt');
+$count_bills_all = (int)explode(',', $billcounter)[0];
+$billcounter_date = explode(',', $billcounter)[1];
+$percent_bills_urgent = $count_bills_all > 0 ? round(($count_bills_urgent / $count_bills_all) * 100, 2) : 0;
+// Last Updated
 $last_updated = file_get_contents('lastupdate.txt');
-$count_bills_affected = $db->querySingle('SELECT COUNT(id) FROM bills');
-
 ?>
 
 
@@ -21,7 +27,7 @@ $count_bills_affected = $db->querySingle('SELECT COUNT(id) FROM bills');
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Urgency Statistics - NZPT</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/modern-normalize/1.0.0/modern-normalize.min.css">
     <link rel="stylesheet" href="assets/style.css">
@@ -64,32 +70,43 @@ $count_bills_affected = $db->querySingle('SELECT COUNT(id) FROM bills');
             <div class="stats-card-grid">
                 <div class="stats-card" id="day-sat">
                     <h2><span id="num-days-sat"><?php echo $num_days_sat; ?></span></h2>
-                    <p>Days sat by the 54th Parliament.</p>
+                    <p title="Sitting days can span multiple calendar days. Sitting days are counted as the number of days the Parliament was in session, which may include partial days.">Sitting Days. <small><i class="fa-solid fa-circle-info"></i></small></p>
                 </div>
                 <div class="stats-card" id="day-urgency">
                     <h2 class="stats-card__title"><span id="num-days-urgency"><?php echo $num_days_urgency; ?></span></h2>
                     <p>Days in Urgency.</p>
-                    <small><a target="_blank" href="https://twitter.com/intent/tweet?text=There%20has%20been%20<?php echo $num_days_urgency; ?>%20days%20that%20the%2054th%20(coalition-led)%20New%20Zealand%20Parliament%20have%20passed%20bills%20under%20urgency%2C%20avoiding%20public%20scrutiny.%20%23NZPOL%20Source%3A&url=https%3A%2F%2Fnzpt.cjs.nz%2F">Tweet this.</a></small>
+                    <small>Share This: <a target="_blank" href="https://twitter.com/intent/tweet?text=Did you know this parliament has spent <?php echo $num_days_urgency; ?> days under urgency? via nzpt.cjs.nz %23nzpol"><i class="fa-brands fa-twitter"></i> Twitter</a> | <a target="_blank"href="https://bsky.app/intent/compose?text=Did you know this parliament has spent <?php echo $num_days_urgency; ?> days under urgency? via nzpt.cjs.nz %23nzpol"><i class="fa-brands fa-bluesky"></i> Bluesky</a></small>
                 </div>
-                <div class="stats-card" id="percent-urgency">
+                <div class="stats-card" id="p-urgency">
                     <h2 class="stats-card__title"><span id="num-percent-urgency"><?php echo $percent_urgency; ?></span>%</h2>
                     <p>Percentage of days in Urgency.</p>
-                    <small><a target="_blank" href="https://twitter.com/intent/tweet?text=Did%20you%20know%20that%20<?php echo $percent_urgency; ?>%25%20of%20the%2054th%20New%20Zealand%20Parliament%20sitting%20days%20has%20been%20in%20urgency%3F&url=https%3A%2F%2Fnzpt.cjs.nz%2F">Tweet this.</a></small>
+                    <small>Share This: <a target="_blank" href="https://twitter.com/intent/tweet?text=Did you know the current Parliament has spent <?php echo $percent_urgency; ?>%25 of their days in urgency?! Source: nzpt.cjs.nz %23nzpol"><i class="fa-brands fa-twitter"></i> Twitter</a> | <a target="_blank"href="https://bsky.app/intent/compose?text=Did you know the current Parliament has spent <?php echo $percent_urgency; ?>% of their days in urgency?! Source: nzpt.cjs.nz %23nzpol"><i class="fa-brands fa-bluesky"></i> Bluesky</a></small>
                 </div>
-                <div class="stats-card" id="percent-urgency">
-                    <h2 class="stats-card__title"><span id="num-percent-urgency"><?php echo $count_bills_affected; ?></span></h2>
+                <div class="stats-card" id="total-bills">
+                    <h2 class="stats-card__title"><span id="num-percent-urgency"><?php echo $count_bills_all; ?></span></h2>
+                    <p>Bills considered by this Parliament.</p>
+                    <small title="The official bill count is not published until after a Parliament term has concluded. The number displayed on NZPT is calculated daily by scraping the Parliament website. This number includes Government Bills, Local Bills, and Member Bills.">Estimate as of <?php echo $billcounter_date; ?> <i class="fa-solid fa-circle-info"></i></small>
+                </div>
+                <div class="stats-card" id="bills-under-urgency">
+                    <h2 class="stats-card__title"><span id="num-percent-urgency"><?php echo $count_bills_urgent; ?></span></h2>
+                    <p title="This does not mean all parts of the bill were under urgency, but just one or more parts were.">Bills under Urgency. <small><i class="fa-solid fa-circle-info"></i></small></p>
+                    <small>Share This: <a target="_blank" href="https://twitter.com/intent/tweet?text=Did you know that this Parliament has considered <?php echo $count_bills_urgent; ?> bills under urgency? Source nzpt.cjs.nz %23nzpol"><i class="fa-brands fa-twitter"></i> Twitter</a> | <a target="_blank"href="https://bsky.app/intent/compose?text=Did you know that this Parliament has considered <?php echo $count_bills_urgent; ?> bills under urgency? Source nzpt.cjs.nz %23nzpol"><i class="fa-brands fa-bluesky"></i> Bluesky</a></small>
+                </div>
+                <div class="stats-card" id="percentage-bills-urgency">
+                    <h2 class="stats-card__title"><span id="num-percent-urgency"><?php echo $percent_bills_urgent; ?></span>%</h2>
                     <p title="This does not mean all parts of the bill were under urgency, but just one or more parts were.">Bills under Urgency.</p>
-                    <small><a target="_blank" href="https://twitter.com/intent/tweet?text=Under%20this%20government%2C%20the%20New%20Zealand%20Parliament%20has%20passed%20<?php echo $count_bills_affected; ?>%20bills%20under%20urgency!%20%23nzpol%20Source%3A&url=https%3A%2F%2Fnzpt.cjs.nz%2F">Tweet this.</a></small>
+                    <small>Share This: <a target="_blank" href="https://twitter.com/intent/tweet?text=Did you know that <?php echo $percent_bills_urgent; ?>%25 of bills considered by this Parliament were under urgency? Source nzpt.cjs.nz %23nzpol"><i class="fa-brands fa-twitter"></i> Twitter</a> | <a target="_blank"href="https://bsky.app/intent/compose?text=Did you know that <?php echo $percent_bills_urgent; ?>%25 of bills considered by this Parliament were under urgency? Source nzpt.cjs.nz %23nzpol"><i class="fa-brands fa-bluesky"></i> Bluesky</a></small>
                 </div>
-                <div class="stats-card" id="percent-urgency">
+                <!-- Temporarily hidden stats, will be re-added once useful
+                <div class="stats-card" id="most-recent-urgency">
                     <h2 class="stats-card__title"><span id="last-day-urgent"><?php echo $last_day_urgent_readable; ?></span></h2>
                     <p>Most recent day in Urgency.</p>
                 </div>
-                <div class="stats-card" id="percent-urgency">
+                <div class="stats-card" id="days-since-urgency">
                     <h2 class="stats-card__title"><span id="days-since-urgency"><?php echo $days_since_urgency; ?></span></h2>
-                    <p>Days since last Urgency.</p>
-                    <small><a target="_blank" href="https://twitter.com/intent/tweet?text=There%20has%20been%20<?php echo $days_since_urgency; ?>%20days%20since%20the%20NZ%20Government%20has%20been%20in%20Urgency!%20Check%20the%20stats%20here%3A&url=https%3A%2F%2Fnzpt.cjs.nz%2F">Tweet this.</a></small>
+                    <p>Days since last Urgency Motion.</p>
                 </div>
+                -->
             </div>
         <a href="historical/" class="button">How does this stack against previous parliaments?</a>
         <p><strong>Last Updated:</strong> <span id="last-updated"><?php echo $last_updated; ?></span></p>
@@ -120,17 +137,6 @@ $count_bills_affected = $db->querySingle('SELECT COUNT(id) FROM bills');
             <h2>The Statistics</h2>
             <?php echo "<p>The 54th Parliament has officially sat for $num_days_sat days since it was formed on 3rd December 2023. In that time, the coalition government which consists of the National Party, The ACT Party, and New Zealand First, has put the parliament into Urgency on $num_days_urgency occasions to pass $count_bills_affected bills without the normal amount of consultation and scrutiny. This makes up $percent_urgency% of all sitting days, with the most recent urgency session being $days_since_urgency days ago on $last_day_urgent_readable. These statistics are scraped from the New Zealand Parliament website, and is updated daily by the NZPT urgency tracker. The urgency tracker system can be seen on Github for those more technically minded. The tracker is a passion project by CJ and will eventually have information about bills affected. The tracker was last updated on $last_updated and last manually checked on December 23rd 2025.</p>";?>
         </div>
-        <section id="faqs">
-            <h2>Frequently Asked Questions (FAQs)</h2>
-            <h3>What is Urgency?</h3>
-            <p>Urgency is a parliamentary procedure that allows the government to expedite the legislative process for certain bills. When a bill is declared urgent, it can bypass some of the usual stages of scrutiny, allowing it to be debated and passed more quickly than under normal circumstances.</p>
-            
-            <h3>What are "sitting days"?</h3>
-            <p>Sitting Days refer to the days when the New Zealand Parliament is officially in session and conducting its business. These are the days when members of Parliament (should*) meet to debate, discuss, and make decisions on legislative matters. A sitting day can span one or more days if the parliament enters Urgency.</p>
-            
-            <h3>Where does the data come from?</h3>
-            <p>The data is sourced from the official New Zealand Parliament website, ensuring accuracy and reliability. You can check out the code yourself <a href="https://github.com/itshammy/nzpt-urgency" target="_blank">on GitHub</a>.</p>
-        </section>
     </main>
     <footer>
         <p>Data is sourced from the <a href="https://www.parliament.nz/en" target="_blank">New Zealand Parliament website</a>. | View the Source Code on <a href="https://github.com/itshammy/nzpt-urgency" target="_blank">GitHub</a>.</p>
