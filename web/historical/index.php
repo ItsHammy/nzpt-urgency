@@ -31,9 +31,43 @@ $count_total_bills_52 = '283';
 $ratio_urgent_52 = $count_total_bills_52 > 0 ? round(($count_bills_affected_52 / $count_total_bills_52) * 100, 2) : 0;
 $last_scraped_52 = 'December 24th 2025';
 
+// START pdf-scraped data
+
+// 51st Parliament Stats
+$num_days_sat_51 = '251';
+$num_days_urgency_51 = '26';
+$percent_urgency_51 = $num_days_sat_51 > 0 ? round(($num_days_urgency_51 / $num_days_sat_51) * 100, 2) : 0;
+$count_bills_affected_51 = '66';
+$count_total_bills_51 = '305';
+$ratio_urgent_51 = $count_total_bills_51 > 0 ? round(($count_bills_affected_51 / $count_total_bills_51) * 100, 2) : 0;
+
+// 50th Parliament Stats
+$num_days_sat_50 = '227';
+$num_days_urgency_50 = '36';
+$percent_urgency_50 = $num_days_sat_50 > 0 ? round(($num_days_urgency_50 / $num_days_sat_50) * 100, 2) : 0;
+$count_bills_affected_50 = '144';
+$count_total_bills_50 = '300';
+$ratio_urgent_50 = $count_total_bills_50 > 0 ? round(($count_bills_affected_50 / $count_total_bills_50) * 100, 2) : 0;
+
+// 49th Parliament Stats
+$num_days_sat_49 = '230';
+$num_days_urgency_49 = '29';
+$percent_urgency_49 = $num_days_sat_49 > 0 ? round(($num_days_urgency_49 / $num_days_sat_49) * 100, 2) : 0;
+$count_bills_affected_49 = '68';
+$count_total_bills_49 = '352';
+$ratio_urgent_49 = $count_total_bills_49 > 0 ? round(($count_bills_affected_49 / $count_total_bills_49) * 100, 2) : 0; 
+
+// 48th Parliament Stats
+$num_days_sat_48 = '246';
+$num_days_urgency_48 = '26';
+$percent_urgency_48 = $num_days_sat_48 > 0 ? round(($num_days_urgency_48 / $num_days_sat_48) * 100, 2) : 0;
+$count_bills_affected_48 = '66';
+$count_total_bills_48 = '294';
+$ratio_urgent_48 = $count_total_bills_48 > 0 ? round(($count_bills_affected_48 / $count_total_bills_48) * 100, 2) : 0;  
+
 
 // STATIC
-$PAGE_UPDATED = "December 25th 2025";
+$PAGE_UPDATED = "December 26th 2025";
 ?>
 
 
@@ -124,6 +158,50 @@ $PAGE_UPDATED = "December 25th 2025";
             <li><strong>Ratio of urgent bills:</strong> <?php echo $ratio_urgent_52; ?>%</li>
         </ul>
         </article>
+        <article class="stats-card">
+            <h3 class="stats-card__title">51st Parliament of New Zealand (2014 - 2017)</h3>
+        <ul>
+            <li><strong>Total Days Sat:</strong> <?php echo $num_days_sat_51; ?></li>
+            <li><strong>Total Days in Urgency:</strong> <?php echo $num_days_urgency_51; ?></li>
+            <li><strong>Percentage of Days in Urgency:</strong> <?php echo $percent_urgency_51; ?>%</li>
+            <li><strong>Total Bills Urgent:</strong> <?php echo $count_bills_affected_51; ?></li>
+            <li><strong>Total Bills:</strong> <?php echo $count_total_bills_51; ?></li>
+            <li><strong>Ratio of urgent bills:</strong> <?php echo $ratio_urgent_51; ?>%</li>
+        </ul>
+        </article>
+        <article class="stats-card">
+            <h3 class="stats-card__title">50th Parliament of New Zealand (2011 - 2014)</h3>
+        <ul>
+            <li><strong>Total Days Sat:</strong> <?php echo $num_days_sat_50; ?></li>
+            <li><strong>Total Days in Urgency:</strong> <?php echo $num_days_urgency_50; ?></li>
+            <li><strong>Percentage of Days in Urgency:</strong> <?php echo $percent_urgency_50; ?>%</li>
+            <li><strong>Total Bills Urgent:</strong> <?php echo $count_bills_affected_50; ?></li>
+            <li><strong>Total Bills:</strong> <?php echo $count_total_bills_50; ?></li>
+            <li><strong>Ratio of urgent bills:</strong> <?php echo $ratio_urgent_50; ?>%</li>
+        </ul>
+        </article>
+        <article class="stats-card">
+            <h3 class="stats-card__title">49th Parliament of New Zealand (2008 - 2011)</h3>
+        <ul>
+            <li><strong>Total Days Sat:</strong> <?php echo $num_days_sat_49; ?></li>
+            <li><strong>Total Days in Urgency:</strong> <?php echo $num_days_urgency_49; ?></li>
+            <li><strong>Percentage of Days in Urgency:</strong> <?php echo $percent_urgency_49; ?>%</li>
+            <li><strong>Total Bills Urgent:</strong> <?php echo $count_bills_affected_49; ?></li>
+            <li><strong>Total Bills:</strong> <?php echo $count_total_bills_49; ?></li>
+            <li><strong>Ratio of urgent bills:</strong> <?php echo $ratio_urgent_49; ?>%</li>
+        </ul>
+        </article>
+        <article class="stats-card">
+            <h3 class="stats-card__title">48th Parliament of New Zealand (2005 - 2008)</h3>
+        <ul>
+            <li><strong>Total Days Sat:</strong> <?php echo $num_days_sat_48; ?></li>
+            <li><strong>Total Days in Urgency:</strong> <?php echo $num_days_urgency_48; ?></li>
+            <li><strong>Percentage of Days in Urgency:</strong> <?php echo $percent_urgency_48; ?>%</li>
+            <li><strong>Total Bills Urgent:</strong> <?php echo $count_bills_affected_48; ?></li>
+            <li><strong>Total Bills:</strong> <?php echo $count_total_bills_48; ?></li>
+            <li><strong>Ratio of urgent bills:</strong> <?php echo $ratio_urgent_48; ?>%</li>
+        </ul>
+        </article>
 </div>
 <hr>
 <div class="graph" id="graph">
@@ -150,15 +228,15 @@ $PAGE_UPDATED = "December 25th 2025";
   new Chart(ctx, {
     type: 'line',
     data: {
-      labels: ['Parliament 52 (2017 - 2020)', 'Parliament 53 (2020 - 2023)', 'Parliament 54 (2023 - Present)'],
+      labels: ['Parliament 48 (2005-2008)', 'Parliament 49 (2008 - 2011)', 'Parliament 50 (2011 - 2014)', 'Parliament 51 (2014 - 2017)', 'Parliament 52 (2017 - 2020)', 'Parliament 53 (2020 - 2023)', 'Parliament 54 (2023 - Present)'],
       datasets: [{
         label: 'Percentage of Bills Passed Under Urgency',
-        data: [<?php echo $ratio_urgent_52; ?>, <?php echo $ratio_urgent_53; ?>, <?php echo $ratio_urgent_54; ?>],
+        data: [<?php echo $ratio_urgent_48; ?>, <?php echo $ratio_urgent_49; ?>, <?php echo $ratio_urgent_50; ?>, <?php echo $ratio_urgent_51; ?>, <?php echo $ratio_urgent_52; ?>, <?php echo $ratio_urgent_53; ?>, <?php echo $ratio_urgent_54; ?>],
         borderWidth: 1
       },
     {
         label: 'Percentage of Urgent Sitting Days',
-        data: [<?php echo $percent_urgency_52; ?>, <?php echo $percent_urgency_53; ?>, <?php echo $percent_urgency_54; ?>],
+        data: [<?php echo $percent_urgency_48; ?>, <?php echo $percent_urgency_49; ?>, <?php echo $percent_urgency_50; ?>, <?php echo $percent_urgency_51; ?>, <?php echo $percent_urgency_52; ?>, <?php echo $percent_urgency_53; ?>, <?php echo $percent_urgency_54; ?>],
         borderWidth: 1
       }
     ]
