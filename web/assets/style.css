@@ -260,6 +260,12 @@ nav a.active {
     flex: 1 1 260px;           
     max-width: 320px;         
 }
+
+.stats-card a{
+    color: blue;
+    text-decoration: underline;
+}
+
 .stats-card:hover {
     transform: translateY(-3px);
     box-shadow:
@@ -294,3 +300,38 @@ nav a.active {
     color: #555;
     margin-bottom: 1.5rem;
 }
+
+
+/* -------------- Live Patch: Alert Box -------------- */
+
+/* The alert message box */
+.alert {
+  padding: 20px;
+  background-color: #fffd73; /* Red */
+  color: rgb(0, 0, 0);
+  margin-bottom: 15px;
+  border-radius: 15px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.alert a {
+  color: black;
+  text-decoration: underline;
+}
+
+/* The close button */
+.closebtn {
+  margin-left: 15px;
+  color: rgb(0, 0, 0);
+  font-weight: bold;
+  float: right;
+  font-size: 22px;
+  line-height: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+/* When moving the mouse over the close button */
+.closebtn:hover {
+  color: rgb(143, 143, 143);
+} 

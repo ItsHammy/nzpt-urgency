@@ -65,6 +65,12 @@ $last_updated = file_get_contents('lastupdate.txt');
         </nav>
     </header>
     <main class="stats-overview">
+        <!-- Live Patch: Notice that the tool has stopped working. -->
+         <div class="alert">
+            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+            <strong>Notice:</strong> Please be aware that the Parliament.NZ website has recently undergone changes which have affected the functionality of this urgency tracker. I am actively working on updating the tool to restore its full capabilities. Thank you for your patience and understanding. <i class="fa-solid fa-heart"></i>
+        </div> 
+        <!-- End Live Patch -->
         <div id="at-a-glance">
         <h2>54th Parliament Statistics:</h2>
             <div class="stats-card-grid">
@@ -109,7 +115,7 @@ $last_updated = file_get_contents('lastupdate.txt');
                 -->
             </div>
         <a href="historical/" class="button">How does this stack against previous parliaments?</a>
-        <p><strong>Last Updated:</strong> <span id="last-updated"><?php echo $last_updated; ?></span></p>
+        <p><strong>Last Updated:</strong> <span id="last-updated"><?php echo $last_updated; ?></span> <em>(Should update weekly)</em>.</p>
         </div>
         <hr>
         <div id="explainer-content">
