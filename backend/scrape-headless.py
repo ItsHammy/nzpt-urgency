@@ -20,7 +20,7 @@ from datetime import datetime, date
 from playwright.async_api import async_playwright
 
 DB_PATH = "urgency.sqlite3"
-RSS_FEED_URL = "https://www.parliament.nz/en/highvolumegenericlisting/rss/1667"
+RSS_FEED_URL = "https://www3.parliament.nz/en/highvolumegenericlisting/rss/1667"
 CURRENT_GOV_START = date(2023, 12, 3)
 URGENCY_PHRASE = "A motion to accord urgency to the following business was agreed to"
 
