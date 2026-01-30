@@ -124,7 +124,7 @@ $PAGE_UPDATED = "December 26th 2025";
 
     <div class="stats-card-grid">
         <article class="stats-card">
-            <h3 class="stats-card__title">54th Parliament of New Zealand (2023 - Present)</h3>
+            <h3 class="stats-card__title">54th Parliament of New Zealand (Luxon: 2023–Present)</h3>
             <em>(As of <?php echo $last_updated_54; ?>)</em>
             <ul>
                 <li><strong>Total Days Sat:</strong> <?php echo $num_days_sat_54; ?></li>
@@ -137,7 +137,7 @@ $PAGE_UPDATED = "December 26th 2025";
         </article>
         
         <article class="stats-card">
-            <h3 class="stats-card__title">53rd Parliament of New Zealand (2020 - 2023)</h3>
+            <h3 class="stats-card__title">53rd Parliament of New Zealand (Ardern, Hipkins: 2020–2023)</h3>
             <ul>
             <li><strong>Total Days Sat:</strong> <?php echo $num_days_sat_53; ?></li>
             <li><strong>Total Days in Urgency:</strong> <?php echo $num_days_urgency_53; ?></li>
@@ -148,7 +148,7 @@ $PAGE_UPDATED = "December 26th 2025";
         </ul>
         </article>
         <article class="stats-card">
-            <h3 class="stats-card__title">52nd Parliament of New Zealand (2017 - 2020)</h3>
+            <h3 class="stats-card__title">52nd Parliament of New Zealand (Ardern: 2017–2020)</h3>
         <ul>
             <li><strong>Total Days Sat:</strong> <?php echo $num_days_sat_52; ?></li>
             <li><strong>Total Days in Urgency:</strong> <?php echo $num_days_urgency_52; ?></li>
@@ -159,7 +159,7 @@ $PAGE_UPDATED = "December 26th 2025";
         </ul>
         </article>
         <article class="stats-card">
-            <h3 class="stats-card__title">51st Parliament of New Zealand (2014 - 2017)</h3>
+            <h3 class="stats-card__title">51st Parliament of New Zealand (Key, English: 2014–2017)</h3>
         <ul>
             <li><strong>Total Days Sat:</strong> <?php echo $num_days_sat_51; ?></li>
             <li><strong>Total Days in Urgency:</strong> <?php echo $num_days_urgency_51; ?></li>
@@ -170,7 +170,7 @@ $PAGE_UPDATED = "December 26th 2025";
         </ul>
         </article>
         <article class="stats-card">
-            <h3 class="stats-card__title">50th Parliament of New Zealand (2011 - 2014)</h3>
+            <h3 class="stats-card__title">50th Parliament of New Zealand (Key: 2011–2014)</h3>
         <ul>
             <li><strong>Total Days Sat:</strong> <?php echo $num_days_sat_50; ?></li>
             <li><strong>Total Days in Urgency:</strong> <?php echo $num_days_urgency_50; ?></li>
@@ -181,7 +181,7 @@ $PAGE_UPDATED = "December 26th 2025";
         </ul>
         </article>
         <article class="stats-card">
-            <h3 class="stats-card__title">49th Parliament of New Zealand (2008 - 2011)</h3>
+            <h3 class="stats-card__title">49th Parliament of New Zealand (Key: 2008–2011)</h3>
         <ul>
             <li><strong>Total Days Sat:</strong> <?php echo $num_days_sat_49; ?></li>
             <li><strong>Total Days in Urgency:</strong> <?php echo $num_days_urgency_49; ?></li>
@@ -192,7 +192,7 @@ $PAGE_UPDATED = "December 26th 2025";
         </ul>
         </article>
         <article class="stats-card">
-            <h3 class="stats-card__title">48th Parliament of New Zealand (2005 - 2008)</h3>
+            <h3 class="stats-card__title">48th Parliament of New Zealand (Clark: 2005–2008)</h3>
         <ul>
             <li><strong>Total Days Sat:</strong> <?php echo $num_days_sat_48; ?></li>
             <li><strong>Total Days in Urgency:</strong> <?php echo $num_days_urgency_48; ?></li>
