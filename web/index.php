@@ -26,7 +26,7 @@ $last_updated = file_get_contents('lastupdate.txt');
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Urgency Statistics - NZPT</title>
+    <title>BETA SITE Urgency Statistics - NZPT</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/modern-normalize/1.0.0/modern-normalize.min.css">
@@ -65,12 +65,12 @@ $last_updated = file_get_contents('lastupdate.txt');
         </nav>
     </header>
     <main class="stats-overview">
-        <!-- Live Patch: Notice that the tool has stopped working. -->
+        <!-- Live Patch: Notice that the tool has stopped working. 
          <div class="alert">
             <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
             <strong>Notice:</strong> Please be aware that the Parliament.NZ website has recently undergone changes which have affected the functionality of this urgency tracker. I am actively working on updating the tool to restore its full capabilities. Thank you for your patience and understanding. <i class="fa-solid fa-heart"></i>
         </div> 
-        <!-- End Live Patch -->
+         End Live Patch -->
         <div id="at-a-glance">
         <h2>54th Parliament Statistics:</h2>
             <div class="stats-card-grid">
