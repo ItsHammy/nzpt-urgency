@@ -55,6 +55,9 @@ $last_updated = file_get_contents('lastupdate.txt');
 </head>
 <body>
     <header>
+        <aside class="header-aside">
+            <p>The 2026 General Election takes place on 7 November 2026. You must enrol to vote by 25th October. You must have chosen your roll (Maori/General by 16 August).</p>
+        </aside>
         <h1>NZPT | Urgency Tracker</h1>
         <h5>A free tool by CJ Sandall.</h5>
         <nav>
