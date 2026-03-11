@@ -124,28 +124,16 @@ $last_updated = file_get_contents('lastupdate.txt');
         <hr>
         <div class="explainer-content">
             <h2>Who are you, why do you care?</h2>
-            <p>Author: CJ Sandall</p>
-            <p>
-            When the New Zealand Parliament goes into urgency, it allows the typical process of lawmaking to be expedited. This means that steps such as public consultation (when the public can give feedback on proposed laws) and select committee review (where a smaller group of MPs scrutinise a bill in detail) can be skipped or shortened.
-            </p>
-
-            <p>
-            Urgency is designed to allow the government to pass legislation quickly in response to unexpected or genuinely urgent situations. Recent events that warranted urgency include the COVID-19 pandemic and the 2019 terror attacks in Ōtautahi Christchurch.
-            </p>
-
-            <p>
-            In recent months however, urgency has been increasingly used by the 54th Parliament to bypass public consultation and select committee hearings in order to rush the coalition government’s legislative agenda through Parliament.
-            </p>
-
-            <p>
-            I care about this issue, as do many New Zealanders, because the urgency process removes the public's ability to have their say and makes it harder for opposition parties to scrutinise legislation before it becomes law. While many laws have been passed under urgency, not all of them appear to be genuinely urgent.
-            </p>
-
-            <p>
-            I am not an expert coder; however, I could not find an existing tool like this online, so I built one myself to track urgency statistics in the 54th Parliament. I plan to make more NZPOL tools in the future, and would appreciate any support, either on <a href="https://cjs.nz/socials" target="_blank">my social media</a> or by <a href="https://buymeacoffee.com/hammy" target="_blank">buying me a coffee</a>!
-            </p>
+            <p><small>Author: CJ Sandall. Written 11/03/2026</small></p>
+            <p>When the New Zealand Parliament goes into urgency, it allows the typical process of lawmaking to be expedited. This means that steps such as public consultation (when the public can give feedback on proposed laws) and select committee review (where a smaller group of MPs scrutinise a bill in detail) can be skipped or shortened.</p>
+            <p>Urgency is designed to allow the government to pass legislation quickly in response to unexpected or genuinely urgent situations. Recent events that warranted urgency (and as a result had almost full support across the house) include the COVID-19 pandemic and the 2019 terror attacks in Ōtautahi Christchurch.</p>
+            <p>In recent months however, urgency has been increasingly used by the 54th Parliament to bypass public consultation and select committee hearings in order to rush the coalition government’s legislative agenda through Parliament. I care about this issue, as do many New Zealanders, because the urgency process removes the public's ability to have their say and makes it harder for opposition parties to scrutinise legislation before it becomes law. While many bills have been expidited under urgency, not all of them appear to be genuinely urgent.</p>
+            <p>As for Who am I? I am just a broke uni student who is concerned about the country he calls home. I would love to see more involvement from the general public in politics, and that starts with actually allowing public consultation. I am not an expert coder, however it was Jefferson who said that a well-informed electorate is a prerequisite to democracy and if I can keep making simple webtools that allow people to understand the day-to-day in nzpol, then I will.</p>
             <hr>
+        </div>
+        <div class="explainer-content">
             <h2>The Statistics</h2>
+            <p><small>Author: NZPT Bot. Updated automatically <?php echo $last_updated; ?>.</small></p>
             <?php echo "<p>As of $last_updated, the 54th Parliament of New Zealand has officially sat for $num_days_sat days since it was formed on 3rd December 2023.<br>
             In that time, the Parliament which is led by a coalition of the National Party, The ACT Party, and New Zealand First has put the parliament into urgency on $num_days_urgency occasions to pass $count_bills_affected bills without the normal amount of consultation and scrutiny.<br>
             This makes up $percent_urgency% of all sitting days, and affected $percent_bills_urgent of all bills that have been through this Parliament. The most recent urgency session being $days_since_urgency days ago on $last_day_urgent_readable.<br>

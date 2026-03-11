@@ -362,6 +362,15 @@ aside {
     hyphens: auto;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    box-sizing: border-box;
+}
+
+/* When only one explainer block exists keep the original centered single-column layout */
+.explainer-content:only-child {
+    display: block;
+    width: auto;
+    max-width: 65ch;
+    margin: 2rem auto;
 }
 
 /* Headings inside the article */
@@ -403,14 +412,33 @@ aside {
     text-decoration: none;
 }
 
+/* Layout: place multiple explainer-content blocks side-by-side on wide screens */
+/* Two columns maximum */
+@media (min-width: 800px) {
+    .explainer-content {
+        display: inline-block;
+        vertical-align: top;
+        width: calc(45% - 2rem);
+        max-width: none;
+        margin: 1rem;
+    }
+}
 
+/* Keep two-column layout even on very wide screens (avoid three-up layouts) */
+@media (min-width: 1200px) {
+    .explainer-content {
+        width: calc(45% - 2rem);
+    }
+}
 
 /* Small screens */
 @media (max-width: 640px) {
-    #explainer-content {
+    .explainer-content {
         padding: 1rem;
         margin: 1rem;
         max-width: 100%;
+        flex: 1 1 100%;
     }
-    #explainer-content h1 { font-size: 1.5rem; }
+    .explainer-content h1 { font-size: 1.5rem; }
 }
+
