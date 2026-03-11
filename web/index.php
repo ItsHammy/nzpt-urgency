@@ -136,7 +136,7 @@ $last_updated = file_get_contents('lastupdate.txt');
             <p><small>Author: NZPT Bot. Updated automatically <?php echo $last_updated; ?>.</small></p>
             <?php echo "<p>As of $last_updated, the 54th Parliament of New Zealand has officially sat for $num_days_sat days since it was formed on 3rd December 2023.<br>
             In that time, the Parliament which is led by a coalition of the National Party, The ACT Party, and New Zealand First has put the parliament into urgency on $num_days_urgency occasions to pass $count_bills_affected bills without the normal amount of consultation and scrutiny.<br>
-            This makes up $percent_urgency% of all sitting days, and affected $percent_bills_urgent of all bills that have been through this Parliament. The most recent urgency session being $days_since_urgency days ago on $last_day_urgent_readable.<br>
+            This makes up $percent_urgency% of all sitting days, and affected $percent_bills_urgent% of all bills that have been through this Parliament. The most recent urgency session being $days_since_urgency days ago on $last_day_urgent_readable.<br>
             These statistics are scraped from the New Zealand Parliament website, and is updated daily by the NZPT urgency tracker. The urgency tracker code can be seen on Github for those more technically minded. The tracker is a passion project by CJ and will eventually have information about bills affected.</p>";?>
         </div>
     </main>
