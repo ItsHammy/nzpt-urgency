@@ -336,17 +336,6 @@ nav a.active {
   color: rgb(143, 143, 143);
 } 
 
-aside {
-  width: 15%;
-  padding-left: 5px;
-  margin-left: 5px;
-  float: right;
-  font-weight: bold;
-  background-color: #9628f8;
-  color: #f89628;
-  border-radius: 10px;
-}
-
 /* Article styling for #explainer-content */
 .explainer-content {
     max-width: 65ch;
