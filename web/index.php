@@ -74,6 +74,10 @@ $last_updated = file_get_contents('lastupdate.txt');
             <strong>Notice:</strong> Please be aware that the Parliament.NZ website has recently undergone changes which have affected the functionality of this urgency tracker. I am actively working on updating the tool to restore its full capabilities. Thank you for your patience and understanding. <i class="fa-solid fa-heart"></i>
         </div> 
          End Live Patch -->
+        <!--Countdown Ticker-->
+        <div id="countdown-ticker" class="ticker">
+            <p>2026 Election: 7th November. Enrolment Closes: <span id="enrol-date"></span>. Switching Rolls Closes: <span id="switch-rolls-date"></span>. Voting Opens: <span id="voting-opens-date"></span>. Election Day: <span id="election-day"></span>.</p>
+        </div>
         <div id="at-a-glance">
         <h2>54th Parliament Statistics:</h2>
             <div class="stats-card-grid">
