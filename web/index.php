@@ -55,11 +55,8 @@ $last_updated = file_get_contents('lastupdate.txt');
 </head>
 <body>
     <header>
-        <aside class="header-aside">
-            <p>The 2026 General Election takes place on 7 November 2026. You must enrol to vote by 25th October. You must have chosen your roll (Maori/General by 16 August).</p>
-        </aside>
         <h1>NZPT | Urgency Tracker</h1>
-        <h5>A free tool by CJ Sandall.</h5>
+        <h5>New Zealand Politics Toolbox -> Tracking Govt Urgency</h5>
         <nav>
             <a href="#" class="active">Urgency Tracker</a>
             <a href="bills/">Bills Viewer</a>
@@ -75,10 +72,10 @@ $last_updated = file_get_contents('lastupdate.txt');
         </div> 
          End Live Patch -->
         <!--Countdown Ticker-->
-        <div id="countdown-ticker" class="ticker">
-            <p>2026 Election: 7th November. Enrolment Closes: <span id="enrol-date"></span>. Switching Rolls Closes: <span id="switch-rolls-date"></span>. Voting Opens: <span id="voting-opens-date"></span>. Election Day: <span id="election-day"></span>.</p>
+        <div id="at-a-glance"> 
+        <div id="countdown-ticker" class="marquee">
+            <marquee><b>2026 Election:</b> 7th November. <b>Enrolment Closes:</b> <span id="enrol-date"></span>. <b>Switching Rolls Closes:</b> <span id="switch-rolls-date"></span>. <b>Voting Opens:</b> <span id="voting-opens-date"></span>. <b>Election Day:</b> <span id="election-day"></span>. <a href="https://vote.nz/enrol" target="_blank">Click Here to Enrol to Vote.</a> | <b>2026 Election:</b> 7th November. <b>Enrolment Closes:</b> <span id="enrol-date"></span>. <b>Switching Rolls Closes:</b> <span id="switch-rolls-date"></span>. <b>Voting Opens:</b> <span id="voting-opens-date"></span>. <b>Election Day:</b> <span id="election-day"></span>. <a href="https://vote.nz/enrol" target="_blank">Click Here to Enrol to Vote.</a> | <b>2026 Election:</b> 7th November. <b>Enrolment Closes:</b> <span id="enrol-date"></span>. <b>Switching Rolls Closes:</b> <span id="switch-rolls-date"></span>. <b>Voting Opens:</b> <span id="voting-opens-date"></span>. <b>Election Day:</b> <span id="election-day"></span>. <a href="https://vote.nz/enrol" target="_blank">Click Here to Enrol to Vote.</a> | <b>2026 Election:</b> 7th November. <b>Enrolment Closes:</b> <span id="enrol-date"></span>. <b>Switching Rolls Closes:</b> <span id="switch-rolls-date"></span>. <b>Voting Opens:</b> <span id="voting-opens-date"></span>. <b>Election Day:</b> <span id="election-day"></span>. <a href="https://vote.nz/enrol" target="_blank">Click Here to Enrol to Vote.</a> | <b>2026 Election:</b> 7th November. <b>Enrolment Closes:</b> <span id="enrol-date"></span>. <b>Switching Rolls Closes:</b> <span id="switch-rolls-date"></span>. <b>Voting Opens:</b> <span id="voting-opens-date"></span>. <b>Election Day:</b> <span id="election-day"></span>. <a href="https://vote.nz/enrol" target="_blank">Click Here to Enrol to Vote.</a> | </marquee>
         </div>
-        <div id="at-a-glance">
         <h2>54th Parliament Statistics:</h2>
             <div class="stats-card-grid">
                 <div class="stats-card" id="day-sat">
@@ -125,8 +122,9 @@ $last_updated = file_get_contents('lastupdate.txt');
         <p><strong>Last Updated:</strong> <span id="last-updated"><?php echo $last_updated; ?></span> <em>(Should update weekly)</em>.</p>
         </div>
         <hr>
-        <div id="explainer-content">
+        <div class="explainer-content">
             <h2>Who are you, why do you care?</h2>
+            <p>Author: CJ Sandall</p>
             <p>
             When the New Zealand Parliament goes into urgency, it allows the typical process of lawmaking to be expedited. This means that steps such as public consultation (when the public can give feedback on proposed laws) and select committee review (where a smaller group of MPs scrutinise a bill in detail) can be skipped or shortened.
             </p>
@@ -155,7 +153,7 @@ $last_updated = file_get_contents('lastupdate.txt');
         </div>
     </main>
     <footer>
-        <p>Data is sourced from the <a href="https://www.parliament.nz/en" target="_blank">New Zealand Parliament website</a>. | View the Source Code on <a href="https://github.com/itshammy/nzpt-urgency" target="_blank">GitHub</a>.</p>
+        <p>Data is sourced from the <a href="https://www.parliament.nz/en" target="_blank">New Zealand Parliament website</a>. | View the Source Code on <a href="https://github.com/itshammy/nzpt-urgency" target="_blank">GitHub</a>. Want to chat? <a href="https://cjs.nz/socials" target="_blank">Contact Me</a>!</p>
         <p>Created by <a href="https://cjs.nz">CJ</a>.<br><a href="https://www.buymeacoffee.com/hammy"><img width="10%" src="https://img.buymeacoffee.com/button-api/?text=Buy me a Latte&emoji=☕&slug=hammy&button_colour=BD5FFF&font_colour=ffffff&font_family=Poppins&outline_colour=000000&coffee_colour=FFDD00" /></a></p>
     </footer>
 </body>

@@ -13,3 +13,41 @@ document.addEventListener("DOMContentLoaded", function () {
       });
     });
   });
+
+// Countdown Timers
+var electionDate = new Date("November 7, 2026 00:00:00").getTime();
+var enrolmentDate = new Date("October 25, 2026 00:00:00").getTime();
+var switchingRollsDate = new Date("August 6, 2026 00:00:00").getTime();
+var votingOpensDate = new Date("October 26, 2026 00:00:00").getTime();
+
+// Update countdown timers every second
+setInterval(function () {
+  var now = new Date().getTime();
+  var electionTimeLeft = electionDate - now;
+  var enrolmentTimeLeft = enrolmentDate - now;
+  var switchingRollsTimeLeft = switchingRollsDate - now;
+  var votingOpensTimeLeft = votingOpensDate - now;
+
+  // Update the countdown display
+  document.querySelectorAll("#election-day").forEach(function(element) {
+    element.innerText = formatTimeLeft(electionTimeLeft);
+  });
+  document.querySelectorAll("#enrol-date").forEach(function(element) {
+    element.innerText = formatTimeLeft(enrolmentTimeLeft);
+  });
+  document.querySelectorAll("#switch-rolls-date").forEach(function(element) {
+    element.innerText = formatTimeLeft(switchingRollsTimeLeft);
+  });
+  document.querySelectorAll("#voting-opens-date").forEach(function(element) {
+    element.innerText = formatTimeLeft(votingOpensTimeLeft);
+  });
+}, 1000);
+
+// Format time left as a string
+function formatTimeLeft(timeLeft) {
+  var days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+  var hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  var minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+  var seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+  return days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
+}

@@ -347,19 +347,70 @@ aside {
   border-radius: 10px;
 }
 
-.ticker {
-  width: 22ch; /* Length of text */
-  animation: typing 2s steps(22), blink .5s step-end infinite alternate;
-  white-space: nowrap;
-  overflow: hidden;
-  border-right: 3px solid;
-  font-family: monospace;
+/* Article styling for #explainer-content */
+.explainer-content {
+    max-width: 65ch;
+    margin: 2rem auto;
+    padding: 2rem;
+    background: #ffffff;
+    color: #222;
+    font-family: "Georgia", "Times New Roman", serif;
+    line-height: 1.75;
+    border-radius: 0.75rem;
+    box-shadow: 0 8px 24px rgba(16, 24, 40, 0.06);
+    border: 1px solid rgba(0, 0, 0, 0.04);
+    hyphens: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
-@keyframes typing {
-  from { width: 0 }
+/* Headings inside the article */
+.explainer-content h1,
+.explainer-content h2,
+.explainer-content h3,
+.explainer-content h4 {
+    color: #0f172a;
+    margin-top: 1.25rem;
+    margin-bottom: 0.5rem;
+    line-height: 1.25;
+    font-weight: 700;
 }
-    
-@keyframes blink {
-  50% { border-color: transparent }
+
+.explainer-content h1 { font-size: 2rem; }
+.explainer-content h2 { font-size: 1.5rem; }
+.explainer-content h3 { font-size: 1.15rem; }
+
+/* Paragraphs and lead paragraph */
+.explainer-content p {
+    margin: 0 0 1rem;
+    font-size: 1.05rem;
+    color: #333;
+}
+
+.explainer-content p.lead {
+    font-size: 1.125rem;
+    color: #444;
+    margin-bottom: 1.25rem;
+}
+
+/* Links */
+.explainer-content a {
+    color: #2563eb;
+    text-decoration: underline;
+}
+.explainer-content a:focus,
+.explainer-content a:hover {
+    text-decoration: none;
+}
+
+
+
+/* Small screens */
+@media (max-width: 640px) {
+    #explainer-content {
+        padding: 1rem;
+        margin: 1rem;
+        max-width: 100%;
+    }
+    #explainer-content h1 { font-size: 1.5rem; }
 }
