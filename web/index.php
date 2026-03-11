@@ -56,7 +56,7 @@ $last_updated = file_get_contents('lastupdate.txt');
 <body>
     <header>
         <h1>NZPT | Urgency Tracker</h1>
-        <h5>A free tool by CJ Sandall.</h5>
+        <h5>New Zealand Politics Toolbox -> Tracking Govt Urgency</h5>
         <nav>
             <a href="#" class="active">Urgency Tracker</a>
             <a href="bills/">Bills Viewer</a>
@@ -65,13 +65,17 @@ $last_updated = file_get_contents('lastupdate.txt');
         </nav>
     </header>
     <main class="stats-overview">
-        <!-- Live Patch: Notice that the tool has stopped working. -->
+        <!-- Live Patch: Notice that the tool has stopped working. 
          <div class="alert">
             <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
             <strong>Notice:</strong> Please be aware that the Parliament.NZ website has recently undergone changes which have affected the functionality of this urgency tracker. I am actively working on updating the tool to restore its full capabilities. Thank you for your patience and understanding. <i class="fa-solid fa-heart"></i>
         </div> 
-        <!-- End Live Patch -->
-        <div id="at-a-glance">
+         End Live Patch -->
+        <!--Countdown Ticker-->
+        <div id="at-a-glance"> 
+        <div id="countdown-ticker" class="marquee">
+            <marquee><b>2026 Election:</b> 7th November. <b>Enrolment Closes:</b> <span id="enrol-date"></span>. <b>Switching Rolls Closes:</b> <span id="switch-rolls-date"></span>. <b>Voting Opens:</b> <span id="voting-opens-date"></span>. <b>Election Day:</b> <span id="election-day"></span>. <a href="https://vote.nz/enrol" target="_blank">Click Here to Enrol to Vote.</a> | <b>2026 Election:</b> 7th November. <b>Enrolment Closes:</b> <span id="enrol-date"></span>. <b>Switching Rolls Closes:</b> <span id="switch-rolls-date"></span>. <b>Voting Opens:</b> <span id="voting-opens-date"></span>. <b>Election Day:</b> <span id="election-day"></span>. <a href="https://vote.nz/enrol" target="_blank">Click Here to Enrol to Vote.</a> | <b>2026 Election:</b> 7th November. <b>Enrolment Closes:</b> <span id="enrol-date"></span>. <b>Switching Rolls Closes:</b> <span id="switch-rolls-date"></span>. <b>Voting Opens:</b> <span id="voting-opens-date"></span>. <b>Election Day:</b> <span id="election-day"></span>. <a href="https://vote.nz/enrol" target="_blank">Click Here to Enrol to Vote.</a> | <b>2026 Election:</b> 7th November. <b>Enrolment Closes:</b> <span id="enrol-date"></span>. <b>Switching Rolls Closes:</b> <span id="switch-rolls-date"></span>. <b>Voting Opens:</b> <span id="voting-opens-date"></span>. <b>Election Day:</b> <span id="election-day"></span>. <a href="https://vote.nz/enrol" target="_blank">Click Here to Enrol to Vote.</a> | <b>2026 Election:</b> 7th November. <b>Enrolment Closes:</b> <span id="enrol-date"></span>. <b>Switching Rolls Closes:</b> <span id="switch-rolls-date"></span>. <b>Voting Opens:</b> <span id="voting-opens-date"></span>. <b>Election Day:</b> <span id="election-day"></span>. <a href="https://vote.nz/enrol" target="_blank">Click Here to Enrol to Vote.</a> | </marquee>
+        </div>
         <h2>54th Parliament Statistics:</h2>
             <div class="stats-card-grid">
                 <div class="stats-card" id="day-sat">
@@ -114,41 +118,30 @@ $last_updated = file_get_contents('lastupdate.txt');
                 </div>
                 -->
             </div>
-        <a href="historical/" class="button">How does this stack against previous parliaments?</a>
+        <a href="historical/" class="button">How does this stack against previous parliaments?</a> <button id="share-btn" class="button">📤 Share these stats</button>
         <p><strong>Last Updated:</strong> <span id="last-updated"><?php echo $last_updated; ?></span> <em>(Should update weekly)</em>.</p>
         </div>
         <hr>
-        <div id="explainer-content">
+        <div class="explainer-content">
             <h2>Who are you, why do you care?</h2>
-            <p>
-            When the New Zealand Parliament goes into urgency, it allows the typical process of lawmaking to be expedited. This means that steps such as public consultation (when the public can give feedback on proposed laws) and select committee review (where a smaller group of MPs scrutinise a bill in detail) can be skipped or shortened.
-            </p>
-
-            <p>
-            Urgency is designed to allow the government to pass legislation quickly in response to unexpected or genuinely urgent situations. Recent events that warranted urgency include the COVID-19 pandemic and the 2019 terror attacks in Ōtautahi Christchurch.
-            </p>
-
-            <p>
-            In recent months however, urgency has been increasingly used by the 54th Parliament to bypass public consultation and select committee hearings in order to rush the coalition government’s legislative agenda through Parliament.
-            </p>
-
-            <p>
-            I care about this issue, as do many New Zealanders, because the urgency process removes the public's ability to have their say and makes it harder for opposition parties to scrutinise legislation before it becomes law. While many laws have been passed under urgency, not all of them appear to be genuinely urgent.
-            </p>
-
-            <p>
-            I am not an expert coder; however, I could not find an existing tool like this online, so I built one myself to track urgency statistics in the 54th Parliament. I plan to make more NZPOL tools in the future, and would appreciate any support, either on <a href="https://cjs.nz/socials" target="_blank">my social media</a> or by <a href="https://buymeacoffee.com/hammy" target="_blank">buying me a coffee</a>!
-            </p>
+            <p><small>Author: CJ Sandall. Written 11/03/2026</small></p>
+            <p>When the New Zealand Parliament goes into urgency, it allows the typical process of lawmaking to be expedited. This means that steps such as public consultation (when the public can give feedback on proposed laws) and select committee review (where a smaller group of MPs scrutinise a bill in detail) can be skipped or shortened.</p>
+            <p>Urgency is designed to allow the government to pass legislation quickly in response to unexpected or genuinely urgent situations. Recent events that warranted urgency (and as a result had almost full support across the house) include the COVID-19 pandemic and the 2019 terror attacks in Ōtautahi Christchurch.</p>
+            <p>In recent months however, urgency has been increasingly used by the 54th Parliament to bypass public consultation and select committee hearings in order to rush the coalition government’s legislative agenda through Parliament. I care about this issue, as do many New Zealanders, because the urgency process removes the public's ability to have their say and makes it harder for opposition parties to scrutinise legislation before it becomes law. While many bills have been expidited under urgency, not all of them appear to be genuinely urgent.</p>
+            <p>As for Who am I? I am just a broke uni student who is concerned about the country he calls home. I would love to see more involvement from the general public in politics, and that starts with actually allowing public consultation. I am not an expert coder, however it was Jefferson who said that a well-informed electorate is a prerequisite to democracy and if I can keep making simple webtools that allow people to understand the day-to-day in nzpol, then I will.</p>
             <hr>
+        </div>
+        <div class="explainer-content">
             <h2>The Statistics</h2>
+            <p><small>Author: NZPT Bot. Updated automatically <?php echo $last_updated; ?>.</small></p>
             <?php echo "<p>As of $last_updated, the 54th Parliament of New Zealand has officially sat for $num_days_sat days since it was formed on 3rd December 2023.<br>
             In that time, the Parliament which is led by a coalition of the National Party, The ACT Party, and New Zealand First has put the parliament into urgency on $num_days_urgency occasions to pass $count_bills_affected bills without the normal amount of consultation and scrutiny.<br>
-            This makes up $percent_urgency% of all sitting days, and affected $percent_bills_urgent of all bills that have been through this Parliament. The most recent urgency session being $days_since_urgency days ago on $last_day_urgent_readable.<br>
+            This makes up $percent_urgency% of all sitting days, and affected $percent_bills_urgent% of all bills that have been through this Parliament. The most recent urgency session being $days_since_urgency days ago on $last_day_urgent_readable.<br>
             These statistics are scraped from the New Zealand Parliament website, and is updated daily by the NZPT urgency tracker. The urgency tracker code can be seen on Github for those more technically minded. The tracker is a passion project by CJ and will eventually have information about bills affected.</p>";?>
         </div>
     </main>
     <footer>
-        <p>Data is sourced from the <a href="https://www.parliament.nz/en" target="_blank">New Zealand Parliament website</a>. | View the Source Code on <a href="https://github.com/itshammy/nzpt-urgency" target="_blank">GitHub</a>.</p>
+        <p>Data is sourced from the <a href="https://www.parliament.nz/en" target="_blank">New Zealand Parliament website</a>. | View the Source Code on <a href="https://github.com/itshammy/nzpt-urgency" target="_blank">GitHub</a>. Want to chat? <a href="https://cjs.nz/socials" target="_blank">Contact Me</a>!</p>
         <p>Created by <a href="https://cjs.nz">CJ</a>.<br><a href="https://www.buymeacoffee.com/hammy"><img width="10%" src="https://img.buymeacoffee.com/button-api/?text=Buy me a Latte&emoji=☕&slug=hammy&button_colour=BD5FFF&font_colour=ffffff&font_family=Poppins&outline_colour=000000&coffee_colour=FFDD00" /></a></p>
     </footer>
 </body>
