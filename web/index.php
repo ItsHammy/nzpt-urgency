@@ -118,7 +118,7 @@ $last_updated = file_get_contents('lastupdate.txt');
                 </div>
                 -->
             </div>
-        <a href="historical/" class="button">How does this stack against previous parliaments?</a>
+        <a href="historical/" class="button">How does this stack against previous parliaments?</a> <button id="share-btn" class="button">📤 Share these stats</button>
         <p><strong>Last Updated:</strong> <span id="last-updated"><?php echo $last_updated; ?></span> <em>(Should update weekly)</em>.</p>
         </div>
         <hr>
