@@ -67,7 +67,7 @@ $ratio_urgent_48 = $count_total_bills_48 > 0 ? round(($count_bills_affected_48 /
 
 
 // STATIC
-$PAGE_UPDATED = "December 26th 2025";
+$PAGE_UPDATED = "April 8th 2026";
 ?>
 
 
@@ -118,7 +118,7 @@ $PAGE_UPDATED = "December 26th 2025";
     <main class="stats-overview">
     <h2>A historical lens.</h2>
     <p>
-        This page allows you to see the Urgency data from previous New Zealand Parliaments and compare it with the current government. Currently there is data from the 52nd, 53rd and 54th Parliaments, as data preceeding this is less readily available. <b>I am still working on finding older data, and the data provided here may well be inaccurate as it is not currently verified.</b> As always, please raise issues to me via <a href="https://github.com/itshammy/nzpt-urgency/issues" target="_blank">GitHub</a>.
+        This page allows you to see the Urgency data from previous New Zealand Parliaments and compare it with the current government. <b>The data provided here may well be inaccurate as it is not currently independently verified.</b> As always, please raise issues to me via <a href="https://github.com/itshammy/nzpt-urgency/issues" target="_blank">GitHub</a>.
     </p>
     <p class="historical-stats__note"><small>Some of the information on this page is not automatically updated. Last updated <?php echo $PAGE_UPDATED; ?></small></p>
 
