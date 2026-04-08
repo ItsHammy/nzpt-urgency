@@ -93,7 +93,7 @@ $count_bills_affected = $db->querySingle('SELECT COUNT(id) FROM bills');
                 $orderBy = 'rowid DESC';
                 break;
         }
-        $results = $db->query('SELECT bill_name, url, mps, desc FROM bills ORDER BY $orderBy');
+        $results = $db->query("SELECT bill_name, url, mps, desc FROM bills ORDER BY $orderBy");
         while ($row = $results->fetchArray(SQLITE3_ASSOC)) {
             $name = htmlspecialchars($row['bill_name']);
             $mps = htmlspecialchars($row['mps']);
