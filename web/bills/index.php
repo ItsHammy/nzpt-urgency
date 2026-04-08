@@ -62,10 +62,38 @@ $count_bills_affected = $db->querySingle('SELECT COUNT(id) FROM bills');
         <strong>Note:</strong> This does not mean all parts of the bill were under urgency, 
         but just one or more parts were. The description is taken from the NZ Parliament website and does not reflect the views of NZPT developers. Boxes marked in red have been manually adjusted.
     </p>
+    <div class="sorting-centre">
+        <form method="GET">
+        <label for="sort">Sort by:</label>
+        <select name="sort" id="sort" onchange="this.form.submit()">
+            <option value="default">Default (Date)</option>
+            <option value="mp">MP</option>
+            <option value="name_asc">Name (A–Z)</option>
+            <option value="name_desc">Name (Z–A)</option>
+        </select>
+        </form>
+    </div>
 
     <div class="bill-grid">
         <?php
-        $results = $db->query('SELECT bill_name, url, mps, desc FROM bills ORDER BY bill_name ASC');
+        $sort = $_GET['sort'] ?? 'default';
+
+        switch ($sort) {
+            case 'mp':
+                $orderBy = 'mps ASC';
+                break;
+            case 'name_asc':
+                $orderBy = 'bill_name ASC';
+                break;
+            case 'name_desc':
+                $orderBy = 'bill_name DESC';
+                break;
+            case 'default':
+            default:
+                $orderBy = 'rowid DESC';
+                break;
+        }
+        $results = $db->query('SELECT bill_name, url, mps, desc FROM bills ORDER BY $orderBy');
         while ($row = $results->fetchArray(SQLITE3_ASSOC)) {
             $name = htmlspecialchars($row['bill_name']);
             $mps = htmlspecialchars($row['mps']);
