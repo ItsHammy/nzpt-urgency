@@ -66,10 +66,10 @@ $count_bills_affected = $db->querySingle('SELECT COUNT(id) FROM bills');
         <form method="GET">
         <label for="sort">Sort by:</label>
         <select name="sort" id="sort" onchange="this.form.submit()">
-            <option value="default">Default (Date)</option>
-            <option value="mp">MP</option>
-            <option value="name_asc">Name (A–Z)</option>
-            <option value="name_desc">Name (Z–A)</option>
+            <option value="default" <?= $sort === 'default' ? 'selected' : '' ?>>Default (Date)</option>
+            <option value="mp" <?= $sort === 'mp' ? 'selected' : '' ?>>MP</option>
+            <option value="name_asc" <?= $sort === 'name_asc' ? 'selected' : '' ?>>Name (A–Z)</option>
+            <option value="name_desc" <?= $sort === 'name_desc' ? 'selected' : '' ?>>Name (Z–A)</option>
         </select>
         </form>
     </div>
