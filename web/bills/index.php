@@ -99,7 +99,7 @@ $count_bills_affected = $db->querySingle('SELECT COUNT(id) FROM bills');
         </form>
         <form method="GET">
             <select name="sort">
-                <option value="default" <?= $sort === 'default' ? 'selected' : '' ?>>Default</option>
+                <option value="default" <?= $sort === 'default' ? 'selected' : '' ?>>Default (Recent)</option>
                 <option value="mp" <?= $sort === 'mp' ? 'selected' : '' ?>>MP</option>
                 <option value="name_asc" <?= $sort === 'name_asc' ? 'selected' : '' ?>>Name (A–Z)</option>
                 <option value="name_desc" <?= $sort === 'name_desc' ? 'selected' : '' ?>>Name (Z–A)</option>
