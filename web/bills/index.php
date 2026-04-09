@@ -109,6 +109,16 @@ $count_bills_affected = $db->querySingle('SELECT COUNT(id) FROM bills');
 
     <div class="bill-grid">
         <?php
+        $tagMap = [
+            'PUU'  => ['label' => 'Passed', 'class' => 'tag--passed'],
+            'NP'   => ['label' => 'Voted Down', 'class' => 'tag--failed'],
+            'SKU'  => ['label' => 'Skipped Committee', 'class' => 'tag--skipped'],
+            'AV'   => ['label' => 'Awaiting Vote', 'class' => 'tag--awaiting'],
+            'MB'   => ['label' => 'Money Bill', 'class' => 'tag--money'],
+            'NMB'  => ['label' => 'Non-Money Bill', 'class' => 'tag--nonmoney'],
+            'AMP'  => ['label' => 'Amendment Paper', 'class' => 'tag--amendment'],
+            'BPUM' => ['label' => 'Bipartisan Urgency', 'class' => 'tag--bipartisan'],
+        ];
         $search = $_GET['q'] ?? '';
         $search = trim($search);
         $sql = "SELECT bill_name, url, mps, desc FROM bills";
@@ -128,9 +138,25 @@ $count_bills_affected = $db->querySingle('SELECT COUNT(id) FROM bills');
             $mps = htmlspecialchars($row['mps']);
             $desc = htmlspecialchars($row['desc']);
             $url  = htmlspecialchars($row['url']);
+            $tagsRaw = $row['tags'] ?? '';
+            $tags = array_filter(array_map('trim', explode(',', $tagsRaw)));
         ?>
             <article class="bill-card">
                 <h3 class="bill-card__title"><?php echo $name; ?></h3>
+                <?php if (!empty($tags)) { ?>
+                    <div class="bill-card__tags">
+                        <?php foreach ($tags as $tagCode) {
+                            if (isset($tagMap[$tagCode])) {
+                                $tag = $tagMap[$tagCode];
+                        ?>
+                            <span class="tag <?= $tag['class'] ?>">
+                                <?= htmlspecialchars($tag['label']) ?>
+                            </span>
+                        <?php 
+                            }
+                        } ?>
+                    </div>
+                <?php } ?>
                 <p class="bill-card__mps"> <i class="fa-solid fa-person"></i> <?php echo $mps; ?></p>
                 <p class="bill-card__meta"><?php echo $desc; ?></p>
                 <a href="<?php echo $url; ?>" 
