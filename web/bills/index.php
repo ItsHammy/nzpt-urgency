@@ -62,6 +62,12 @@ $count_bills_affected = $db->querySingle('SELECT COUNT(id) FROM bills');
         <strong>Note:</strong> This does not mean all parts of the bill were under urgency, 
         but just one or more parts were. The description is taken from the NZ Parliament website and does not reflect the views of NZPT developers. Boxes marked in red have been manually adjusted.
     </p>
+    <!-- Live Patch: Notice that the tool has stopped working. -->
+         <div class="alert">
+            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+            <strong>Notice:</strong> A recent change to the Parliament website has meant that some bill details have not correctly been scraped. I am working on a fix to this. Thank you for your patience and understanding. <i class="fa-solid fa-heart"></i>
+        </div> 
+    <!-- End Live Patch -->
     <div class="sorting-centre">
         <?php 
         $sort = $_GET['sort'] ?? 'default';
