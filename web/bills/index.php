@@ -121,7 +121,7 @@ $count_bills_affected = $db->querySingle('SELECT COUNT(id) FROM bills');
         ];
         $search = $_GET['q'] ?? '';
         $search = trim($search);
-        $sql = "SELECT bill_name, url, mps, desc FROM bills";
+        $sql = "SELECT bill_name, tags, url, mps, desc FROM bills";
 
         if ($search !== '') {
             $safeSearch = SQLite3::escapeString($search);
