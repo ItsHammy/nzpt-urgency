@@ -19,7 +19,7 @@ $count_bills_affected = $db->querySingle('SELECT COUNT(id) FROM bills');
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The <?php echo $count_bills_affected; ?> bills passed under urgency - NZPT</title>
+    <title>The <?php echo $count_bills_affected; ?> bills seen under urgency - NZPT</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/modern-normalize/1.0.0/modern-normalize.min.css">
@@ -48,7 +48,7 @@ $count_bills_affected = $db->querySingle('SELECT COUNT(id) FROM bills');
 <body>
     <header>
         <h1>NZPT | Urgency Tracker</h1>
-        <h5>View the <?php echo $count_bills_affected; ?> bills passed under urgency.</h5>
+        <h5>View the <?php echo $count_bills_affected; ?> bills seen under urgency.</h5>
         <nav>
             <a href="../">Urgency Tracker</a>
             <a href="../bills" class="active">Bills Viewer</a>
@@ -57,7 +57,7 @@ $count_bills_affected = $db->querySingle('SELECT COUNT(id) FROM bills');
         </nav>
     </header>
     <main class="bill-list">
-    <h2>54th Parliament Bills (in part) Passed Under Urgency</h2>
+    <h2>54th Parliament Bills seen Under Urgency</h2>
     <p class="bill-list__note">
         <strong>Note:</strong> This does not mean all parts of the bill were under urgency, 
         but just one or more parts were. The description is taken from the NZ Parliament website and does not reflect the views of NZPT developers. Boxes marked in red have been manually adjusted.
