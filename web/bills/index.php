@@ -83,19 +83,40 @@ $count_bills_affected = $db->querySingle('SELECT COUNT(id) FROM bills');
         }
         ?>
         <form method="GET">
-        <label for="sort">Sort by:</label>
-        <select name="sort" id="sort" onchange="this.form.submit()">
-            <option value="default" <?= $sort === 'default' ? 'selected' : '' ?>>Default (Date)</option>
-            <option value="mp" <?= $sort === 'mp' ? 'selected' : '' ?>>MP</option>
-            <option value="name_asc" <?= $sort === 'name_asc' ? 'selected' : '' ?>>Name (A–Z)</option>
-            <option value="name_desc" <?= $sort === 'name_desc' ? 'selected' : '' ?>>Name (Z–A)</option>
-        </select>
+            <input 
+                type="text" 
+                name="q" 
+                placeholder="Search the <?php echo $count_bills_affected ?> bills by Name, MPs, or keywords..." 
+                value="<?= htmlspecialchars($_GET['search'] ?? '') ?>"
+            >
+        
+            <select name="sort">
+                <option value="default" <?= $sort === 'default' ? 'selected' : '' ?>>Default</option>
+                <option value="mp" <?= $sort === 'mp' ? 'selected' : '' ?>>MP</option>
+                <option value="name_asc" <?= $sort === 'name_asc' ? 'selected' : '' ?>>Name (A–Z)</option>
+                <option value="name_desc" <?= $sort === 'name_desc' ? 'selected' : '' ?>>Name (Z–A)</option>
+            </select>
+        
+            <button type="submit">Search</button>
         </form>
     </div>
 
     <div class="bill-grid">
         <?php
-        $results = $db->query("SELECT bill_name, url, mps, desc FROM bills ORDER BY $orderBy");
+        $search = $_GET['q'] ?? '';
+        $search = trim($search);
+        $sql = "SELECT bill_name, url, mps, desc FROM bills";
+
+        if ($search !== '') {
+            $safeSearch = SQLite3::escapeString($search);
+            $sql .= " WHERE bill_name LIKE '%$safeSearch%' 
+                      OR mps LIKE '%$safeSearch%' 
+                      OR desc LIKE '%$safeSearch%'";
+        }
+        
+        $sql .= " ORDER BY $orderBy";
+        
+        $results = $db->query($sql);
         while ($row = $results->fetchArray(SQLITE3_ASSOC)) {
             $name = htmlspecialchars($row['bill_name']);
             $mps = htmlspecialchars($row['mps']);
