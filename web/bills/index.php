@@ -63,19 +63,7 @@ $count_bills_affected = $db->querySingle('SELECT COUNT(id) FROM bills');
         but just one or more parts were. The description is taken from the NZ Parliament website and does not reflect the views of NZPT developers. Boxes marked in red have been manually adjusted.
     </p>
     <div class="sorting-centre">
-        <form method="GET">
-        <label for="sort">Sort by:</label>
-        <select name="sort" id="sort" onchange="this.form.submit()">
-            <option value="default" <?= $sort === 'default' ? 'selected' : '' ?>>Default (Date)</option>
-            <option value="mp" <?= $sort === 'mp' ? 'selected' : '' ?>>MP</option>
-            <option value="name_asc" <?= $sort === 'name_asc' ? 'selected' : '' ?>>Name (A–Z)</option>
-            <option value="name_desc" <?= $sort === 'name_desc' ? 'selected' : '' ?>>Name (Z–A)</option>
-        </select>
-        </form>
-    </div>
-
-    <div class="bill-grid">
-        <?php
+        <?php 
         $sort = $_GET['sort'] ?? 'default';
 
         switch ($sort) {
@@ -93,6 +81,20 @@ $count_bills_affected = $db->querySingle('SELECT COUNT(id) FROM bills');
                 $orderBy = 'rowid DESC';
                 break;
         }
+        ?>
+        <form method="GET">
+        <label for="sort">Sort by:</label>
+        <select name="sort" id="sort" onchange="this.form.submit()">
+            <option value="default" <?= $sort === 'default' ? 'selected' : '' ?>>Default (Date)</option>
+            <option value="mp" <?= $sort === 'mp' ? 'selected' : '' ?>>MP</option>
+            <option value="name_asc" <?= $sort === 'name_asc' ? 'selected' : '' ?>>Name (A–Z)</option>
+            <option value="name_desc" <?= $sort === 'name_desc' ? 'selected' : '' ?>>Name (Z–A)</option>
+        </select>
+        </form>
+    </div>
+
+    <div class="bill-grid">
+        <?php
         $results = $db->query("SELECT bill_name, url, mps, desc FROM bills ORDER BY $orderBy");
         while ($row = $results->fetchArray(SQLITE3_ASSOC)) {
             $name = htmlspecialchars($row['bill_name']);
