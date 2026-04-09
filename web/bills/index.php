@@ -88,10 +88,9 @@ $count_bills_affected = $db->querySingle('SELECT COUNT(id) FROM bills');
                 break;
         }
         ?>
-        <form method="GET">
+        <form method="GET" class="searchbox">
             <input 
                 type="text"
-                class="searchbox"
                 name="q" 
                 placeholder="Search the <?php echo $count_bills_affected ?> bills by Name, MPs, or keywords..." 
                 value="<?= htmlspecialchars($_GET['search'] ?? '') ?>"
