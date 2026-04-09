@@ -430,3 +430,76 @@ nav a.active {
     }
     .explainer-content h1 { font-size: 1.5rem; }
 }
+
+/* BILL VIEWER SEARCH CSS */
+
+/* Search box container */
+.searchbox {
+    max-width: 600px;
+    margin: 1.5rem auto;
+    display: flex;
+    gap: 0.5rem;
+    padding: 0.4rem;
+    background: #ffffff;
+    border-radius: 999px;
+    box-shadow:
+        0 6px 16px rgba(0, 0, 0, 0.06),
+        0 1px 3px rgba(0, 0, 0, 0.08);
+    border: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+/* Input field */
+.searchbox input[type="text"] {
+    flex: 1;
+    border: none;
+    outline: none;
+    padding: 0.6rem 0.9rem;
+    font-size: 0.95rem;
+    border-radius: 999px;
+    background: transparent;
+    font-family: inherit;
+}
+
+/* Placeholder styling */
+.searchbox input::placeholder {
+    color: #888;
+}
+
+/* Button */
+.searchbox button {
+    border: none;
+    background: #2563eb;
+    color: #fff;
+    padding: 0.5rem 1rem;
+    border-radius: 999px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: background 0.15s ease, transform 0.1s ease, box-shadow 0.1s ease;
+}
+
+/* Hover + focus */
+.searchbox button:hover {
+    background: #1d4ed8;
+    transform: translateY(-1px);
+    box-shadow: 0 3px 8px rgba(37, 99, 235, 0.4);
+}
+
+/* Focus state for accessibility */
+.searchbox:focus-within {
+    border-color: #2563eb;
+    box-shadow:
+        0 0 0 3px rgba(37, 99, 235, 0.15),
+        0 6px 16px rgba(0, 0, 0, 0.06);
+}
+
+/* Mobile tweaks */
+@media (max-width: 500px) {
+    .searchbox {
+        flex-direction: column;
+        border-radius: 0.75rem;
+    }
+
+    .searchbox button {
+        width: 100%;
+    }
+}
