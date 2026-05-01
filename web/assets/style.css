@@ -574,3 +574,72 @@ nav a.active {
     background: #ecfeff;
     color: #155e75;
 }
+
+/* ===== QUICKSTATS SECTION ===== */
+
+.quickstats {
+    margin: 1.5rem 0 2rem;
+}
+
+.quickstats__heading {
+    font-size: 1.4rem;
+    margin-bottom: 0.2rem;
+}
+
+.quickstats__note {
+    font-size: 0.8rem;
+    color: #888;
+    margin-bottom: 1rem;
+}
+
+.quickstats__grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.25rem;
+    justify-content: center;
+}
+
+.quickstats__card {
+    background: #ffffff;
+    border-radius: 0.75rem;
+    padding: 1.25rem 1.5rem;
+    box-shadow:
+        0 8px 16px rgba(0, 0, 0, 0.06),
+        0 1px 3px rgba(0, 0, 0, 0.08);
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    flex: 1 1 260px;
+    max-width: 320px;
+    display: flex;
+    flex-direction: column;
+}
+
+.quickstats__card-title {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #334155;
+    margin: 0 0 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+}
+
+.quickstats__card-title i {
+    color: #2563eb;
+}
+
+.quickstats__chart-wrap {
+    position: relative;
+    height: 160px;
+    flex: 1;
+}
+
+.quickstats__chart-wrap--doughnut {
+    height: 200px;
+}
+
+@media (max-width: 640px) {
+    .quickstats__card {
+        max-width: 100%;
+        flex: 1 1 100%;
+    }
+}
