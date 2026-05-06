@@ -95,6 +95,12 @@ $moneyValues = json_encode([$tagCounts['MB'], $tagCounts['NMB']]);
             <a href="https://cjs.nz/socials" target="_blank">Contact</a>
         </nav>
     </header>
+    <?php if (isset($_GET['oldurl']) && $_GET['oldurl'] == 'true'): ?>
+            <div class="alert">
+                <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                <p><strong>Notice:</strong> <em>NZPolToolbox now has more than just this Urgency Tracker.</em> You have been automatically redirected to the new URL for this tool. The old URLs will not work in the future. Please update your bookmarks! <br><i class="fa-solid fa-heart"></i> Thank you for your continued support!</p>
+            </div>
+        <?php endif; ?>
     <main class="bill-list">
     <h2>54th Parliament Bills seen Under Urgency</h2>
     <p class="bill-list__note">

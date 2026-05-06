@@ -65,12 +65,12 @@ $last_updated = file_get_contents('lastupdate.txt');
         </nav>
     </header>
     <main class="stats-overview">
-        <!-- Live Patch: Notice that the tool has stopped working. 
-         <div class="alert">
-            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
-            <strong>Notice:</strong> Please be aware that the Parliament.NZ website has recently undergone changes which have affected the functionality of this urgency tracker. I am actively working on updating the tool to restore its full capabilities. Thank you for your patience and understanding. <i class="fa-solid fa-heart"></i>
-        </div> 
-         End Live Patch -->
+        <?php if (isset($_GET['oldurl']) && $_GET['oldurl'] == 'true'): ?>
+            <div class="alert">
+                <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                <p><strong>Notice:</strong> <em>NZPolToolbox now has more than just this Urgency Tracker.</em> You have been automatically redirected to the new URL for this tool. The old URLs will not work in the future. Please update your bookmarks! <br><i class="fa-solid fa-heart"></i> Thank you for your continued support!</p>
+            </div>
+        <?php endif; ?>
         <!--Countdown Ticker-->
         <div id="at-a-glance"> 
         <div id="countdown-ticker" class="marquee">
