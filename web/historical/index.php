@@ -112,6 +112,7 @@ $PAGE_UPDATED = "April 8th 2026";
             <a href="../">Urgency Tracker</a>
             <a href="../bills">Bills Viewer</a>
             <a href="../historical" class="active">Historical Data</a>
+            <a href="https://nzpt.cjs.nz">NZPT Home</a>
             <a href="https://cjs.nz/socials" target="_blank">Contact</a>
         </nav>
     </header>

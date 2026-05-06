@@ -61,6 +61,7 @@ $last_updated = file_get_contents('lastupdate.txt');
             <a href="#" class="active">Urgency Tracker</a>
             <a href="bills/">Bills Viewer</a>
             <a href="historical/">Historical Data</a>
+            <a href="https://nzpt.cjs.nz">NZPT Home</a>
             <a href="https://cjs.nz/socials" target="_blank">Contact</a>
         </nav>
     </header>

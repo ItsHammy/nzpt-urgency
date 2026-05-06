@@ -92,6 +92,7 @@ $moneyValues = json_encode([$tagCounts['MB'], $tagCounts['NMB']]);
             <a href="../">Urgency Tracker</a>
             <a href="../bills" class="active">Bills Viewer</a>
             <a href="../historical">Historical Data</a>
+            <a href="https://nzpt.cjs.nz">NZPT Home</a>
             <a href="https://cjs.nz/socials" target="_blank">Contact</a>
         </nav>
     </header>
