@@ -8,7 +8,7 @@ from datetime import datetime, date
 
 from playwright.async_api import async_playwright
 
-DB_PATH = "urgency.sqlite3"
+DB_PATH = "/var/www/nzpt/urgency.sqlite3"
 BASE_URL = "https://www3.parliament.nz"
 LIST_URL = f"{BASE_URL}/en/pb/daily-progress-in-the-house"
 CURRENT_GOV_START = date(2023, 12, 3)
@@ -175,6 +175,7 @@ async def scrape_from_listing():
 async def main():
     init_db()
     await scrape_from_listing()
+    open("/var/www/nzpt/lastupdate.txt", "w").write(datetime.now().strftime("%d %B %Y").lstrip("0").replace(" 0", " "))
 
 
 if __name__ == "__main__":
