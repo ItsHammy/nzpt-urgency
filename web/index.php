@@ -31,7 +31,7 @@ $last_updated = file_get_contents('lastupdate.txt');
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/modern-normalize/1.0.0/modern-normalize.min.css">
     <link rel="stylesheet" href="assets/style.css">
-    <link rel="icon" href="assets/favicon.ico" type="image/x-icon">
+    <link rel="icon" type="image/ico" href="https://nzpt.cjs.nz/assets/favicon.ico">
     <script src="assets/script.js"></script>
     <!-- META TAGS -->
     <meta name="description" content="Free Urgency statistics for the 54th Parliament of New Zealand. Sourced from the Parliament website and made easy to reference.">

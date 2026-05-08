@@ -81,7 +81,7 @@ $PAGE_UPDATED = "April 8th 2026";
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/modern-normalize/1.0.0/modern-normalize.min.css">
     <link rel="stylesheet" href="../assets/style.css">
-    <link rel="icon" href="../assets/favicon.ico" type="image/x-icon">
+    <link rel="icon" type="image/ico" href="https://nzpt.cjs.nz/assets/favicon.ico">
     <script src="assets/script.js"></script>
     <!-- META TAGS -->
     <meta name="description" content="The 54th Parliament of New Zealand has passed <?php echo $count_bills_affected_54; ?> bills under urgency. How does this compare?">

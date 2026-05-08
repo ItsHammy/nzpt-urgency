@@ -62,7 +62,7 @@ $moneyValues = json_encode([$tagCounts['MB'], $tagCounts['NMB']]);
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/modern-normalize/1.0.0/modern-normalize.min.css">
     <link rel="stylesheet" href="../assets/style.css">
-    <link rel="icon" href="../assets/favicon.ico" type="image/x-icon">
+    <link rel="icon" type="image/ico" href="https://nzpt.cjs.nz/assets/favicon.ico">
     <script src="assets/script.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
     <!-- META TAGS -->
