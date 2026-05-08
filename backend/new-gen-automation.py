@@ -14,6 +14,8 @@ SOON: 6. Sends a nzpt-bot message with the daily urgency status.
 
 # Import time/date
 import asyncio
+import datetime
+from datetime import datetime
 
 # Import Scipts
 from scrapewebpage import main as scrapescript
@@ -35,6 +37,7 @@ async def schedule():
         await billdetails()
         print("Running shareimagegenerator.py...")
         shareimagegenerator()
+        open("/var/www/nzpt/urgency/lastupdate.txt", "w").write(datetime.now().strftime("%d %B %Y").lstrip("0").replace(" 0", " "))
         print("All scripts ran successfully. Waiting for the next run...")
         # Wait for 24 hours (86400 seconds)
         await asyncio.sleep(86400)
