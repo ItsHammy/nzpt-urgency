@@ -1,22 +1,38 @@
-h1 {
-    font-size: 2.5em;
-    margin-bottom: 0.5em;
+/* ============================================================
+   NZPT · Urgency Webtool Stylesheet
+   Aligned with NZPolToolbox landing page design language.
+   ============================================================ */
+
+/* ── Design tokens (mirrors landing page :root) ── */
+:root {
+    --cream:          #f7f3ec;
+    --paper:          #faf8f4;
+    --white:          #ffffff;
+    --ink:            #18120a;
+    --ink2:           #3d3025;
+    --muted:          #9c8a78;
+    --border:         #e5ddd2;
+    --orange:         #e8620a;
+    --orange2:        #f5890e;
+    --accent:         #e8620a;   /* kept as alias for inline use */
+    --font-display:   'Playfair Display', Georgia, serif;
+    --font-body:      'DM Sans', Arial, sans-serif;
+    --font-mono:      'DM Mono', 'Courier New', monospace;
+    --radius-card:    0.75rem;
+    --shadow-card:    0 8px 16px rgba(0,0,0,0.06), 0 1px 3px rgba(0,0,0,0.08);
+    --shadow-hover:   0 15px 30px rgba(0,0,0,0.08), 0 3px 6px rgba(0,0,0,0.08);
 }
 
-header {
-    background-color: #f8f9fa;
-    padding: 1em;
-    text-align: center;
+/* ── Google Fonts import ── */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700;1,900&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap');
+
+/* ── Reset & base ── */
+*, *::before, *::after {
+    box-sizing: border-box;
 }
 
-footer {
-    background-color: #f1f1f1;
-    padding: 1em;
-    text-align: center;
-    font-size: 0.9em;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
+html {
+    scroll-behavior: smooth;
 }
 
 html, body {
@@ -24,489 +40,479 @@ html, body {
 }
 
 body {
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    background-color: var(--paper);
+    color: var(--ink);
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
-
 
 main, .content, .container {
     flex: 1 0 auto;
 }
 
-.button {
-    display: inline-block;
-    padding: 0.5em 1em;
-    background-color: #007bff;
-    color: #ffffff;
-    text-decoration: none;
-    border-radius: 5px;
-    margin-top: 1em;
+/* ── Typography ── */
+h1 {
+    font-family: var(--font-display);
+    font-size: 2.2em;
+    font-weight: 900;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    color: var(--ink);
+    margin-bottom: 0.4em;
 }
 
-footer {
-    position: static;
-    bottom: auto;
-    width: 100%;
-    margin-top: auto;
-}
-footer a {
-    color: #007bff;
-    text-decoration: none;
-}
-
-body {
-    font-family: Arial, sans-serif;
-    line-height: 1.6;
-    margin: 0;
-    padding: 0;
-    background-color: #ffffff;
-}
-
-aside {
-    font-style: italic;
-    margin: 1em 0;
-}
-
-aside .warning {
-    background-color: #ff0000;
-    font-weight: bold;
-    padding: 0.5em;
-    color: #ffffff;
-    border-radius: 5px;
-    text-align: center;
-}
-
-@media (max-width: 768px) {
-    .statistics-box {
-        flex: 1 1 100%;
-    }
-}
-
-#sharelink {
-    text-decoration: none;
-    color: #007bff;
-}
-
-#faqs p {
-display: none;
-margin-top: 0.5em;
-}
-
-#faqs h3 {
-cursor: pointer;
-}
-
-.bill-list {
-    max-width: 1000px;
-    margin: 2rem auto;
-    padding: 0 1rem;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-}
-
-.bill-list h2 {
+h2 {
+    font-family: var(--font-display);
     font-size: 1.75rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--ink);
     margin-bottom: 0.5rem;
 }
 
-.bill-list__note {
-    color: #555;
-    margin-bottom: 1.5rem;
+h3, h4, h5 {
+    font-family: var(--font-body);
+    font-weight: 600;
+    color: var(--ink);
 }
 
+p {
+    color: var(--ink2);
+}
 
-.bill-grid {
+a {
+    color: var(--orange);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(232,98,10,0.3);
+    transition: border-color 0.15s;
+}
 
+a:hover {
+    border-color: var(--orange);
+}
+
+/* ── Header ── */
+header {
+    background-color: var(--paper);
+    border-bottom: 1px solid var(--border);
+    padding: 1.2rem 2rem;
+    text-align: center;
+    position: sticky;
+    top: 0;
+    z-index: 50;
+}
+
+header h1 {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    font-weight: 900;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    margin-bottom: 0.15em;
+}
+
+header h5 {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    font-weight: 400;
+    margin: 0 0 0.75rem;
+}
+
+/* ── Nav ── */
+nav {
     display: flex;
     flex-wrap: wrap;
-    gap: 1.5rem;
     justify-content: center;
-}
-
-
-.bill-card {
-    background: #ffffff;
-    border-radius: 0.75rem;
-    padding: 1.25rem 1.5rem;
-    box-shadow:
-        0 8px 16px rgba(0, 0, 0, 0.06),
-        0 1px 3px rgba(0, 0, 0, 0.08);
-    border: 1px solid rgba(0, 0, 0, 0.04);
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    transition:
-        transform 0.15s ease-out,
-        box-shadow 0.15s ease-out,
-        border-color 0.15s ease-out;
-
-    flex: 1 1 260px;           
-    max-width: 320px;             
-}
-
-.bill-card:hover {
-    transform: translateY(-3px);
-    box-shadow:
-        0 15px 30px rgba(0, 0, 0, 0.08),
-        0 3px 6px rgba(0, 0, 0, 0.08);
-    border-color: rgba(0, 0, 0, 0.08);
-}
-
-.bill-card__title {
-    font-size: 1.05rem;
-    margin: 0 0 0.5rem;
-    line-height: 1.3;
-}
-
-.bill-card__meta {
-    font-size: 0.85rem;
-    color: #777;
-    margin: 0 0 1rem;
-}
-
-
-.bill-card__link {
-    align-self: flex-start;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0.45rem 0.9rem;
-    font-size: 0.9rem;
-    font-weight: 500;
-    color: #fff;
-    background: #2563eb;     
-    border-radius: 999px;
-    text-decoration: none;
-    box-shadow: 0 2px 6px rgba(37, 99, 235, 0.4);
-}
-
-.bill-card__link:hover {
-    background: #1d4ed8;
-    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.5);
-    transform: translateY(-1px);
-}
-
-.bill-card__adjusted {
-    background: #ff8686;
-    border-radius: 0.75rem;
-    padding: 1.25rem 1.5rem;
-    box-shadow:
-        0 8px 16px rgba(0, 0, 0, 0.06),
-        0 1px 3px rgba(0, 0, 0, 0.08);
-    border: 1px solid rgba(0, 0, 0, 0.04);
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    transition:
-        transform 0.15s ease-out,
-        box-shadow 0.15s ease-out,
-        border-color 0.15s ease-out;
-
-    flex: 1 1 260px;           
-    max-width: 320px;    
+    gap: 0.25rem 0;
 }
 
 nav a {
-    margin: 0 1em;
+    font-family: var(--font-body);
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: var(--muted);
     text-decoration: none;
-    color: #8614ff;
-}
-nav a.active {
-    font-weight: bold;
-    text-decoration: underline;
+    border-bottom: none;
+    margin: 0 0.9em;
+    padding-bottom: 2px;
+    border-bottom: 1px solid transparent;
+    transition: color 0.15s, border-color 0.15s;
 }
 
+nav a:hover {
+    color: var(--ink);
+    border-color: var(--border);
+}
+
+nav a.active {
+    font-weight: 600;
+    color: var(--ink);
+    border-bottom: 1px solid var(--orange);
+}
+
+/* ── Footer ── */
+footer {
+    background-color: var(--cream);
+    border-top: 1px solid var(--border);
+    padding: 1.5rem 2rem;
+    text-align: center;
+    font-size: 0.82rem;
+    color: var(--muted);
+    font-family: var(--font-body);
+    width: 100%;
+    margin-top: auto;
+    position: static;
+    bottom: auto;
+}
+
+footer p {
+    color: var(--muted);
+    margin: 0.25rem 0;
+}
+
+footer a {
+    color: var(--orange);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(232,98,10,0.3);
+    transition: border-color 0.15s;
+}
+
+footer a:hover {
+    border-color: var(--orange);
+}
+
+/* ── Generic button ── */
+.button {
+    display: inline-block;
+    padding: 0.5em 1.1em;
+    background-color: var(--ink);
+    color: var(--paper);
+    text-decoration: none;
+    border: none;
+    border-radius: 8px;
+    margin-top: 1em;
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    font-weight: 500;
+    transition: background 0.15s, transform 0.1s, box-shadow 0.1s;
+    box-shadow: 0 2px 8px rgba(24,18,10,0.12);
+    cursor: pointer;
+}
+
+.button:hover {
+    background-color: var(--ink2);
+    transform: translateY(-1px);
+    box-shadow: 0 6px 16px rgba(24,18,10,0.16);
+}
+
+/* ── Aside / warning ── */
+aside {
+    font-style: italic;
+    margin: 1em 0;
+    color: var(--ink2);
+}
+
+aside .warning {
+    background-color: #c0392b;
+    font-weight: bold;
+    padding: 0.5em 0.9em;
+    color: var(--white);
+    border-radius: var(--radius-card);
+    text-align: center;
+    font-style: normal;
+}
+
+/* ── Alert box ── */
+.alert {
+    padding: 1rem 1.25rem;
+    background-color: #fef9c3;
+    color: var(--ink);
+    margin-bottom: 1rem;
+    border-radius: var(--radius-card);
+    border: 1px solid rgba(232,98,10,0.2);
+    font-size: 0.9rem;
+    font-family: var(--font-body);
+}
+
+.alert a {
+    color: var(--orange);
+    border-bottom: 1px solid rgba(232,98,10,0.3);
+}
+
+.closebtn {
+    margin-left: 15px;
+    color: var(--muted);
+    font-weight: bold;
+    float: right;
+    font-size: 1.25rem;
+    line-height: 20px;
+    cursor: pointer;
+    transition: color 0.2s;
+    border: none;
+    background: none;
+}
+
+.closebtn:hover {
+    color: var(--ink);
+}
+
+/* ── Share link ── */
+#sharelink {
+    text-decoration: none;
+    color: var(--orange);
+    border-bottom: 1px solid rgba(232,98,10,0.3);
+}
+
+/* ── FAQ accordion ── */
+#faqs p {
+    display: none;
+    margin-top: 0.5em;
+    color: var(--ink2);
+    font-size: 0.95rem;
+}
+
+#faqs h3 {
+    cursor: pointer;
+    font-family: var(--font-body);
+    font-weight: 600;
+    color: var(--ink);
+    transition: color 0.15s;
+}
+
+#faqs h3:hover {
+    color: var(--orange);
+}
+
+/* ── Stats overview wrapper ── */
 .stats-overview {
     max-width: 1500px;
     gap: 1.5rem;
     justify-content: center;
-    margin: 1rem auto;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-    padding: 0 1rem;
+    margin: 1.5rem auto;
+    padding: 0 1.5rem;
+    font-family: var(--font-body);
 }
 
 .stats-overview h2 {
+    font-family: var(--font-display);
     font-size: 1.95rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--ink);
     margin-bottom: 0.5rem;
 }
 
+/* ── Stats card grid ── */
 .stats-card-grid {
     display: flex;
     flex-wrap: wrap;
     max-width: 1000px;
     gap: 1.5rem;
     justify-content: center;
-    margin: 1rem auto;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    margin: 1.25rem auto;
     padding: 0 1rem;
 }
 
-
+/* ── Stats card ── */
 .stats-card {
-    background: #ffffff;
-    border-radius: 0.75rem;
+    background: var(--white);
+    border-radius: var(--radius-card);
     padding: 1.25rem 1.5rem;
-    box-shadow:
-        0 8px 16px rgba(0, 0, 0, 0.06),
-        0 1px 3px rgba(0, 0, 0, 0.08);
-    border: 1px solid rgba(0, 0, 0, 0.04);
+    box-shadow: var(--shadow-card);
+    border: 1px solid var(--border);
     display: flex;
     flex-direction: column;
-    transition:
-        transform 0.15s ease-out,
-        box-shadow 0.15s ease-out,
-        border-color 0.15s ease-out;
-
-    flex: 1 1 260px;           
-    max-width: 320px;         
+    transition: transform 0.15s ease-out, box-shadow 0.15s ease-out, border-color 0.15s ease-out;
+    flex: 1 1 260px;
+    max-width: 320px;
 }
 
-.stats-card a{
-    color: blue;
-    text-decoration: underline;
+.stats-card a {
+    color: var(--orange);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(232,98,10,0.3);
+}
+
+.stats-card a:hover {
+    border-color: var(--orange);
 }
 
 .stats-card:hover {
     transform: translateY(-3px);
-    box-shadow:
-        0 15px 30px rgba(0, 0, 0, 0.08),
-        0 3px 6px rgba(0, 0, 0, 0.08);
-    border-color: rgba(0, 0, 0, 0.08);
+    box-shadow: var(--shadow-hover);
+    border-color: var(--border);
 }
+
 .stats-card__title {
-    font-size: 1.05rem;
+    font-family: var(--font-body);
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--ink);
     margin: 0 0 0.5rem;
     line-height: 1.3;
 }
 
+.stats-card h2 {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: var(--ink);
+}
+
+.stats-card ul {
+    margin: 0.5rem 0 0;
+    padding-left: 1.1rem;
+    font-size: 0.9rem;
+    color: var(--ink2);
+    line-height: 1.8;
+}
+
+.stats-card ul li strong {
+    color: var(--ink);
+}
+
+/* ── Historical stats ── */
 .historical-stats {
     max-width: 1000px;
     margin: 2rem auto;
     padding: 0 1rem;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-family: var(--font-body);
 }
 
 .historical-stats h2 {
+    font-family: var(--font-display);
     font-size: 1.75rem;
     margin-bottom: 0.5rem;
-}
-
-.stats-card h2 {
-    font-size: 1.75rem;
-    margin-bottom: 0.5rem;
+    color: var(--ink);
 }
 
 .historical-stats__note {
-    color: #555;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
     margin-bottom: 1.5rem;
 }
 
-
-/* -------------- Live Patch: Alert Box -------------- */
-
-/* The alert message box */
-.alert {
-  padding: 20px;
-  background-color: #fffd73; /* Red */
-  color: rgb(0, 0, 0);
-  margin-bottom: 15px;
-  border-radius: 15px;
-  border: 1px solid rgba(0, 0, 0, 0.1);
-}
-
-.alert a {
-  color: black;
-  text-decoration: underline;
-}
-
-/* The close button */
-.closebtn {
-  margin-left: 15px;
-  color: rgb(0, 0, 0);
-  font-weight: bold;
-  float: right;
-  font-size: 22px;
-  line-height: 20px;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-/* When moving the mouse over the close button */
-.closebtn:hover {
-  color: rgb(143, 143, 143);
-} 
-
-/* Article styling for #explainer-content */
-.explainer-content {
-    max-width: 65ch;
+/* ── Bill list ── */
+.bill-list {
+    max-width: 1000px;
     margin: 2rem auto;
-    padding: 2rem;
-    background: #ffffff;
-    color: #222;
-    font-family: "Georgia", "Times New Roman", serif;
-    line-height: 1.75;
-    border-radius: 0.75rem;
-    box-shadow: 0 8px 24px rgba(16, 24, 40, 0.06);
-    border: 1px solid rgba(0, 0, 0, 0.04);
-    hyphens: auto;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    box-sizing: border-box;
+    padding: 0 1rem;
+    font-family: var(--font-body);
 }
 
-/* When only one explainer block exists keep the original centered single-column layout */
-.explainer-content:only-child {
-    display: block;
-    width: auto;
-    max-width: 65ch;
-    margin: 2rem auto;
-}
-
-/* Headings inside the article */
-.explainer-content h1,
-.explainer-content h2,
-.explainer-content h3,
-.explainer-content h4 {
-    color: #0f172a;
-    margin-top: 1.25rem;
-    margin-bottom: 0.5rem;
-    line-height: 1.25;
+.bill-list h2 {
+    font-family: var(--font-display);
+    font-size: 1.75rem;
     font-weight: 700;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.5rem;
+    color: var(--ink);
 }
 
-.explainer-content h1 { font-size: 2rem; }
-.explainer-content h2 { font-size: 1.5rem; }
-.explainer-content h3 { font-size: 1.15rem; }
-
-/* Paragraphs and lead paragraph */
-.explainer-content p {
-    margin: 0 0 1rem;
-    font-size: 1.05rem;
-    color: #333;
-}
-
-.explainer-content p.lead {
-    font-size: 1.125rem;
-    color: #444;
-    margin-bottom: 1.25rem;
-}
-
-/* Links */
-.explainer-content a {
-    color: #2563eb;
-    text-decoration: underline;
-}
-.explainer-content a:focus,
-.explainer-content a:hover {
-    text-decoration: none;
-}
-
-/* Layout: place multiple explainer-content blocks side-by-side on wide screens */
-/* Two columns maximum */
-@media (min-width: 800px) {
-    .explainer-content {
-        display: inline-block;
-        vertical-align: top;
-        width: calc(45% - 2rem);
-        max-width: none;
-        margin: 1rem;
-    }
-}
-
-/* Keep two-column layout even on very wide screens (avoid three-up layouts) */
-@media (min-width: 1200px) {
-    .explainer-content {
-        width: calc(45% - 2rem);
-    }
-}
-
-/* Small screens */
-@media (max-width: 640px) {
-    .explainer-content {
-        padding: 1rem;
-        margin: 1rem;
-        max-width: 100%;
-        flex: 1 1 100%;
-    }
-    .explainer-content h1 { font-size: 1.5rem; }
-}
-
-/* BILL VIEWER SEARCH CSS */
-
-/* Search box container */
-.searchbox {
-    max-width: 600px;
-    margin: 1.5rem auto;
-    display: flex;
-    gap: 0.5rem;
-    padding: 0.4rem;
-    background: #ffffff;
-    border-radius: 999px;
-    box-shadow:
-        0 6px 16px rgba(0, 0, 0, 0.06),
-        0 1px 3px rgba(0, 0, 0, 0.08);
-    border: 1px solid rgba(0, 0, 0, 0.06);
-}
-
-/* Input field */
-.searchbox input[type="text"] {
-    flex: 1;
-    border: none;
-    outline: none;
-    padding: 0.6rem 0.9rem;
-    font-size: 0.95rem;
-    border-radius: 999px;
-    background: transparent;
-    font-family: inherit;
-}
-
-/* Placeholder styling */
-.searchbox input::placeholder {
-    color: #888;
-}
-
-/* Button */
-.searchbox button {
-    border: none;
-    background: #2563eb;
-    color: #fff;
-    padding: 0.5rem 1rem;
-    border-radius: 999px;
+.bill-list__note {
     font-size: 0.9rem;
-    cursor: pointer;
-    transition: background 0.15s ease, transform 0.1s ease, box-shadow 0.1s ease;
+    color: var(--muted);
+    margin-bottom: 1.5rem;
 }
 
-/* Hover + focus */
-.searchbox button:hover {
-    background: #1d4ed8;
+.bill-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    justify-content: center;
+}
+
+/* ── Bill card ── */
+.bill-card {
+    background: var(--white);
+    border-radius: var(--radius-card);
+    padding: 1.25rem 1.5rem;
+    box-shadow: var(--shadow-card);
+    border: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.15s ease-out, box-shadow 0.15s ease-out, border-color 0.15s ease-out;
+    flex: 1 1 260px;
+    max-width: 320px;
+}
+
+.bill-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-hover);
+    border-color: var(--border);
+}
+
+.bill-card__title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--ink);
+    margin: 0 0 0.5rem;
+    line-height: 1.35;
+}
+
+.bill-card__meta {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--muted);
+    margin: 0 0 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+.bill-card__link {
+    align-self: flex-start;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.42rem 0.9rem;
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: var(--paper);
+    background: var(--ink);
+    border-radius: 999px;
+    text-decoration: none;
+    border: none;
+    box-shadow: 0 2px 6px rgba(24,18,10,0.15);
+    transition: background 0.15s, transform 0.1s, box-shadow 0.1s;
+}
+
+.bill-card__link:hover {
+    background: var(--ink2);
+    box-shadow: 0 4px 12px rgba(24,18,10,0.2);
     transform: translateY(-1px);
-    box-shadow: 0 3px 8px rgba(37, 99, 235, 0.4);
 }
 
-/* Focus state for accessibility */
-.searchbox:focus-within {
-    border-color: #2563eb;
-    box-shadow:
-        0 0 0 3px rgba(37, 99, 235, 0.15),
-        0 6px 16px rgba(0, 0, 0, 0.06);
+/* Adjusted (flagged) bill card */
+.bill-card__adjusted {
+    background: #fff0ec;
+    border-radius: var(--radius-card);
+    padding: 1.25rem 1.5rem;
+    box-shadow: var(--shadow-card);
+    border: 1px solid rgba(232,98,10,0.25);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.15s ease-out, box-shadow 0.15s ease-out, border-color 0.15s ease-out;
+    flex: 1 1 260px;
+    max-width: 320px;
 }
 
-/* Mobile tweaks */
-@media (max-width: 500px) {
-    .searchbox {
-        flex-direction: column;
-        border-radius: 0.75rem;
-    }
-
-    .searchbox button {
-        width: 100%;
-    }
-}
-
-
-
-/* Container for tags */
+/* ── Bill card tags ── */
 .bill-card__tags {
     display: flex;
     flex-wrap: wrap;
@@ -514,7 +520,6 @@ nav a.active {
     margin: 0.4rem 0 0.6rem;
 }
 
-/* Base tag style */
 .tag {
     display: inline-block;
     padding: 0.25rem 0.6rem;
@@ -523,72 +528,39 @@ nav a.active {
     border-radius: 999px;
     letter-spacing: 0.02em;
     white-space: nowrap;
+    font-family: var(--font-mono);
+    text-transform: uppercase;
 }
 
-/* Individual tag colours */
+.tag--passed    { background: #dcfce7; color: #166534; }
+.tag--failed    { background: #fee2e2; color: #991b1b; }
+.tag--skipped   { background: #fef3c7; color: #92400e; }
+.tag--awaiting  { background: #e0f2fe; color: #075985; }
+.tag--money     { background: #ede9fe; color: #5b21b6; }
+.tag--nonmoney  { background: #f1f5f9; color: #334155; }
+.tag--amendment { background: #ffe4e6; color: #9f1239; }
+.tag--bipartisan{ background: #ecfeff; color: #155e75; }
 
-/* Passed */
-.tag--passed {
-    background: #dcfce7;
-    color: #166534;
-}
-
-/* Voted Down */
-.tag--failed {
-    background: #fee2e2;
-    color: #991b1b;
-}
-
-/* Skipped Committee */
-.tag--skipped {
-    background: #fef3c7;
-    color: #92400e;
-}
-
-/* Awaiting Vote */
-.tag--awaiting {
-    background: #e0f2fe;
-    color: #075985;
-}
-
-/* Money Bill */
-.tag--money {
-    background: #ede9fe;
-    color: #5b21b6;
-}
-
-/* Non-Money Bill */
-.tag--nonmoney {
-    background: #f1f5f9;
-    color: #334155;
-}
-
-/* Amendment Paper */
-.tag--amendment {
-    background: #ffe4e6;
-    color: #9f1239;
-}
-
-/* Bipartisan Urgency */
-.tag--bipartisan {
-    background: #ecfeff;
-    color: #155e75;
-}
-
-/* ===== QUICKSTATS SECTION ===== */
-
+/* ── Quickstats section ── */
 .quickstats {
     margin: 1.5rem 0 2rem;
 }
 
 .quickstats__heading {
+    font-family: var(--font-display);
     font-size: 1.4rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--ink);
     margin-bottom: 0.2rem;
 }
 
 .quickstats__note {
-    font-size: 0.8rem;
-    color: #888;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
     margin-bottom: 1rem;
 }
 
@@ -600,31 +572,38 @@ nav a.active {
 }
 
 .quickstats__card {
-    background: #ffffff;
-    border-radius: 0.75rem;
+    background: var(--white);
+    border-radius: var(--radius-card);
     padding: 1.25rem 1.5rem;
-    box-shadow:
-        0 8px 16px rgba(0, 0, 0, 0.06),
-        0 1px 3px rgba(0, 0, 0, 0.08);
-    border: 1px solid rgba(0, 0, 0, 0.06);
+    box-shadow: var(--shadow-card);
+    border: 1px solid var(--border);
     flex: 1 1 260px;
     max-width: 320px;
     display: flex;
     flex-direction: column;
+    transition: transform 0.15s ease-out, box-shadow 0.15s ease-out;
+}
+
+.quickstats__card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-hover);
 }
 
 .quickstats__card-title {
-    font-size: 0.95rem;
+    font-family: var(--font-body);
+    font-size: 0.9rem;
     font-weight: 600;
-    color: #334155;
+    color: var(--ink2);
     margin: 0 0 1rem;
     display: flex;
     align-items: center;
     gap: 0.45rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
 }
 
 .quickstats__card-title i {
-    color: #2563eb;
+    color: var(--orange);
 }
 
 .quickstats__chart-wrap {
@@ -637,9 +616,176 @@ nav a.active {
     height: 200px;
 }
 
+/* ── Search box ── */
+.searchbox {
+    max-width: 600px;
+    margin: 1.5rem auto;
+    display: flex;
+    gap: 0.5rem;
+    padding: 0.4rem;
+    background: var(--white);
+    border-radius: 999px;
+    box-shadow: var(--shadow-card);
+    border: 1px solid var(--border);
+    transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.searchbox input[type="text"] {
+    flex: 1;
+    border: none;
+    outline: none;
+    padding: 0.6rem 0.9rem;
+    font-size: 0.95rem;
+    border-radius: 999px;
+    background: transparent;
+    font-family: var(--font-body);
+    color: var(--ink);
+}
+
+.searchbox input::placeholder {
+    color: var(--muted);
+}
+
+.searchbox button {
+    border: none;
+    background: var(--ink);
+    color: var(--paper);
+    padding: 0.5rem 1.1rem;
+    border-radius: 999px;
+    font-size: 0.85rem;
+    font-family: var(--font-body);
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.15s, transform 0.1s, box-shadow 0.1s;
+}
+
+.searchbox button:hover {
+    background: var(--ink2);
+    transform: translateY(-1px);
+    box-shadow: 0 3px 8px rgba(24,18,10,0.15);
+}
+
+.searchbox:focus-within {
+    border-color: var(--orange);
+    box-shadow: 0 0 0 3px rgba(232,98,10,0.12), 0 6px 16px rgba(0,0,0,0.06);
+}
+
+/* ── Explainer / article content ── */
+.explainer-content {
+    max-width: 65ch;
+    margin: 2rem auto;
+    padding: 2rem;
+    background: var(--white);
+    color: var(--ink);
+    font-family: var(--font-display);
+    line-height: 1.8;
+    border-radius: var(--radius-card);
+    box-shadow: var(--shadow-card);
+    border: 1px solid var(--border);
+    hyphens: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    box-sizing: border-box;
+}
+
+.explainer-content:only-child {
+    display: block;
+    width: auto;
+    max-width: 65ch;
+    margin: 2rem auto;
+}
+
+.explainer-content h1,
+.explainer-content h2,
+.explainer-content h3,
+.explainer-content h4 {
+    font-family: var(--font-display);
+    color: var(--ink);
+    margin-top: 1.25rem;
+    margin-bottom: 0.5rem;
+    line-height: 1.2;
+    font-weight: 700;
+}
+
+.explainer-content h1 { font-size: 2rem; }
+.explainer-content h2 { font-size: 1.5rem; }
+.explainer-content h3 { font-size: 1.15rem; }
+
+.explainer-content p {
+    margin: 0 0 1rem;
+    font-family: var(--font-body);
+    font-size: 1.05rem;
+    color: var(--ink2);
+    font-weight: 300;
+}
+
+.explainer-content p.lead {
+    font-size: 1.1rem;
+    color: var(--ink2);
+    margin-bottom: 1.25rem;
+    font-weight: 400;
+}
+
+.explainer-content a {
+    color: var(--orange);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(232,98,10,0.3);
+    transition: border-color 0.15s;
+}
+
+.explainer-content a:hover {
+    border-color: var(--orange);
+}
+
+/* ── Statistics box responsive ── */
+@media (max-width: 768px) {
+    .statistics-box {
+        flex: 1 1 100%;
+    }
+}
+
+/* ── Responsive: explainer two-column layout ── */
+@media (min-width: 800px) {
+    .explainer-content {
+        display: inline-block;
+        vertical-align: top;
+        width: calc(45% - 2rem);
+        max-width: none;
+        margin: 1rem;
+    }
+}
+
+@media (min-width: 1200px) {
+    .explainer-content {
+        width: calc(45% - 2rem);
+    }
+}
+
 @media (max-width: 640px) {
+    .explainer-content {
+        padding: 1rem;
+        margin: 1rem;
+        max-width: 100%;
+        flex: 1 1 100%;
+    }
+
+    .explainer-content h1 { font-size: 1.5rem; }
+
     .quickstats__card {
         max-width: 100%;
         flex: 1 1 100%;
+    }
+
+    header {
+        padding: 1rem 1.25rem;
+    }
+
+    .searchbox {
+        flex-direction: column;
+        border-radius: 0.75rem;
+    }
+
+    .searchbox button {
+        width: 100%;
     }
 }
