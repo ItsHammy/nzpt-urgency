@@ -34,7 +34,7 @@ async def schedule():
         print("Running billdetails.py...")
         await billdetails()
         print("Running shareimagegenerator.py...")
-        await shareimagegenerator()
+        shareimagegenerator()
         print("All scripts ran successfully. Waiting for the next run...")
         # Wait for 24 hours (86400 seconds)
         await asyncio.sleep(86400)
