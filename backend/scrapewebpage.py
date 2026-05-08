@@ -175,7 +175,7 @@ async def scrape_from_listing():
 async def main():
     init_db()
     await scrape_from_listing()
-    open("/var/www/nzpt/lastupdate.txt", "w").write(datetime.now().strftime("%d %B %Y").lstrip("0").replace(" 0", " "))
+    open("/var/www/nzpt/urgency/lastupdate.txt", "w").write(datetime.now().strftime("%d %B %Y").lstrip("0").replace(" 0", " "))
 
 
 if __name__ == "__main__":
