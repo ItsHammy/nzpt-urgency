@@ -1,9 +1,9 @@
 /* ============================================================
    NZPT · Urgency Webtool Stylesheet
-   Aligned with NZPolToolbox landing page design language.
+   Hello person reading this
    ============================================================ */
 
-/* ── Design tokens (mirrors landing page :root) ── */
+/* Design tokens */
 :root {
     --cream:          #f7f3ec;
     --paper:          #faf8f4;
@@ -788,4 +788,14 @@ aside .warning {
     .searchbox button {
         width: 100%;
     }
+}
+
+.party-icon {
+    list-style: none;
+    margin-left: 0;
+    padding-left: 0;
+    list-style-type: none;
+}
+.party-icon img {
+    height: 2em;
 }

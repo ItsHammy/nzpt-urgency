@@ -131,7 +131,7 @@ $PAGE_UPDATED = "April 8th 2026";
 
     <div class="stats-card-grid">
         <article class="stats-card">
-            <h3 class="stats-card__title">54th Parliament of New Zealand (Luxon: 2023–Present)</h3>
+            <h3 class="stats-card__title">54th Parliament of New Zealand (2023 -> Present)</h3>
             <em>(As of <?php echo $last_updated_54; ?>)</em>
             <ul>
                 <li><strong>Total Days Sat:</strong> <?php echo $num_days_sat_54; ?></li>
@@ -140,11 +140,12 @@ $PAGE_UPDATED = "April 8th 2026";
                 <li><strong>Total Bills Urgent:</strong> <?php echo $count_bills_affected_54; ?></li>
                 <li><strong>Total Bills:</strong> <?php echo $count_total_bills_54; ?> <span title="The official bill count is not published until after a Parliament term has concluded. The number displayed on NZPT is calculated daily by scraping the Parliament website. This number includes Government Bills, Local Bills, and Member Bills."><i class="fa-solid fa-circle-info"></i></span></small></li>
                 <li><strong>Ratio of urgent bills:</strong> <?php echo $ratio_urgent_54; ?>% </li>
+                <li class="party-icon"><i><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/New_Zealand_National_Party_logo_%282017%E2%80%93present%29.svg/120px-New_Zealand_National_Party_logo_%282017%E2%80%93present%29.svg.png" alt="national-logo"> <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/ACT_New_Zealand_CMYK.svg/120px-ACT_New_Zealand_CMYK.svg.png" alt="act-logo"> <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/New_Zealand_First_logo_2017.svg/120px-New_Zealand_First_logo_2017.svg.png" alt="first-logo"></i></li>
             </ul>
         </article>
         
         <article class="stats-card">
-            <h3 class="stats-card__title">53rd Parliament of New Zealand (Ardern, Hipkins: 2020–2023)</h3>
+            <h3 class="stats-card__title">53rd Parliament of New Zealand (2020 -> 2023)</h3>
             <ul>
             <li><strong>Total Days Sat:</strong> <?php echo $num_days_sat_53; ?></li>
             <li><strong>Total Days in Urgency:</strong> <?php echo $num_days_urgency_53; ?></li>
@@ -152,10 +153,11 @@ $PAGE_UPDATED = "April 8th 2026";
             <li><strong>Total Bills Urgent:</strong> <?php echo $count_bills_affected_53; ?></li>
             <li><strong>Total Bills:</strong> <?php echo $count_total_bills_53; ?></li>
             <li><strong>Ratio of urgent bills:</strong> <?php echo $ratio_urgent_53; ?>%</li>
+            <li class="party-icon"><i><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/New_Zealand_Labour_Party_logo_%28January_2016%E2%80%93present%29.svg/120px-New_Zealand_Labour_Party_logo_%28January_2016%E2%80%93present%29.svg.png" alt="labour-logo"></i></li>
         </ul>
         </article>
         <article class="stats-card">
-            <h3 class="stats-card__title">52nd Parliament of New Zealand (Ardern: 2017–2020)</h3>
+            <h3 class="stats-card__title">52nd Parliament of New Zealand (2017 -> 2020)</h3>
         <ul>
             <li><strong>Total Days Sat:</strong> <?php echo $num_days_sat_52; ?></li>
             <li><strong>Total Days in Urgency:</strong> <?php echo $num_days_urgency_52; ?></li>
@@ -163,10 +165,11 @@ $PAGE_UPDATED = "April 8th 2026";
             <li><strong>Total Bills Urgent:</strong> <?php echo $count_bills_affected_52; ?></li>
             <li><strong>Total Bills:</strong> <?php echo $count_total_bills_52; ?></li>
             <li><strong>Ratio of urgent bills:</strong> <?php echo $ratio_urgent_52; ?>%</li>
+            <li class="party-icon"><i><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/New_Zealand_Labour_Party_logo_%28January_2016%E2%80%93present%29.svg/120px-New_Zealand_Labour_Party_logo_%28January_2016%E2%80%93present%29.svg.png" alt="labour-logo"> <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/New_Zealand_First_logo_2017.svg/120px-New_Zealand_First_logo_2017.svg.png" alt="first-logo"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Green_Party_of_Aotearoa_New_Zealand_logo.svg/120px-Green_Party_of_Aotearoa_New_Zealand_logo.svg.png" alt="Greens Logo"></i></li>
         </ul>
         </article>
         <article class="stats-card">
-            <h3 class="stats-card__title">51st Parliament of New Zealand (Key, English: 2014–2017)</h3>
+            <h3 class="stats-card__title">51st Parliament of New Zealand (2014 -> 2017)</h3>
         <ul>
             <li><strong>Total Days Sat:</strong> <?php echo $num_days_sat_51; ?></li>
             <li><strong>Total Days in Urgency:</strong> <?php echo $num_days_urgency_51; ?></li>
@@ -174,10 +177,11 @@ $PAGE_UPDATED = "April 8th 2026";
             <li><strong>Total Bills Urgent:</strong> <?php echo $count_bills_affected_51; ?></li>
             <li><strong>Total Bills:</strong> <?php echo $count_total_bills_51; ?></li>
             <li><strong>Ratio of urgent bills:</strong> <?php echo $ratio_urgent_51; ?>%</li>
+            <li class="party-icon"><i><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/New_Zealand_National_Party_logo_%282017%E2%80%93present%29.svg/120px-New_Zealand_National_Party_logo_%282017%E2%80%93present%29.svg.png" alt="New Zealand National Party Logo"> <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/01/Logo_of_the_ACT_New_Zealand.svg/120px-Logo_of_the_ACT_New_Zealand.svg.png" alt="New Zealand ACT Party Logo"> <img src="https://upload.wikimedia.org/wikipedia/en/thumb/e/e8/Te_P%C4%81ti_M%C4%81ori_logo.svg/250px-Te_P%C4%81ti_M%C4%81ori_logo.svg.png" alt="New Zealand Maori Party Logo"></i></li>
         </ul>
         </article>
         <article class="stats-card">
-            <h3 class="stats-card__title">50th Parliament of New Zealand (Key: 2011–2014)</h3>
+            <h3 class="stats-card__title">50th Parliament of New Zealand (2011 -> 2014)</h3>
         <ul>
             <li><strong>Total Days Sat:</strong> <?php echo $num_days_sat_50; ?></li>
             <li><strong>Total Days in Urgency:</strong> <?php echo $num_days_urgency_50; ?></li>
@@ -185,10 +189,11 @@ $PAGE_UPDATED = "April 8th 2026";
             <li><strong>Total Bills Urgent:</strong> <?php echo $count_bills_affected_50; ?></li>
             <li><strong>Total Bills:</strong> <?php echo $count_total_bills_50; ?></li>
             <li><strong>Ratio of urgent bills:</strong> <?php echo $ratio_urgent_50; ?>%</li>
+            <li class="party-icon"><i><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/New_Zealand_National_Party_logo_%282017%E2%80%93present%29.svg/120px-New_Zealand_National_Party_logo_%282017%E2%80%93present%29.svg.png" alt="New Zealand National Party Logo"> <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/01/Logo_of_the_ACT_New_Zealand.svg/120px-Logo_of_the_ACT_New_Zealand.svg.png" alt="New Zealand ACT Party Logo"> <img src="https://upload.wikimedia.org/wikipedia/en/thumb/e/e8/Te_P%C4%81ti_M%C4%81ori_logo.svg/250px-Te_P%C4%81ti_M%C4%81ori_logo.svg.png" alt="New Zealand Maori Party Logo"></i></li>
         </ul>
         </article>
         <article class="stats-card">
-            <h3 class="stats-card__title">49th Parliament of New Zealand (Key: 2008–2011)</h3>
+            <h3 class="stats-card__title">49th Parliament of New Zealand (2008 -> 2011)</h3>
         <ul>
             <li><strong>Total Days Sat:</strong> <?php echo $num_days_sat_49; ?></li>
             <li><strong>Total Days in Urgency:</strong> <?php echo $num_days_urgency_49; ?></li>
@@ -196,10 +201,11 @@ $PAGE_UPDATED = "April 8th 2026";
             <li><strong>Total Bills Urgent:</strong> <?php echo $count_bills_affected_49; ?></li>
             <li><strong>Total Bills:</strong> <?php echo $count_total_bills_49; ?></li>
             <li><strong>Ratio of urgent bills:</strong> <?php echo $ratio_urgent_49; ?>%</li>
+            <li class="party-icon"><i><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/New_Zealand_National_Party_logo_%282017%E2%80%93present%29.svg/120px-New_Zealand_National_Party_logo_%282017%E2%80%93present%29.svg.png" alt="New Zealand National Party Logo"> <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/01/Logo_of_the_ACT_New_Zealand.svg/120px-Logo_of_the_ACT_New_Zealand.svg.png" alt="New Zealand ACT Party Logo"> <img src="https://upload.wikimedia.org/wikipedia/en/thumb/e/e8/Te_P%C4%81ti_M%C4%81ori_logo.svg/250px-Te_P%C4%81ti_M%C4%81ori_logo.svg.png" alt="New Zealand Maori Party Logo"></i></li>
         </ul>
         </article>
         <article class="stats-card">
-            <h3 class="stats-card__title">48th Parliament of New Zealand (Clark: 2005–2008)</h3>
+            <h3 class="stats-card__title">48th Parliament of New Zealand (2005 -> 2008)</h3>
         <ul>
             <li><strong>Total Days Sat:</strong> <?php echo $num_days_sat_48; ?></li>
             <li><strong>Total Days in Urgency:</strong> <?php echo $num_days_urgency_48; ?></li>
@@ -207,6 +213,7 @@ $PAGE_UPDATED = "April 8th 2026";
             <li><strong>Total Bills Urgent:</strong> <?php echo $count_bills_affected_48; ?></li>
             <li><strong>Total Bills:</strong> <?php echo $count_total_bills_48; ?></li>
             <li><strong>Ratio of urgent bills:</strong> <?php echo $ratio_urgent_48; ?>%</li>
+            <li class="party-icon"><i><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/New_Zealand_Labour_Party_logo_%282001%E2%80%93early_2011%29.svg/120px-New_Zealand_Labour_Party_logo_%282001%E2%80%93early_2011%29.svg.png" alt="New Zealand Labour Party Logo"> <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Logo_New_Zealand_First.svg/960px-Logo_New_Zealand_First.svg.png?_=20161109214512" alt="NZ First Logo"> <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/United_New_Zealand_logo.svg/120px-United_New_Zealand_logo.svg.png" alt="United Future Logo"> <img src="https://upload.wikimedia.org/wikipedia/en/d/df/NewZealandProgressivePartyLogo.png" alt="Progressive Logo"></i></li>
         </ul>
         </article>
 </div>
