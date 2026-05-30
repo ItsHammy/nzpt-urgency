@@ -77,17 +77,24 @@ def extract_bills_from_urgency_section(html_content: str):
     Extract bill names and URLs from the urgency section.
     Returns a list of (bill_name, url) tuples.
 
-    Looks between:
-      <h3>Urgency</h3>
-    and the next Government business header:
+    Handles two formats for the Urgency heading:
+      Old: <h3>Urgency</h3>
+      New: <h3><span>Urgency</span></h3>
+
+    Looks between that heading and the next Government business header:
       <h3>Government business—<em>continued</em></h3>
     (matched loosely to be robust to markup/dash variations).
+
+    Handles two formats for bill list items:
+      Old: <li>anytext<a rel="noopener" href="billurl" target="_blank">Bill Name</a>anytext</li>
+      New: <li><span>anytext<a href="billurl">Bill Name</a>anytext</span></li>
     """
     bills = []
 
+    # Match <h3>Urgency</h3> or <h3><span>Urgency</span></h3>
     urgency_pattern = (
-        r"<h3>\s*Urgency\s*</h3>(.*?)"
-        r"<h3>[^<]*Government business.*?</h3>"
+        r"<h3>\s*(?:<span>\s*)?Urgency\s*(?:</span>\s*)?</h3>(.*?)"
+        r"<h3>\s*(?:<span>\s*)?[^<]*Government business.*?</h3>"
     )
     m = re.search(urgency_pattern, html_content, re.DOTALL | re.IGNORECASE)
     if not m:
@@ -108,9 +115,6 @@ def extract_bills_from_urgency_section(html_content: str):
 
         if not bill_name or not url:
             continue
-
-        # For bill links you showed, URLs are already absolute.
-        # If you ever see relative ones, you could normalize here.
         bills.append((bill_name, url))
 
     return bills
