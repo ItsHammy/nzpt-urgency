@@ -49,6 +49,21 @@ def parse_listing_date(date_text: str):
         return None
 
 
+def parse_title_date(title_text: str):
+    """
+    Row titles look like 'Daily progress for Tuesday, 30 June 2026'.
+    This is the actual sitting date. The listing's second column is
+    'Last updated', which is a different date and must not be used
+    as the sitting date -- that mismatch was the source of the bug.
+    """
+    if not title_text:
+        return None
+    if "," not in title_text:
+        return None
+    date_part = title_text.rsplit(",", 1)[-1]
+    return parse_listing_date(date_part)
+
+
 async def collect_listing_items(page):
     """
     Crawl the listing pages and return a list of (date, full_url)
@@ -77,11 +92,9 @@ async def collect_listing_items(page):
               );
               return rows.map(row => {
                 const link = row.querySelector("a.list__cell-heading");
-                const cells = row.querySelectorAll("td.list__cell");
-                const dateCell = cells.length > 1 ? cells[1] : null;
                 return {
                   href: link ? link.getAttribute("href") : null,
-                  dateText: dateCell ? dateCell.textContent.trim() : null
+                  titleText: link ? link.textContent.trim() : null
                 };
               });
             }
@@ -96,11 +109,11 @@ async def collect_listing_items(page):
 
         for r in rows:
             href = r.get("href")
-            date_text = r.get("dateText")
-            if not href or not date_text:
+            title_text = r.get("titleText")
+            if not href or not title_text:
                 continue
 
-            sitting_date = parse_listing_date(date_text)
+            sitting_date = parse_title_date(title_text)
             if not sitting_date:
                 continue
 
