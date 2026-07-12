@@ -119,7 +119,7 @@ $last_updated = file_get_contents('lastupdate.txt');
                 </div>
                 -->
             </div>
-        <a href="historical/" class="button">How does this stack against previous parliaments?</a> <button id="share-n" class="button">📤 Share these stats</button>
+        <a href="historical/" class="button">How does this stack against previous parliaments?</a> <a href="bills/" class="button">Explore the bills.</a> <button id="share-btn" class="button">Share these stats 📤</button>
         <p><strong>Last Updated:</strong> <span id="last-updated"><?php echo $last_updated; ?></span>.</p>
         </div>
         <hr>
