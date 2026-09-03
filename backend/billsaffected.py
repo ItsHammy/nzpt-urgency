@@ -5,7 +5,7 @@ import re
 
 from playwright.async_api import async_playwright
 
-DB_PATH = "urgency.sqlite3"
+DB_PATH = "/var/www/nzpt/urgency/urgency.sqlite3"
 BASE_URL = "https://www3.parliament.nz"
 
 # Example target:

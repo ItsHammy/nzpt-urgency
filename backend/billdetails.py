@@ -4,7 +4,7 @@ from datetime import datetime
 
 from playwright.async_api import async_playwright
 
-DB_PATH = "urgency.sqlite3"
+DB_PATH = "/var/www/nzpt/urgency/urgency.sqlite3"
 
 
 def ensure_bills_columns():

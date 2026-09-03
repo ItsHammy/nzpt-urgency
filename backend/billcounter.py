@@ -9,7 +9,7 @@ BASE_URL = "https://www3.parliament.nz"
 LIST_URL = f"{BASE_URL}/en/pb/daily-progress-in-the-house"
 CURRENT_GOV_START = date(2023, 12, 3)
 
-BILLCOUNTER_PATH = "billcounter.txt"
+BILLCOUNTER_PATH = "/var/www/nzpt/urgency/billcounter.txt"
 MAX_LIST_PAGES = 40  # enough to cover back to CURRENT_GOV_START
 
 

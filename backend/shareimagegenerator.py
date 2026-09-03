@@ -5,9 +5,9 @@ import urllib.request
 import os
 
 # Database paths
-DB_PATH = '/var/www/nzpt/urgency.sqlite3'
-BILLCOUNTER_PATH = '/var/www/nzpt/billcounter.txt'
-LASTUPDATE_PATH = '/var/www/nzpt/lastupdate.txt'
+DB_PATH = '/var/www/nzpt/urgency/urgency.sqlite3'
+BILLCOUNTER_PATH = '/var/www/nzpt/urgency/billcounter.txt'
+LASTUPDATE_PATH = '/var/www/nzpt/urgency/lastupdate.txt'
 
 # Image settings — 1024x1024 square
 IMG_W = 1024
