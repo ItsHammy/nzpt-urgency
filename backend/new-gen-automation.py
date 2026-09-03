@@ -19,7 +19,7 @@ mirrored to DIR/logs/urgency.log as well as the console.
 import asyncio
 import os
 import sys
-from datetime import datetime
+from datetime import datetime, timedelta
 
 # ---------------------------------------------------------------------------
 # Logging setup
@@ -27,6 +27,16 @@ from datetime import datetime
 DIR = "/var/www/nzpt/urgency"
 LOG_DIR = "logs/"
 LOG_PATH = os.path.join(LOG_DIR, "urgency.log")
+
+# ---------------------------------------------------------------------------
+# Incremental-scrape cutoff
+# ---------------------------------------------------------------------------
+# scrapewebpage.py and billcounter.py read this file to know how far back
+# they need to paginate, instead of always walking back to CURRENT_GOV_START.
+# BUFFER_DAYS gives a small safety margin in case a listing page gets
+# updated a day or two after it first appears.
+LAST_RUN_PATH = os.path.join(DIR, "last.txt")
+BUFFER_DAYS = 1
 
 os.makedirs(LOG_DIR, exist_ok=True)
 
@@ -96,8 +106,8 @@ async def run_step(name, coro_or_func, is_coro=True):
 
 async def schedule():
     while True:
-        await run_step("scrapewebpage.py", scrapescript)
-        await run_step("billcounter.py", billcounter)
+        ok_scrapewebpage = await run_step("scrapewebpage.py", scrapescript)
+        ok_billcounter = await run_step("billcounter.py", billcounter)
         await run_step("billsaffected.py", billsaffected)
         await run_step("billdetails.py", billdetails)
         await run_step("shareimagegenerator.py", shareimagegenerator, is_coro=False)
@@ -109,6 +119,23 @@ async def schedule():
             import traceback
             print("ERROR: failed to write lastupdate.txt:")
             print(traceback.format_exc())
+
+        # Only advance the incremental-scrape cutoff if both range-dependent
+        # scrapers completed successfully. If either failed, leave last.txt
+        # as-is so tomorrow's run re-covers today's (possibly missed) range
+        # rather than silently skipping data.
+        if ok_scrapewebpage and ok_billcounter:
+            try:
+                cutoff = (datetime.now().date() - timedelta(days=BUFFER_DAYS)).isoformat()
+                with open(LAST_RUN_PATH, "w") as f:
+                    f.write(cutoff)
+                print(f"Updated {LAST_RUN_PATH} -> {cutoff}")
+            except Exception:
+                import traceback
+                print("ERROR: failed to write last.txt:")
+                print(traceback.format_exc())
+        else:
+            print("Skipping last.txt update because scrapewebpage.py or billcounter.py failed.")
 
         print("All scripts ran. Waiting for the next run...")
         # Wait for 24 hours (86400 seconds)

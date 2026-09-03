@@ -17,6 +17,25 @@ URGENCY_PHRASE = "A motion to accord urgency to the following business was agree
 # Safety upper bound; you said the first date you care about is on page 16
 MAX_LIST_PAGES = 40
 
+# Written by new-gen-automation.py after a successful run. If present and
+# valid, we only paginate back to this date instead of CURRENT_GOV_START.
+# This is what keeps the nightly run fast/incremental; the full backfill
+# behaviour (this script's original purpose) still happens automatically
+# whenever last.txt is missing, unreadable, or older than CURRENT_GOV_START.
+LAST_RUN_PATH = "/var/www/nzpt/urgency/last.txt"
+
+
+def get_since_date() -> date:
+    try:
+        with open(LAST_RUN_PATH, "r", encoding="utf-8") as f:
+            text = f.read().strip()
+        parsed = datetime.strptime(text, "%Y-%m-%d").date()
+        if parsed > CURRENT_GOV_START:
+            return parsed
+    except Exception:
+        pass
+    return CURRENT_GOV_START
+
 
 def init_db():
     conn = sqlite3.connect(DB_PATH)
@@ -64,11 +83,11 @@ def parse_title_date(title_text: str):
     return parse_listing_date(date_part)
 
 
-async def collect_listing_items(page):
+async def collect_listing_items(page, since_date: date):
     """
     Crawl the listing pages and return a list of (date, full_url)
-    for all sitting days on/after CURRENT_GOV_START.
-    Stops once it hits dates older than CURRENT_GOV_START.
+    for all sitting days on/after since_date.
+    Stops once it hits dates older than since_date.
     """
     items: list[tuple[date, str]] = []
 
@@ -117,9 +136,9 @@ async def collect_listing_items(page):
             if not sitting_date:
                 continue
 
-            # Listing is newest → oldest. Once we see older than CURRENT_GOV_START,
+            # Listing is newest → oldest. Once we see older than since_date,
             # we can stop after this page.
-            if sitting_date < CURRENT_GOV_START:
+            if sitting_date < since_date:
                 reached_older_than_start = True
                 continue
 
@@ -127,7 +146,7 @@ async def collect_listing_items(page):
             items.append((sitting_date, full_url))
 
         if reached_older_than_start:
-            print("Reached dates older than CURRENT_GOV_START; stopping pagination.")
+            print(f"Reached dates older than {since_date}; stopping pagination.")
             break
 
     # Dedup within this run by URL, in case of oddities in the listing
@@ -139,17 +158,20 @@ async def collect_listing_items(page):
         seen_urls.add(u)
         unique_items.append((d, u))
 
-    print(f"Collected {len(unique_items)} listing items on/after {CURRENT_GOV_START}")
+    print(f"Collected {len(unique_items)} listing items on/after {since_date}")
     return unique_items
 
 
 async def scrape_from_listing():
+    since_date = get_since_date()
+    print(f"Scraping since_date = {since_date} (CURRENT_GOV_START = {CURRENT_GOV_START})")
+
     async with async_playwright() as p:
         browser = await p.chromium.launch(headless=True)
         page = await browser.new_page()
 
         # 1. Collect all relevant (date, URL) pairs from listing pages
-        work_items = await collect_listing_items(page)
+        work_items = await collect_listing_items(page, since_date)
 
         # 2. Visit each daily-progress page and check for urgency
         results: list[tuple[str, int]] = []

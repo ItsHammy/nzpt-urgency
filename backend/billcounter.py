@@ -1,5 +1,6 @@
 # billcounter.py
 import asyncio
+import sqlite3
 from datetime import datetime, date
 from urllib.parse import urlparse
 
@@ -9,8 +10,65 @@ BASE_URL = "https://www3.parliament.nz"
 LIST_URL = f"{BASE_URL}/en/pb/daily-progress-in-the-house"
 CURRENT_GOV_START = date(2023, 12, 3)
 
+# Reuse the shared DB to persist the set of bill_ids already counted.
+# This is what lets the scan window shrink (via get_since_date()) without
+# losing the running total: old bill_ids stay in the table forever, we
+# only ever add newly-discovered ones, and the count is COUNT(*) over
+# the whole table rather than a fresh in-memory scan each run.
+DB_PATH = "/var/www/nzpt/urgency/urgency.sqlite3"
+
+
+def ensure_bill_ids_table():
+    conn = sqlite3.connect(DB_PATH)
+    cursor = conn.cursor()
+    cursor.execute("""
+        CREATE TABLE IF NOT EXISTS introduced_bill_ids (
+            bill_id TEXT PRIMARY KEY
+        )
+    """)
+    conn.commit()
+    conn.close()
+
+
+def load_known_bill_ids() -> set[str]:
+    conn = sqlite3.connect(DB_PATH)
+    cursor = conn.cursor()
+    cursor.execute("SELECT bill_id FROM introduced_bill_ids")
+    ids = {row[0] for row in cursor.fetchall()}
+    conn.close()
+    return ids
+
+
+def save_new_bill_ids(bill_ids: set[str]):
+    if not bill_ids:
+        return
+    conn = sqlite3.connect(DB_PATH)
+    cursor = conn.cursor()
+    cursor.executemany(
+        "INSERT OR IGNORE INTO introduced_bill_ids (bill_id) VALUES (?)",
+        [(b,) for b in bill_ids],
+    )
+    conn.commit()
+    conn.close()
+
 BILLCOUNTER_PATH = "/var/www/nzpt/urgency/billcounter.txt"
 MAX_LIST_PAGES = 40  # enough to cover back to CURRENT_GOV_START
+
+# Written by new-gen-automation.py after a successful run. See scrapewebpage.py
+# for the matching helper — kept in sync so both scripts use the same cutoff.
+LAST_RUN_PATH = "/var/www/nzpt/urgency/last.txt"
+
+
+def get_since_date() -> date:
+    try:
+        with open(LAST_RUN_PATH, "r", encoding="utf-8") as f:
+            text = f.read().strip()
+        parsed = datetime.strptime(text, "%Y-%m-%d").date()
+        if parsed > CURRENT_GOV_START:
+            return parsed
+    except Exception:
+        pass
+    return CURRENT_GOV_START
 
 
 def parse_listing_date(date_text: str):
@@ -26,10 +84,10 @@ def parse_listing_date(date_text: str):
         return None
 
 
-async def collect_listing_items(page):
+async def collect_listing_items(page, since_date: date):
     """
     Crawl the listing pages and return a list of (date, full_url)
-    for all sitting days on/after CURRENT_GOV_START.
+    for all sitting days on/after since_date.
     """
     items: list[tuple[date, str]] = []
 
@@ -77,7 +135,7 @@ async def collect_listing_items(page):
             if not sitting_date:
                 continue
 
-            if sitting_date < CURRENT_GOV_START:
+            if sitting_date < since_date:
                 reached_older_than_start = True
                 continue
 
@@ -85,7 +143,7 @@ async def collect_listing_items(page):
             items.append((sitting_date, full_url))
 
         if reached_older_than_start:
-            print("Reached dates older than CURRENT_GOV_START; stopping pagination.")
+            print(f"Reached dates older than {since_date}; stopping pagination.")
             break
 
     # Dedup by URL
@@ -97,7 +155,7 @@ async def collect_listing_items(page):
         seen_urls.add(u)
         unique_items.append((d, u))
 
-    print(f"Collected {len(unique_items)} listing items on/after {CURRENT_GOV_START}")
+    print(f"Collected {len(unique_items)} listing items on/after {since_date}")
     return unique_items
 
 
@@ -176,13 +234,20 @@ async def introduced_bill_hrefs_on_page(page):
 
 
 async def count_unique_bills():
+    ensure_bill_ids_table()
+    since_date = get_since_date()
+    print(f"Scanning since_date = {since_date} (CURRENT_GOV_START = {CURRENT_GOV_START})")
+
+    known_bill_ids = load_known_bill_ids()
+    print(f"{len(known_bill_ids)} bill_ids already known from previous runs")
+
+    newly_found: set[str] = set()
+
     async with async_playwright() as p:
         browser = await p.chromium.launch(headless=True)
         page = await browser.new_page()
 
-        work_items = await collect_listing_items(page)
-
-        bill_ids: set[str] = set()
+        work_items = await collect_listing_items(page, since_date)
 
         for sitting_date, url in work_items:
             print(f"Scanning {sitting_date} -> {url}")
@@ -198,11 +263,13 @@ async def count_unique_bills():
             for href in hrefs:
                 bill_id = normalise_bill_id(href)
                 if bill_id:
-                    bill_ids.add(bill_id)
+                    newly_found.add(bill_id)
 
         await browser.close()
 
-    return len(bill_ids)
+    save_new_bill_ids(newly_found)
+    total_bill_ids = known_bill_ids | newly_found
+    return len(total_bill_ids)
 
 
 async def main():
