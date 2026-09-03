@@ -15,6 +15,8 @@
     --orange:         #e8620a;
     --orange2:        #f5890e;
     --accent:         #e8620a;   /* kept as alias for inline use */
+    --teal:           #0e7a8c;   /* complementary to --orange, used for CTAs */
+    --teal2:          #0a6272;
     --font-display:   'Playfair Display', Georgia, serif;
     --font-body:      'DM Sans', Arial, sans-serif;
     --font-mono:      'DM Mono', 'Courier New', monospace;
@@ -272,6 +274,105 @@ aside .warning {
     text-decoration: none;
     color: var(--orange);
     border-bottom: 1px solid rgba(232,98,10,0.3);
+}
+
+/* ── Election notice ── */
+.vote-notice {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    z-index: 200;
+    width: 280px;
+    background: linear-gradient(155deg, var(--white), var(--cream));
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--orange);
+    border-radius: var(--radius-card);
+    box-shadow: var(--shadow-hover);
+    padding: 1rem 1.15rem;
+    font-family: var(--font-body);
+    animation: vote-notice-in 0.4s ease-out;
+}
+
+@keyframes vote-notice-in {
+    from { opacity: 0; transform: translateY(-14px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+.vote-notice__close {
+    position: absolute;
+    top: 0.4rem;
+    right: 0.55rem;
+    background: none;
+    border: none;
+    font-size: 1.3rem;
+    line-height: 1;
+    color: var(--muted);
+    cursor: pointer;
+    padding: 0.2rem;
+    transition: color 0.15s;
+}
+
+.vote-notice__close:hover {
+    color: var(--ink);
+}
+
+.vote-notice__title {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: var(--ink);
+    margin: 0 0 0.5rem;
+    padding-right: 1.4rem;
+}
+
+.vote-notice__title i {
+    color: var(--orange);
+    margin-right: 0.3em;
+}
+
+.vote-notice__body {
+    font-size: 0.78rem;
+    color: var(--ink2);
+    margin: 0 0 0.75rem;
+    line-height: 1.6;
+}
+
+.vote-notice__body strong {
+    color: var(--ink);
+}
+
+.vote-notice__cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4em;
+    background: var(--teal);
+    color: var(--white) !important;
+    padding: 0.42rem 0.9rem;
+    border-radius: 999px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    text-decoration: none;
+    border-bottom: none;
+    box-shadow: 0 2px 8px rgba(14,122,140,0.25);
+    transition: background 0.15s, transform 0.1s, box-shadow 0.1s;
+}
+
+.vote-notice__cta:hover {
+    background: var(--teal2);
+    border-color: transparent;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(14,122,140,0.32);
+}
+
+/* On small screens, dock as a bottom sheet rather than a top-right corner card */
+@media (max-width: 640px) {
+    .vote-notice {
+        top: auto;
+        bottom: 0.75rem;
+        left: 0.75rem;
+        right: 0.75rem;
+        width: auto;
+    }
 }
 
 /* ── FAQ accordion ── */

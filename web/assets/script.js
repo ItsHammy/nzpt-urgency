@@ -52,6 +52,23 @@ function formatTimeLeft(timeLeft) {
   return days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
 }
 
+// Election notice: dismissable, re-appears next browser session
+document.addEventListener('DOMContentLoaded', () => {
+  const notice = document.getElementById('vote-notice');
+  const closeBtn = document.getElementById('vote-notice-close');
+
+  if (!notice || !closeBtn) return;
+
+  if (sessionStorage.getItem('voteNoticeDismissed') === 'true') {
+    notice.style.display = 'none';
+  }
+
+  closeBtn.addEventListener('click', () => {
+    notice.style.display = 'none';
+    sessionStorage.setItem('voteNoticeDismissed', 'true');
+  });
+});
+
 // Share button functionality
 document.addEventListener('DOMContentLoaded', () => {
 

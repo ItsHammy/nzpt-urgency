@@ -54,6 +54,17 @@ $last_updated = file_get_contents('lastupdate.txt');
      <script defer src="https://cloud.umami.is/script.js" data-website-id="1492dd3b-f626-44b3-a8d5-b074177af097"></script>
 </head>
 <body>
+    <!-- Election Notice -->
+    <div id="vote-notice" class="vote-notice" role="dialog" aria-label="2026 Election reminder">
+        <button class="vote-notice__close" id="vote-notice-close" aria-label="Dismiss notice">&times;</button>
+        <p class="vote-notice__title"><i class="fa-solid fa-check-to-slot"></i> 2026 General Election</p>
+        <p class="vote-notice__body">
+            <strong>Election Day:</strong> 7th November <span id="election-day"></span><br>
+            <strong>Enrolment closes in:</strong> <span id="enrol-date"></span><br>
+            <strong>Voting opens in:</strong> <span id="voting-opens-date"></span>
+        </p>
+        <a href="https://vote.nz/enrol" target="_blank" class="vote-notice__cta">Enrol to Vote <i class="fa-solid fa-arrow-right"></i></a>
+    </div>
     <header>
         <h1>NZPT | Urgency Tracker</h1>
         <h5>New Zealand Politics Toolbox -> Tracking Govt Urgency</h5>
@@ -72,11 +83,6 @@ $last_updated = file_get_contents('lastupdate.txt');
                 <p><strong>Notice:</strong> <em>NZPolToolbox now has more than just this Urgency Tracker.</em> You have been automatically redirected to the new URL for this tool. The old URLs will not work in the future. Please update your bookmarks! <br><i class="fa-solid fa-heart"></i> Thank you for your continued support!</p>
             </div>
         <?php endif; ?>
-        <!--Countdown Ticker-->
-        <div id="at-a-glance"> 
-        <div id="countdown-ticker" class="marquee">
-            <marquee><b>2026 Election:</b> 7th November. <b>Enrolment Closes:</b> <span id="enrol-date"></span>. <b>Switching Rolls Closes:</b> <span id="switch-rolls-date"></span>. <b>Voting Opens:</b> <span id="voting-opens-date"></span>. <b>Election Day:</b> <span id="election-day"></span>. <a href="https://vote.nz/enrol" target="_blank">Click Here to Enrol to Vote.</a> | <b>2026 Election:</b> 7th November. <b>Enrolment Closes:</b> <span id="enrol-date"></span>. <b>Switching Rolls Closes:</b> <span id="switch-rolls-date"></span>. <b>Voting Opens:</b> <span id="voting-opens-date"></span>. <b>Election Day:</b> <span id="election-day"></span>. <a href="https://vote.nz/enrol" target="_blank">Click Here to Enrol to Vote.</a> | <b>2026 Election:</b> 7th November. <b>Enrolment Closes:</b> <span id="enrol-date"></span>. <b>Switching Rolls Closes:</b> <span id="switch-rolls-date"></span>. <b>Voting Opens:</b> <span id="voting-opens-date"></span>. <b>Election Day:</b> <span id="election-day"></span>. <a href="https://vote.nz/enrol" target="_blank">Click Here to Enrol to Vote.</a> | <b>2026 Election:</b> 7th November. <b>Enrolment Closes:</b> <span id="enrol-date"></span>. <b>Switching Rolls Closes:</b> <span id="switch-rolls-date"></span>. <b>Voting Opens:</b> <span id="voting-opens-date"></span>. <b>Election Day:</b> <span id="election-day"></span>. <a href="https://vote.nz/enrol" target="_blank">Click Here to Enrol to Vote.</a> | <b>2026 Election:</b> 7th November. <b>Enrolment Closes:</b> <span id="enrol-date"></span>. <b>Switching Rolls Closes:</b> <span id="switch-rolls-date"></span>. <b>Voting Opens:</b> <span id="voting-opens-date"></span>. <b>Election Day:</b> <span id="election-day"></span>. <a href="https://vote.nz/enrol" target="_blank">Click Here to Enrol to Vote.</a> | </marquee>
-        </div>
         <h2>54th Parliament Statistics:</h2>
             <div class="stats-card-grid">
                 <div class="stats-card" id="day-sat">
