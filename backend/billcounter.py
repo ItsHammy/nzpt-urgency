@@ -271,9 +271,14 @@ async def count_unique_bills():
     total_bill_ids = known_bill_ids | newly_found
     return len(total_bill_ids)
 
+async def count_unique_bills_sync(): # fix bug where billcounter.txt is not updated correctly as it doesn't read old count. this logic is seperate from main as too much for main :)
+    newcount = await count_unique_bills()
+    oldcount = open(BILLCOUNTER_PATH, "r", encoding="utf-8").read().strip().split(",")[0]
+    count = int(oldcount) + newcount
+    return count
 
 async def main():
-    count = await count_unique_bills()
+    count = await count_unique_bills_sync()
     today_str = datetime.now().date().isoformat()
     line = f"{count}, {today_str}\n"
 
