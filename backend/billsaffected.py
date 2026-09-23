@@ -2,6 +2,7 @@ import asyncio
 import sqlite3
 from datetime import datetime, date
 import re
+from urllib.parse import urlparse
 
 from playwright.async_api import async_playwright
 
@@ -120,6 +121,41 @@ def extract_bills_from_urgency_section(html_content: str):
     return bills
 
 
+def canonicalise_bill_url(url: str) -> str:
+    """
+    Collapse the URL variants parliament.nz serves for the *same* bill down
+    to one stable form, so the `UNIQUE INDEX` on `bills.url` actually
+    catches duplicates instead of letting each variant through.
+
+    Observed variants for one bill:
+      https://bills.parliament.nz/v/6/350162e5-1747-474b-30bb-08de385625f0
+      https://bills.parliament.nz/v/6/350162E5-1747-474B-30BB-08DE385625F0
+      https://bills.parliament.nz/v/6/7a3e2c51-34cd-4990-96cc-08db71ef2382?Tab=history
+      https://bills.parliament.nz/v/6/6193a33c-...?lang=en&Tab=history
+
+    i.e. the GUID's case is inconsistent and a `?Tab=history` / `?lang=en`
+    query string is sometimes present and sometimes not. Neither changes
+    which bill the link points to, so we lowercase the path and drop the
+    query string entirely (this mirrors `normalise_bill_id()` in
+    billcounter.py, which already had to solve the same problem).
+
+    Falls back to a lightly-normalised version of the original URL (lower-
+    cased host+path, no query string) if it doesn't look like a
+    bills.parliament.nz link, rather than failing outright.
+    """
+    url = url.strip()
+    try:
+        parsed = urlparse(url)
+    except Exception:
+        return url
+
+    scheme = parsed.scheme or "https"
+    netloc = parsed.netloc.lower()
+    path = parsed.path.lower().rstrip("/")
+
+    return f"{scheme}://{netloc}{path}"
+
+
 async def scrape_bills_for_urgent_sittings():
     urgent_dates = get_urgent_dates()
     if not urgent_dates:
@@ -147,7 +183,9 @@ async def scrape_bills_for_urgent_sittings():
 
             bills = extract_bills_from_urgency_section(content)
             print(f"  Found {len(bills)} bills in urgency section")
-            all_bills.extend(bills)
+            all_bills.extend(
+                (bill_name, canonicalise_bill_url(url)) for bill_name, url in bills
+            )
 
         await browser.close()
 
